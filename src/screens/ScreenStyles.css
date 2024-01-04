@@ -1,0 +1,30 @@
+.underline-hover {
+    position: relative;
+    display: inline-block;
+    color: gray;
+    transition: color 0.3s ease-in-out;
+}
+
+.underline-hover::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: cyan;
+    transition: width 0.3s ease-in-out;
+}
+
+.underline-hover:hover {
+    color: cyan;
+}
+
+.underline-hover:hover::after {
+    width: 100%;
+}
+
+.icon-btn:hover svg {
+    fill: #00FFFF;
+}

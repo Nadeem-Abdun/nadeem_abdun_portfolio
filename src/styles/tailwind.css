@@ -1,0 +1,30 @@
+/* src/styles/tailwind.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Add your custom styles here */
+body {
+    cursor: auto;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0) 60%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+body::before {
+    top: calc(var(--cursor-y) - 20vw);
+    left: calc(var(--cursor-x) - 20vw);
+}
+
+::selection {
+    background-color: cyan;
+    color: rgb(90, 90, 90);
+}

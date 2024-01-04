@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AppLayout from './layout/AppLayout';
+import AboutMe from './screens/AboutMe';
+import Experience from './screens/Experience';
+import Projects from './screens/Projects';
+import ContactMe from './screens/ContactMe';
+import LeftNavigation from './screens/LeftNavigation';
 
-function App() {
+const App = () => {
+
+  const rightElementsArray = [
+    <AboutMe key="aboutMe" />,
+    <Experience key="experience" />,
+    <Projects key="projects" />,
+    <ContactMe key="contactMe" />,
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-darkblue text-gray-300">
+      <AppLayout
+        leftElement={<LeftNavigation />}
+        rightElements={rightElementsArray}
+      />
     </div>
   );
-}
+};
 
 export default App;
