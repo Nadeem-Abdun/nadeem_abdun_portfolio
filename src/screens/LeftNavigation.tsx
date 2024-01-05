@@ -20,8 +20,8 @@ const LeftNavigation = () => {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center h-full pl-10">
-            <Grid container justifyContent='flex-start' alignItems='center' spacing={(isXl || isLg) ? 8 : 2} className='h-full py-2'>
+        <div className="flex flex-col justify-center items-center h-full">
+            <Grid container justifyContent='flex-start' alignItems='center' spacing={(isXl || isLg) ? 8 : 2} className='h-full'>
                 <Grid container item spacing={(isXl || isLg) ? 4 : 2} xs={12}>
                     <Grid container item spacing={(isXl || isLg) ? 1 : 0} xs={12}>
                         <Grid item>
