@@ -15,6 +15,12 @@ const App = () => {
     <ContactMe key="contactMe" />,
   ];
 
+  // Event tracker for the cursor light background
+  document.addEventListener('mousemove', (e) => {
+    document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
+    document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
+  });
+
   return (
     <div className="min-h-screen bg-darkblue text-gray-300">
       <AppLayout
