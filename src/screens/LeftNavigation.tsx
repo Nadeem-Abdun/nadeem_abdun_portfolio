@@ -24,15 +24,15 @@ const LeftNavigation = () => {
             <Grid container justifyContent='flex-start' alignItems='center' spacing={(isXl || isLg) ? 8 : 2} className='h-full'>
                 <Grid container item spacing={(isXl || isLg) ? 4 : 2} xs={12}>
                     <Grid container item spacing={(isXl || isLg) ? 1 : 0} xs={12}>
-                        <Grid item>
+                        <Grid item xs={12}>
                             <Typography component="h1" variant="h2" fontWeight={600}>Nadeem Abdun</Typography>
                         </Grid>
-                        <Grid item>
-                            <Typography component="h2" variant="h4" fontWeight={500}>Web & App Developer</Typography>
+                        <Grid item xs={12}>
+                            <Typography component="h2" variant="h5" fontWeight={500}>Web & App Developer</Typography>
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography component="h3" variant="h6" fontWeight={400}>Transforming concepts into code, Specialized in delivering pixel-perfect, accessible wonders as a full-stack web and app developer.</Typography>
+                        <Typography component="h3" variant="body1" fontWeight={400}>Transforming concepts into code, Specialized in delivering pixel-perfect, accessible wonders as a full-stack web and app developer.</Typography>
                     </Grid>
                     <Grid container item spacing={(isXl || isLg) ? 2 : 1} xs={12}>
                         <Grid item xs={12}>

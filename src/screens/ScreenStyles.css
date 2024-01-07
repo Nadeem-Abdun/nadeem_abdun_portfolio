@@ -14,7 +14,7 @@
     width: 0;
     height: 2px;
     background-color: cyan;
-    transition: width 0.3s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 .underline-hover:hover {
