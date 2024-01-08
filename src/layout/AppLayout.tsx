@@ -7,11 +7,16 @@ interface RightElementProps {
     id: string;
 }
 
-const RightElement: React.FC<RightElementProps> = ({ children, id }) => (
-    <div id={id} style={{ height: '100vh' }}>
-        {children}
-    </div>
-);
+const RightElement: React.FC<RightElementProps> = ({ children, id }) => {
+    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
+    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+    const minHeightStyle = !(isXs || isSm) ? { minHeight: '100dvh' } : {};
+    return (
+        <div id={id} style={{ ...minHeightStyle }}>
+            {children}
+        </div>
+    );
+}
 
 interface Props {
     leftElement: React.ReactNode;
@@ -47,12 +52,12 @@ const AppLayout: React.FC<Props> = (props) => {
     return (
         <Grid container>
             {(isXl || isLg || isMd) &&
-                <Grid item xl={5} lg={5} md={5} sm={0} xs={0} className='pl-10 pr-5'>
+                <Grid container item xl={5} lg={5} md={5} sm={0} xs={0} className='pl-10 pr-5'>
                     {leftElement}
                 </Grid>
             }
             {(isXl || isLg || isMd || isSm || isXs) &&
-                <Grid item xl={7} lg={7} md={7} sm={12} xs={12} onScroll={handleScroll} style={{ overflowY: 'auto', height: '100vh' }} className='pl-5 pr-10'>
+                <Grid container item xl={7} lg={7} md={7} sm={12} xs={12} onScroll={handleScroll} style={{ overflowY: 'auto', height: '100vh' }} className={`pl-5 ${(isXs || isSm) ? 'pr-5' : 'pr-10'}`}>
                     <div className="flex flex-col justify-center items-center">
                         {rightElements.map((element, index) => (
                             <RightElement key={index} id={`section${index}`} children={element} />

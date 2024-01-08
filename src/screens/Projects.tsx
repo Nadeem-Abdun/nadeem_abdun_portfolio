@@ -11,13 +11,13 @@ const Projects = () => {
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
 
     return (
-        <div className='flex flex-col justify-center items-center h-full'>
-            <Grid container xs={12} justifyContent='flex-start' alignItems='center'>
+        <div className={`flex flex-col justify-center items-center ${(isXs || isSm || isMd) ? 'my-3' : 'my-10'}`}>
+            <Grid container xs={12} justifyContent='flex-start' alignItems='center' rowSpacing={2}>
                 <Grid item xs={12}>
                     <Typography component="h2" variant="h4" fontWeight={500}>Projects</Typography>
                 </Grid>
                 <Grid item xs={12}>
-
+                    <Typography component="h3" variant="body2" fontWeight={400}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, velit rem! Eaque aut, voluptate asperiores expedita accusantium adipisci beatae fuga non vero laborum soluta eveniet et id veritatis. Modi, deleniti. Obcaecati molestiae minima vero ipsam ex quidem autem consectetur perspiciatis debitis magnam iure doloribus eligendi dolor ab, facere id aut!</Typography>
                 </Grid>
             </Grid>
         </div>

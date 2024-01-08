@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import './ComponentStyles.css';
+import { useMediaQuery } from 'react-responsive';
 
 interface Props {
     jobTenure?: string;
@@ -14,23 +15,38 @@ const ExperienceCard: React.FC<Props> = (props) => {
 
     const { jobTenure, jobTitle, jobCompany, jobDescription, jobTechStack } = props;
 
+    const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
+    const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
+    const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
+    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
+    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+
     return (
-        <Card className='experienceCard px-6 py-6 w-full'>
-            <Grid container justifyContent='space-between' alignItems='flex-start'>
-                <Grid container item xs={3} justifyContent='flex-start' alignItems='flex-start'>
-                    <Grid item xs={12}>
-                        <Typography component="h6" variant="body2" fontWeight={600} className='text-gray-400 hover:text-cyan-300 py-2'>
-                            {jobTenure}
-                        </Typography>
+        <div className={`experienceCard ${(isXs) ? 'px-3' : 'px-6'} ${(isXs) ? 'py-2' : 'py-6'} w-full`}>
+            <Grid container justifyContent='space-between' alignItems='flex-start' columnSpacing={1}>
+                {!isXs &&
+                    <Grid container item sm={3} xs={12} justifyContent='flex-start' alignItems='flex-start'>
+                        <Grid item xs={12}>
+                            <Typography component="h6" variant="body2" fontWeight={600} className='text-gray-400 hover:text-cyan-300 py-2'>
+                                {jobTenure}
+                            </Typography>
+                        </Grid>
                     </Grid>
-                </Grid>
-                <Grid container item xs={9} justifyContent='flex-start' alignItems='flex-start'>
+                }
+                <Grid container item sm={9} xs={12} justifyContent='flex-start' alignItems='flex-start'>
                     <Grid item xs={12}>
                         <Typography component="h2" variant="h5" fontWeight={500}>{jobTitle}</Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography component="h2" variant="body1" fontWeight={400}>{jobCompany}</Typography>
                     </Grid>
+                    {isXs &&
+                        <Grid item xs={12}>
+                            <Typography component="h6" variant="body2" fontWeight={600} className='text-gray-400 hover:text-cyan-300 py-2'>
+                                {jobTenure}
+                            </Typography>
+                        </Grid>
+                    }
                     <Grid item xs={12}>
                         <Typography component="h2" variant="body2" fontWeight={400}>
                             <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
@@ -51,7 +67,7 @@ const ExperienceCard: React.FC<Props> = (props) => {
                     </Grid>
                 </Grid>
             </Grid>
-        </Card >
+        </div >
     )
 }
 

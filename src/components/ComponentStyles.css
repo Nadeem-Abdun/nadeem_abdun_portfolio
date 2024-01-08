@@ -1,7 +1,7 @@
 .experienceCard {
     background-color: transparent;
     color: #D1D5DB;
-    border-radius: 1dvw;
+    border-radius: 1vw;
     transition: background-color 0.3s ease-in-out;
 }
 

@@ -11,13 +11,19 @@ const AboutMe = () => {
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
 
     return (
-        <div className='flex flex-col justify-center items-center h-full'>
-            <Grid container xs={12} justifyContent='flex-start' alignItems='center'>
+        <div className={`flex flex-col justify-center items-center ${(isXs || isSm || isMd) ? 'my-3' : 'my-10'}`}>
+            <Grid container xs={12} justifyContent='flex-start' alignItems='center' rowSpacing={2}>
                 <Grid item xs={12}>
                     <Typography component="h2" variant="h4" fontWeight={500}>About Me</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                    <Avatar src='https://avatars.githubusercontent.com/u/117020521?v=4' sx={{ width: '12vw', height: '12vw' }} />
+                    <Avatar
+                        src='https://avatars.githubusercontent.com/u/117020521?v=4'
+                        sx={{
+                            width: isXs ? '40vw' : isSm ? '30vw' : '12vw',
+                            height: isXs ? '40vw' : isSm ? '30vw' : '12vw',
+                        }}
+                    />
                 </Grid>
                 <Grid item xs={12}>
                     <Typography component="h3" variant={isXs ? "body1" : "h6"} fontWeight={400}>
