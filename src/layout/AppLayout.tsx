@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
-import { useMediaQuery } from 'react-responsive'
+import { useMediaQuery } from 'react-responsive';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
 
 interface RightElementProps {
     children: React.ReactNode;

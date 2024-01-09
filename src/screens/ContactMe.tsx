@@ -36,10 +36,10 @@ const ContactMe = () => {
         <div className={`flex flex-col justify-center items-center ${(isXs || isSm || isMd) ? 'my-3' : 'my-10'}`}>
             <Grid container xs={12} justifyContent='flex-start' alignItems='center' rowSpacing={2}>
                 <Grid item xs={12}>
-                    <Typography component="h2" variant="h4" fontWeight={500}>Contact Me</Typography>
+                    <Typography component="h2" variant="h4" fontWeight={500} fontFamily='inter'>Contact Me</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                    <Typography component="h2" variant="body1" fontWeight={400}>"How about having a quick conversation? Please fill out the form below, and I'll reach out to you shortly."</Typography>
+                    <Typography component="h2" variant="body1" fontWeight={400} fontFamily='inter'>"How about having a quick conversation? Please fill out the form below, and I'll reach out to you shortly."</Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
