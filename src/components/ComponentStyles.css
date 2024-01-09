@@ -1,11 +1,11 @@
-.experienceCard {
+.card {
     background-color: transparent;
     color: #D1D5DB;
     border-radius: 1vw;
     transition: background-color 0.3s ease-in-out;
 }
 
-.experienceCard:hover {
+.card:hover {
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
 }

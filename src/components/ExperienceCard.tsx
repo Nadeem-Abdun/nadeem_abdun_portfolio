@@ -22,7 +22,7 @@ const ExperienceCard: React.FC<Props> = (props) => {
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
 
     return (
-        <div className={`experienceCard ${(isXs) ? 'px-3' : 'px-6'} ${(isXs) ? 'py-2' : 'py-6'} w-full`}>
+        <div className={`card ${(isXs) ? 'px-3' : 'px-6'} ${(isXs) ? 'py-2' : 'py-6'} w-full`}>
             <Grid container justifyContent='space-between' alignItems='flex-start' columnSpacing={1}>
                 {!isXs &&
                     <Grid container item sm={3} xs={12} justifyContent='flex-start' alignItems='flex-start'>
