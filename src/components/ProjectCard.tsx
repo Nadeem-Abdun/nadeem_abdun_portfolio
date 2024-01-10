@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
-import { Grid, Dialog, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { Grid, Dialog, IconButton, Typography, Tooltip } from '@mui/material';
+import { Close, OpenInNew } from '@mui/icons-material';
 import './ComponentStyles.css';
 import { useMediaQuery } from 'react-responsive';
 
-const ProjectCard = () => {
+interface Props {
+  projectImgURL?: string,
+  projectName?: string,
+  projectDescription?: string,
+  projectTechStack?: string[],
+  projectLink?: string,
+  githubRepoLink?: string,
+}
+
+const ProjectCard: React.FC<Props> = (props) => {
+
+  const { projectImgURL, projectName, projectDescription, projectTechStack, projectLink, githubRepoLink } = props;
 
   const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
   const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
@@ -24,30 +35,52 @@ const ProjectCard = () => {
     <div className={`card ${(isXs) ? 'px-3' : 'px-6'} ${(isXs) ? 'py-2' : 'py-6'} w-full`}>
       <Grid container justifyContent={(isXs || isSm || isMd) ? 'flex-start' : 'center'} alignItems={(isXs || isSm || isMd) ? 'flex-start' : 'center'} columnSpacing={1}>
         <Grid item xs={3}>
-          <img
-            src="https://nadeem-abdun.github.io/find-my-chef/static/media/HeaderNavLogo.f796b4f86a0b2cb06f7e.png"
-            alt="Project Preview"
-            style={{ width: '90%', height: '90%', objectFit: 'cover', cursor: 'pointer', marginTop: (isXs || isSm || isMd) ? '9px' : '0px' }}
-            onClick={() => handleProjectImageClick()}
-          />
+          <Tooltip title={`Open ${projectName} Page`} arrow>
+            <img
+              src={projectImgURL}
+              alt={`${projectName} Preview`}
+              style={{ width: '90%', height: '90%', objectFit: 'cover', cursor: 'pointer', marginTop: (isXs || isSm || isMd) ? '9px' : '0px', borderRadius: '10%' }}
+              onClick={() => handleProjectImageClick()}
+            />
+          </Tooltip>
         </Grid>
-        <Grid item xs={9}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni dignissimos quod sunt maxime inventore vitae neque modi, aliquid iure mollitia unde atque odit tempore, illum nihil sapiente voluptas hic perspiciatis! Omnis, assumenda tempora? Recusandae nemo reiciendis maiores autem, deserunt iure aliquid suscipit blanditiis ex aut atque cupiditate magni soluta perspiciatis?
+        <Grid container item xs={9} justifyContent='flex-start' alignItems='center'>
+          <Grid container item xs={12} justifyContent='flex-start' alignItems='center' rowSpacing={1}>
+            <Grid item>
+              <Typography component="h2" variant="h5" fontWeight={500} fontFamily='inter' className='text-gray-300 hover:text-cyan-300'>{projectName}</Typography>
+            </Grid>
+            <Grid item>
+              <Tooltip title={`Open ${projectName} Repository`} arrow placement='right'>
+                <IconButton href={githubRepoLink || ''} target='_blank'>
+                  <OpenInNew className='text-gray-300 hover:text-cyan-300' />
+                </IconButton>
+              </Tooltip>
+            </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography component="h3" variant="body1" fontWeight={400} fontFamily='inter' className='text-gray-300'>{projectDescription}</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <div className="flex flex-wrap gap-2 my-2">
+              {projectTechStack && projectTechStack.map((tech, index) => (
+                <span key={index} className="bg-teal-300 bg-opacity-15 text-teal-300 px-3 py-1 rounded-full text-sm hover:bg-teal-900 hover:text-teal-300 hover:bg-opacity-50 transition">{tech}</span>
+              ))}
+            </div>
+          </Grid>
         </Grid>
-        <Dialog open={iframeOpen} onClose={handleIframeDialog} fullWidth maxWidth="xl" sx={{ height: '90vh', marginY: 'auto', '& .MuiDialog-paper': { height: '100%', }, }}>
-          <iframe
-            title="Find My Chef!"
-            width="100%"
-            height="100%"
-            src="https://nadeem-abdun.github.io/find-my-chef/"
-            frameBorder="0"
-            allowFullScreen
-          />
-          <IconButton sx={{ position: 'absolute', bottom: '8px', left: '50%', transform: 'translateX(-50%)', backgroundColor: 'rgba(15,23,42,0.8)', color: '#fff', '&:hover': { backgroundColor: 'rgba(15,23,42,0.8)', }, }} onClick={handleIframeDialog}>
-            <CloseIcon fontSize='large' style={{ pointerEvents: 'none' }} />
-          </IconButton>
-        </Dialog>
       </Grid>
+      <Dialog open={iframeOpen} onClose={handleIframeDialog} fullWidth maxWidth="xl" sx={{ height: '90vh', marginY: 'auto', '& .MuiDialog-paper': { height: '100%', }, }}>
+        <iframe
+          title={projectName}
+          width="100%"
+          height="100%"
+          src={projectLink}
+          allowFullScreen
+        />
+        <IconButton sx={{ position: 'absolute', bottom: '8px', left: '50%', transform: 'translateX(-50%)', backgroundColor: 'rgba(15,23,42,0.8)', color: '#fff', '&:hover': { backgroundColor: 'rgba(15,23,42,0.8)', }, }} onClick={handleIframeDialog}>
+          <Close fontSize='large' style={{ pointerEvents: 'none' }} />
+        </IconButton>
+      </Dialog>
     </div>
   )
 }
