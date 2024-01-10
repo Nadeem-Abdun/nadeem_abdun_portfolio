@@ -69,7 +69,7 @@ const ProjectCard: React.FC<Props> = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Dialog open={iframeOpen} onClose={handleIframeDialog} fullWidth maxWidth="xl" sx={{ height: '90vh', marginY: 'auto', '& .MuiDialog-paper': { height: '100%', }, }}>
+      <Dialog open={iframeOpen} onClose={handleIframeDialog} fullWidth maxWidth="xl" sx={{ height: '95dvh', marginY: 'auto', '& .MuiDialog-paper': { height: '100%', }, }}>
         <iframe
           title={projectName}
           width="100%"
