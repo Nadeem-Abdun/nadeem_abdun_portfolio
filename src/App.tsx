@@ -4,7 +4,7 @@ import AboutMe from './screens/AboutMe';
 import Experience from './screens/Experience';
 import Projects from './screens/Projects';
 import ContactMe from './screens/ContactMe';
-import LeftNavigation from './screens/LeftNavigation';
+import NavigationPanel from './screens/NavigationPanel';
 
 const App = () => {
 
@@ -24,7 +24,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-darkblue text-gray-300">
       <AppLayout
-        leftElement={<LeftNavigation />}
+        leftElement={<NavigationPanel />}
         rightElements={rightElementsArray}
       />
     </div>

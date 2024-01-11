@@ -4,7 +4,7 @@ import './ScreenStyles.css';
 import { GithubIcon, LinkedInIcon, TwitterIcon, InstagramIcon } from '../assets/SvgIcons';
 import { useMediaQuery } from 'react-responsive';
 
-const LeftNavigation = () => {
+const NavigationPanel = () => {
 
     const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
     const isLg = useMediaQuery({ query: '(min-width: 1280px)' });
@@ -76,4 +76,4 @@ const LeftNavigation = () => {
     )
 }
 
-export default LeftNavigation
+export default NavigationPanel
