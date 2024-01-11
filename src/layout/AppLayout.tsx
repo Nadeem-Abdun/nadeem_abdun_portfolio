@@ -22,13 +22,14 @@ const RightElement: React.FC<RightElementProps> = ({ children, id }) => {
 }
 
 interface Props {
-    leftElement: React.ReactNode;
-    rightElements: React.ReactNode[];
+    leftElement?: React.ReactNode;
+    rightElements?: React.ReactNode[];
+    mobileElement?: React.ReactNode;
 }
 
 const AppLayout: React.FC<Props> = (props) => {
 
-    const { leftElement, rightElements } = props;
+    const { leftElement, rightElements, mobileElement } = props;
 
     const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
     const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
@@ -62,7 +63,8 @@ const AppLayout: React.FC<Props> = (props) => {
             {(isXl || isLg || isMd || isSm || isXs) &&
                 <Grid container item xl={7} lg={7} md={7} sm={12} xs={12} onScroll={handleScroll} style={{ overflowY: 'auto', height: '100vh' }} className={`pl-5 ${(isXs || isSm) ? 'pr-5' : 'pr-10'}`}>
                     <div className="flex flex-col justify-center items-center">
-                        {rightElements.map((element, index) => (
+                        {(isXs || isSm) && mobileElement && <>{mobileElement}</>}
+                        {rightElements && rightElements.map((element, index) => (
                             <RightElement key={index} id={`section${index}`} children={element} />
                         ))}
                     </div>

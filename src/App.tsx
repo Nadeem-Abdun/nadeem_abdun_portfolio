@@ -5,6 +5,7 @@ import Experience from './screens/Experience';
 import Projects from './screens/Projects';
 import ContactMe from './screens/ContactMe';
 import NavigationPanel from './screens/NavigationPanel';
+import MobileNavigation from './screens/MobileNavigation';
 
 const App = () => {
 
@@ -26,6 +27,7 @@ const App = () => {
       <AppLayout
         leftElement={<NavigationPanel />}
         rightElements={rightElementsArray}
+        mobileElement={<MobileNavigation />}
       />
     </div>
   );

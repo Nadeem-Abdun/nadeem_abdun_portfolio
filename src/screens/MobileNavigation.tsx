@@ -4,7 +4,7 @@ import './ScreenStyles.css';
 import { GithubIcon, LinkedInIcon, TwitterIcon, InstagramIcon } from '../assets/SvgIcons';
 import { useMediaQuery } from 'react-responsive';
 
-const NavigationPanel = () => {
+const MobileNavigation = () => {
 
     const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
     const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
@@ -20,21 +20,21 @@ const NavigationPanel = () => {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center h-full">
-            <Grid container justifyContent='flex-start' alignItems='center' spacing={(isXl || isLg) ? 8 : 2} className='h-full'>
-                <Grid container item spacing={(isXl || isLg) ? 4 : 2} xs={12}>
-                    <Grid container item spacing={(isXl || isLg) ? 1 : 0} xs={12}>
+        <div className='flex flex-col justify-center items-center my-6'>
+            <Grid container justifyContent='flex-start' alignItems='center' rowSpacing={isSm ? 6 : isXs ? 5 : 0}>
+                <Grid container item rowSpacing={isSm ? 2 : isXs ? 3 : 0} xs={12}>
+                    <Grid container item rowSpacing={isSm ? 1 : isXs ? 1 : 0} xs={12}>
                         <Grid item xs={12}>
                             <Typography component="h1" variant="h2" fontWeight={600} fontFamily='inter'>Nadeem Abdun</Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component="h2" variant="h5" fontWeight={500} fontFamily='inter'>Web & App Developer</Typography>
+                            <Typography component="h2" variant="h4" fontWeight={500} fontFamily='inter'>Web & App Developer</Typography>
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography component="h3" variant="body1" fontWeight={400} fontFamily='inter'>Transforming concepts into code, Specialized in delivering pixel-perfect, accessible wonders as a full-stack web and app developer.</Typography>
+                        <Typography component="h3" variant={isXs ? "body1" : "h6"} fontWeight={400} fontFamily='inter'>Transforming concepts into code, Specialized in delivering pixel-perfect, accessible wonders as a full-stack web and app developer.</Typography>
                     </Grid>
-                    <Grid container item spacing={(isXl || isLg) ? 2 : 1} xs={12}>
+                    <Grid container item rowSpacing={isSm ? 2 : isXs ? 1 : 0} xs={12}>
                         <Grid item xs={12}>
                             <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section0')}>
                                 <pre>&lt;About Me /&gt;</pre>
@@ -57,7 +57,7 @@ const NavigationPanel = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid container item spacing={(isXl || isLg) ? 2 : 1} xs={12}>
+                <Grid container item justifyContent='space-evenly' alignItems='center' xs={12}>
                     <Grid item>
                         <IconButton className="icon-btn" aria-label="GitHub" href='https://github.com/Nadeem-Abdun' target="_blank"><GithubIcon /></IconButton>
                     </Grid>
@@ -72,8 +72,8 @@ const NavigationPanel = () => {
                     </Grid>
                 </Grid>
             </Grid>
-        </div >
+        </div>
     )
 }
 
-export default NavigationPanel
+export default MobileNavigation
