@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
+import { KeyboardDoubleArrowUp } from '@mui/icons-material/';
 import { useMediaQuery } from 'react-responsive';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
@@ -37,6 +38,20 @@ const AppLayout: React.FC<Props> = (props) => {
     const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
 
+    const scrollToTop = () => {
+        if (isXl || isLg || isMd) {
+            const sectionElement = document.getElementById('section0');
+            if (sectionElement) {
+                sectionElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else if (isSm || isXs) {
+            const sectionElement = document.getElementById('section-mobile-home');
+            if (sectionElement) {
+                sectionElement.scrollIntoView({ behavior: 'auto' });
+            }
+        } else { }
+    }
+
     return (
         <Grid container>
             {(isXl || isLg || isMd) &&
@@ -54,6 +69,9 @@ const AppLayout: React.FC<Props> = (props) => {
                     </div>
                 </Grid>
             }
+            <IconButton sx={{ position: 'absolute', bottom: '5dvh', right: '5dvh', backgroundColor: '#0F172A', '&:hover': { backgroundColor: '#0F172A', } }} onClick={() => scrollToTop()} aria-label="scroll to top">
+                <KeyboardDoubleArrowUp className='text-cyan-300' fontSize='large' />
+            </IconButton>
         </Grid >
     );
 };

@@ -20,7 +20,7 @@ const MobileNavigation = () => {
     };
 
     return (
-        <div className='flex flex-col justify-center items-center my-6'>
+        <div id='section-mobile-home' className='flex flex-col justify-center items-center my-6'>
             <Grid container justifyContent='flex-start' alignItems='center' rowSpacing={isSm ? 6 : isXs ? 5 : 0}>
                 <Grid container item rowSpacing={isSm ? 2 : isXs ? 3 : 0} xs={12}>
                     <Grid container item rowSpacing={isSm ? 1 : isXs ? 1 : 0} xs={12}>
