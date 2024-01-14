@@ -36,22 +36,22 @@ const NavigationPanel = () => {
                     </Grid>
                     <Grid container item spacing={(isXl || isLg) ? 2 : 1} xs={12}>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section0')}>
+                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section-about-me')}>
                                 <pre>&lt;About Me /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section1')}>
+                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section-experience')}>
                                 <pre>&lt;Experience /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section2')}>
+                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section-projects')}>
                                 <pre>&lt;Projects /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section3')}>
+                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section-contact-me')}>
                                 <pre>&lt;Contact Me /&gt;</pre>
                             </Typography>
                         </Grid>

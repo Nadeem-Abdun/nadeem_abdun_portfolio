@@ -11,7 +11,7 @@ const AboutMe = () => {
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
 
     return (
-        <div className={`flex flex-col justify-center items-center ${(isXs || isSm || isMd) ? 'my-3' : 'my-10'}`}>
+        <div id='section-about-me' className={`flex flex-col justify-center items-center ${(isXs || isSm || isMd) ? 'my-3' : 'my-10'}`}>
             <Grid container xs={12} justifyContent='flex-start' alignItems='center' rowSpacing={2}>
                 <Grid item xs={12}>
                     <Typography component="h2" variant="h4" fontWeight={500} fontFamily='inter'>About Me</Typography>

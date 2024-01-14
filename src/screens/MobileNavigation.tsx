@@ -12,7 +12,7 @@ const MobileNavigation = () => {
     const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
 
-    const scrollToSection = (sectionId: string) => {
+    const scrollToSectionMobile = (sectionId: string) => {
         const sectionElement = document.getElementById(sectionId);
         if (sectionElement) {
             sectionElement.scrollIntoView({ behavior: 'smooth' });
@@ -36,22 +36,22 @@ const MobileNavigation = () => {
                     </Grid>
                     <Grid container item rowSpacing={isSm ? 2 : isXs ? 1 : 0} xs={12}>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section0')}>
+                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section-about-me')}>
                                 <pre>&lt;About Me /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section1')}>
+                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section-experience')}>
                                 <pre>&lt;Experience /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section2')}>
+                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section-projects')}>
                                 <pre>&lt;Projects /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section3')}>
+                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section-contact-me')}>
                                 <pre>&lt;Contact Me /&gt;</pre>
                             </Typography>
                         </Grid>

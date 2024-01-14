@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Grid } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
 import '@fontsource/inter/400.css';
@@ -7,15 +7,14 @@ import '@fontsource/inter/600.css';
 
 interface RightElementProps {
     children: React.ReactNode;
-    id: string;
 }
 
-const RightElement: React.FC<RightElementProps> = ({ children, id }) => {
+const RightElement: React.FC<RightElementProps> = ({ children }) => {
     const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
     const minHeightStyle = !(isXs || isSm) ? { minHeight: '100dvh' } : {};
     return (
-        <div id={id} style={{ ...minHeightStyle }}>
+        <div style={{ ...minHeightStyle }}>
             {children}
         </div>
     );
@@ -49,7 +48,7 @@ const AppLayout: React.FC<Props> = (props) => {
                     <div className="flex flex-col justify-center items-center">
                         {(isXs || isSm) && mobileElement && <>{mobileElement}</>}
                         {rightElements && rightElements.map((element, index) => (
-                            <RightElement key={index} id={`section${index}`} children={element} />
+                            <RightElement key={index} children={element} />
                         ))}
                     </div>
                 </Grid>
