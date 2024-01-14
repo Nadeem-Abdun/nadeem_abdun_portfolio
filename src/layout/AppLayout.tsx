@@ -7,14 +7,15 @@ import '@fontsource/inter/600.css';
 
 interface RightElementProps {
     children: React.ReactNode;
+    id: string;
 }
 
-const RightElement: React.FC<RightElementProps> = ({ children }) => {
+const RightElement: React.FC<RightElementProps> = ({ children, id }) => {
     const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
     const minHeightStyle = !(isXs || isSm) ? { minHeight: '100dvh' } : {};
     return (
-        <div style={{ ...minHeightStyle }}>
+        <div id={id} style={{ ...minHeightStyle }}>
             {children}
         </div>
     );
@@ -48,7 +49,7 @@ const AppLayout: React.FC<Props> = (props) => {
                     <div className="flex flex-col justify-center items-center">
                         {(isXs || isSm) && mobileElement && <>{mobileElement}</>}
                         {rightElements && rightElements.map((element, index) => (
-                            <RightElement key={index} children={element} />
+                            <RightElement key={index} id={`section${index}`} children={element} />
                         ))}
                     </div>
                 </Grid>

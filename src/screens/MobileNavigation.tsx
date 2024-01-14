@@ -15,7 +15,7 @@ const MobileNavigation = () => {
     const scrollToSectionMobile = (sectionId: string) => {
         const sectionElement = document.getElementById(sectionId);
         if (sectionElement) {
-            sectionElement.scrollIntoView({ behavior: 'smooth' });
+            sectionElement.scrollIntoView({ behavior: 'auto' });
         }
     };
 
