@@ -37,22 +37,6 @@ const AppLayout: React.FC<Props> = (props) => {
     const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
 
-    const [activeSection, setActiveSection] = useState(0);
-
-    const handleScroll = () => {
-        const sectionHeight = window.innerHeight;
-        const scrolledPixels = window.scrollY;
-        const newActiveSection = Math.floor(scrolledPixels / sectionHeight);
-        setActiveSection(newActiveSection);
-    };
-
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
     return (
         <Grid container>
             {(isXl || isLg || isMd) &&
@@ -61,7 +45,7 @@ const AppLayout: React.FC<Props> = (props) => {
                 </Grid>
             }
             {(isXl || isLg || isMd || isSm || isXs) &&
-                <Grid container item xl={7} lg={7} md={7} sm={12} xs={12} onScroll={handleScroll} style={{ overflowY: 'auto', height: '100vh' }} className={`pl-5 ${(isXs || isSm) ? 'pr-5' : 'pr-10'}`}>
+                <Grid container item xl={7} lg={7} md={7} sm={12} xs={12} style={{ overflowY: 'auto', height: '100vh' }} className={`pl-5 ${(isXs || isSm) ? 'pr-5' : 'pr-10'}`}>
                     <div className="flex flex-col justify-center items-center">
                         {(isXs || isSm) && mobileElement && <>{mobileElement}</>}
                         {rightElements && rightElements.map((element, index) => (
