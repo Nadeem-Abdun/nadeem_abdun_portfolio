@@ -47,7 +47,7 @@ const ProjectCard: React.FC<Props> = (props) => {
         <Grid container item xs={9} justifyContent='flex-start' alignItems='center'>
           <Grid container item xs={12} justifyContent='flex-start' alignItems='center' rowSpacing={1}>
             <Grid item>
-              <Typography component="h2" variant="h5" fontWeight={500} fontFamily='inter' className='text-gray-300 hover:text-cyan-300'>{projectName} - </Typography>
+              <Typography component="h2" variant="h5" fontWeight={500} fontFamily='inter' className='text-gray-300 hover:text-cyan-300'>{projectName}</Typography>
             </Grid>
             <Grid item>
               <Tooltip title={`Open ${projectName} Repository`} arrow placement='right'>
