@@ -18,7 +18,7 @@ const ScrollToTop = () => {
                 sectionElement.scrollIntoView({ behavior: 'smooth' });
             }
         } else if (isSm || isXs) {
-            const sectionElement = document.getElementById('section-mobile-home');
+            const sectionElement = document.getElementById('section-home');
             if (sectionElement) {
                 sectionElement.scrollIntoView({ behavior: 'auto' });
             }

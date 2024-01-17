@@ -47,7 +47,7 @@ const AppLayout: React.FC<Props> = (props) => {
             }
             {(isXl || isLg || isMd || isSm || isXs) &&
                 <Grid container item xl={7} lg={7} md={7} sm={12} xs={12} style={{ overflowY: 'auto', height: '100vh' }} className={`pl-5 ${(isXs || isSm) ? 'pr-5' : 'pr-10'}`}>
-                    <div className="flex flex-col justify-center items-center">
+                    <div className="flex flex-col justify-center items-center" id='section-home'>
                         {(isXs || isSm) && mobileElement && <>{mobileElement}</>}
                         {rightElements && rightElements.map((element, index) => (
                             <RightElement key={index} id={`section${index}`} children={element} />
