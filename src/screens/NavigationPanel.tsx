@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, IconButton, Typography } from '@mui/material';
 import './ScreenStyles.css';
-import { GithubIcon, LinkedInIcon, TwitterIcon, InstagramIcon } from '../assets/SvgIcons';
+import { GithubIcon, LinkedInIcon, TwitterIcon, DiscordIcon } from '../assets/SvgIcons';
 import { useMediaQuery } from 'react-responsive';
 
 const NavigationPanel = () => {
@@ -65,10 +65,10 @@ const NavigationPanel = () => {
                         <IconButton className="icon-btn" aria-label="LinkedIn" href='https://in.linkedin.com/in/abdun-nadeem' target="_blank"><LinkedInIcon /></IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="Twitter"><TwitterIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="Discord"><DiscordIcon /></IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="Instagram"><InstagramIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="Twitter"><TwitterIcon /></IconButton>
                     </Grid>
                 </Grid>
             </Grid>
