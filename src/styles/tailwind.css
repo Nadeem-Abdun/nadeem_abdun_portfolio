@@ -13,7 +13,7 @@ body::before {
     position: fixed;
     width: 40vw;
     height: 40vw;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 60%);
+    background: radial-gradient(circle, rgba(93, 63, 211, 0.12) 0%, rgba(255, 255, 255, 0) 60%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
