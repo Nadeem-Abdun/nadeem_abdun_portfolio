@@ -28,3 +28,7 @@
 .icon-btn:hover svg {
     fill: #00FFFF;
 }
+
+.easter-egg:hover {
+    color: #00FFFF;
+  }

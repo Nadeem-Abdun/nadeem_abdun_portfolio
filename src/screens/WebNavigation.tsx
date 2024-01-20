@@ -3,8 +3,11 @@ import { Grid, IconButton, Typography } from '@mui/material';
 import './ScreenStyles.css';
 import { GithubIcon, LinkedInIcon, TwitterIcon, DiscordIcon } from '../assets/SvgIcons';
 import { useMediaQuery } from 'react-responsive';
+import { useNavigate } from 'react-router-dom';
 
 const WebNavigation = () => {
+
+    const history = useNavigate();
 
     const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
     const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
@@ -17,7 +20,11 @@ const WebNavigation = () => {
         if (sectionElement) {
             sectionElement.scrollIntoView({ behavior: 'smooth' });
         }
-    };
+    }
+
+    const adminPanelNavigation = () => {
+        history('/admin')
+    }
 
     return (
         <div className="flex flex-col justify-center items-center h-full">
@@ -25,7 +32,9 @@ const WebNavigation = () => {
                 <Grid container item spacing={(isXl || isLg) ? 4 : 2} xs={12}>
                     <Grid container item spacing={(isXl || isLg) ? 1 : 0} xs={12}>
                         <Grid item xs={12}>
-                            <Typography component="h1" variant="h2" fontWeight={600} fontFamily='inter'>Nadeem Abdun</Typography>
+                            <Typography component="h1" variant="h2" fontWeight={600} fontFamily='inter'>
+                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>N</span>adeem Abdun
+                            </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography component="h2" variant="h5" fontWeight={500} fontFamily='inter'>Web & App Developer</Typography>

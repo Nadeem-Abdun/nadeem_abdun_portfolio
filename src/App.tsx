@@ -6,6 +6,8 @@ import Projects from './screens/Projects';
 import ContactMe from './screens/ContactMe';
 import WebNavigation from './screens/WebNavigation';
 import MobileNavigation from './screens/MobileNavigation';
+import AdminPanel from './screens/AdminPanel';
+import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
 
@@ -24,11 +26,16 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-darkblue text-gray-300">
-      <AppLayout
-        leftElement={<WebNavigation />}
-        rightElements={rightElementsArray}
-        mobileElement={<MobileNavigation />}
-      />
+      <Routes>
+        <Route path='/' element={
+          <AppLayout
+            leftElement={<WebNavigation />}
+            rightElements={rightElementsArray}
+            mobileElement={<MobileNavigation />}
+          />}
+        />
+        <Route path='/admin' element={<AdminPanel />} />
+      </Routes>
     </div>
   );
 };
