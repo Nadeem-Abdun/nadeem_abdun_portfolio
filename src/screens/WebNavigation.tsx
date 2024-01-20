@@ -4,7 +4,7 @@ import './ScreenStyles.css';
 import { GithubIcon, LinkedInIcon, TwitterIcon, DiscordIcon } from '../assets/SvgIcons';
 import { useMediaQuery } from 'react-responsive';
 
-const NavigationPanel = () => {
+const WebNavigation = () => {
 
     const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
     const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
@@ -76,4 +76,4 @@ const NavigationPanel = () => {
     )
 }
 
-export default NavigationPanel
+export default WebNavigation
