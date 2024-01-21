@@ -27,7 +27,7 @@ const ExperienceCard: React.FC<Props> = (props) => {
                 {!isXs &&
                     <Grid container item sm={3} xs={12} justifyContent='flex-start' alignItems='flex-start'>
                         <Grid item xs={12}>
-                            <Typography component="h6" variant="body2" fontWeight={600} fontFamily='inter' className='text-gray-400 hover:text-cyan-300 py-2'>
+                            <Typography component="h6" variant="body2" fontWeight={600} fontFamily='inter' className='hover:text-cyan-300 py-2'>
                                 {jobTenure}
                             </Typography>
                         </Grid>
@@ -42,7 +42,7 @@ const ExperienceCard: React.FC<Props> = (props) => {
                     </Grid>
                     {isXs &&
                         <Grid item xs={12}>
-                            <Typography component="h6" variant="body2" fontWeight={600} fontFamily='inter' className='text-gray-400 hover:text-cyan-300 py-2'>
+                            <Typography component="h6" variant="body2" fontWeight={600} fontFamily='inter' className='hover:text-cyan-300 py-2'>
                                 {jobTenure}
                             </Typography>
                         </Grid>
