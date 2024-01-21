@@ -7,6 +7,7 @@ import ContactMe from './screens/ContactMe';
 import WebNavigation from './screens/WebNavigation';
 import MobileNavigation from './screens/MobileNavigation';
 import AdminPanel from './screens/AdminPanel';
+import AdminLogin from './screens/AdminLogin';
 import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
           />}
         />
         <Route path='/admin' element={<AdminPanel />} />
+        <Route path='/admin/login' element={<AdminLogin />} />
       </Routes>
     </div>
   );

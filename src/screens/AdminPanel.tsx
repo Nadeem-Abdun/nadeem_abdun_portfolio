@@ -1,6 +1,6 @@
 import React from 'react';
-import './ScreenStyles.css';
 import { Grid, Typography } from '@mui/material';
+import './ScreenStyles.css';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ const AdminPanel = () => {
             <div className={`${(isXs || isSm || isMd) ? 'mx-5 my-3' : 'mx-10 my-10'}`}>
                 <Grid container xs={12} justifyContent='center' alignItems='center' rowSpacing={(isXl || isLg || isMd) ? 5 : 3}>
                     <Grid item>
-                        <Typography component="h2" variant="h4" fontWeight={500} fontFamily='inter'>Admin Panel</Typography>
+                        <Typography component="h2" variant="h4" fontWeight={500} fontFamily='inter'>Welcome To Admin Panel</Typography>
                     </Grid>
                     <Grid item>
                         <Typography component="h3" variant={isXs ? "body1" : "h6"} fontWeight={400} fontFamily='inter' className='text-center'>
