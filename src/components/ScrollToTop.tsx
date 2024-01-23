@@ -3,7 +3,14 @@ import { IconButton } from '@mui/material';
 import { KeyboardDoubleArrowUp } from '@mui/icons-material/';
 import { useMediaQuery } from 'react-responsive';
 
-const ScrollToTop = () => {
+interface Props {
+    scrollToIdLarge: string;
+    scrollToIdSmall: string;
+}
+
+const ScrollToTop: React.FC<Props> = (props) => {
+
+    const { scrollToIdLarge, scrollToIdSmall } = props;
 
     const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
     const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
@@ -13,12 +20,12 @@ const ScrollToTop = () => {
 
     const scrollToTop = () => {
         if (isXl || isLg || isMd) {
-            const sectionElement = document.getElementById('section0');
+            const sectionElement = document.getElementById(scrollToIdLarge);
             if (sectionElement) {
                 sectionElement.scrollIntoView({ behavior: 'smooth' });
             }
         } else if (isSm || isXs) {
-            const sectionElement = document.getElementById('section-home');
+            const sectionElement = document.getElementById(scrollToIdSmall);
             if (sectionElement) {
                 sectionElement.scrollIntoView({ behavior: 'auto' });
             }
