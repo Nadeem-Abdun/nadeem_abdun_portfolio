@@ -27,7 +27,7 @@ const ScrollToTop: React.FC<Props> = (props) => {
         } else if (isSm || isXs) {
             const sectionElement = document.getElementById(scrollToIdSmall);
             if (sectionElement) {
-                sectionElement.scrollIntoView({ behavior: 'smooth' });
+                sectionElement.scrollIntoView({ behavior: 'auto' });
             }
         } else { }
     }
