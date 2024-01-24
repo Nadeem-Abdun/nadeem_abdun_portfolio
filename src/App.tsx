@@ -1,5 +1,6 @@
 import React from 'react';
 import AppLayout from './layout/AppLayout';
+import AdminLayout from './layout/AdminLayout';
 import AboutMe from './screens/AboutMe';
 import Experience from './screens/Experience';
 import Projects from './screens/Projects';
@@ -8,6 +9,7 @@ import WebNavigation from './screens/WebNavigation';
 import MobileNavigation from './screens/MobileNavigation';
 import AdminPanel from './screens/AdminPanel';
 import AdminLogin from './screens/AdminLogin';
+import AdminHome from './screens/AdminHome';
 import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
@@ -26,7 +28,7 @@ const App = () => {
   });
 
   return (
-    <div className="min-h-screen bg-darkblue text-gray-300">
+    <div className="min-h-screen min-w-full bg-darkblue text-gray-300">
       <Routes>
         <Route path='/' element={
           <AppLayout
@@ -35,8 +37,21 @@ const App = () => {
             mobileElement={<MobileNavigation />}
           />}
         />
-        <Route path='/admin' element={<AdminPanel />} />
-        <Route path='/admin/login' element={<AdminLogin />} />
+        <Route path='/admin' element={
+          <AdminLayout
+            childElement={<AdminPanel />}
+          />}
+        />
+        <Route path='/admin/login' element={
+          <AdminLayout
+            childElement={<AdminLogin />}
+          />}
+        />
+        <Route path='/admin/home' element={
+          <AdminLayout
+            childElement={<AdminHome />}
+          />}
+        />
       </Routes>
     </div>
   );
