@@ -33,7 +33,8 @@ const WebNavigation = () => {
                     <Grid container item spacing={(isXl || isLg) ? 1 : 0} xs={12}>
                         <Grid item xs={12}>
                             <Typography component="h1" variant="h2" fontWeight={600} fontFamily='inter'>
-                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>N</span>adeem Abdun
+                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>N</span>a
+                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>d</span>eem Abdun
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
