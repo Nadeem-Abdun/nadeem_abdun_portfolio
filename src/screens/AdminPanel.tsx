@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, Typography } from '@mui/material';
 import './ScreenStyles.css';
 import { useMediaQuery } from 'react-responsive';
@@ -21,6 +21,10 @@ const AdminPanel = () => {
     const adminLoginPageNavigation = () => {
         history('/admin/login');
     }
+
+    useEffect(() => {
+        document.title = "Admin - Entry Panel"
+    }, []);
 
     return (
         <Grid container justifyContent='center' alignItems='center' flexDirection='column' rowSpacing={4} wrap='nowrap'>
