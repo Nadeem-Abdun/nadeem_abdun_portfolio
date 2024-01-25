@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Typography, TextField, CircularProgress, Button } from '@mui/material';
 import './ScreenStyles.css';
 import { useMediaQuery } from 'react-responsive';
@@ -44,6 +44,10 @@ const AdminLogin = () => {
         await formData.append('password', loginDetails.password);
         await handleFormStatus();
     }
+
+    useEffect(() => {
+        document.title = "Admin - Login"
+    }, []);
 
     return (
         <Grid container justifyContent='center' alignItems='center' flexDirection='column' rowSpacing={4} wrap='nowrap'>
