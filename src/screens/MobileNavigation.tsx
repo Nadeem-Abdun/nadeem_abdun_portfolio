@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, IconButton, Typography } from '@mui/material';
 import './ScreenStyles.css';
 import { GithubIcon, LinkedInIcon, TwitterIcon, DiscordIcon } from '../assets/SvgIcons';
@@ -25,6 +25,10 @@ const MobileNavigation = () => {
     const adminPanelNavigation = () => {
         history('/admin')
     }
+
+    useEffect(() => {
+        document.title = "Nadeem Abdun - Portfolio"
+    }, []);
 
     return (
         <div id='section-mobile-home' className='flex flex-col justify-center items-center my-6'>
