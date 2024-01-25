@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Typography, TextField, CircularProgress, Button } from '@mui/material';
+import { Grid, Typography, TextField, CircularProgress, Button, FormControl, InputLabel, FilledInput, InputAdornment, IconButton } from '@mui/material';
+import { VisibilityOff, Visibility } from '@mui/icons-material';
 import './ScreenStyles.css';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +25,7 @@ const AdminLogin = () => {
             ...loginDetails,
             [name]: value
         });
-    }
+    };
 
     const [formLoading, setFormLoading] = useState(false);
 
@@ -36,14 +37,24 @@ const AdminLogin = () => {
         setTimeout(() => {
             history('/admin/home');
         }, 2500);
-    }
+    };
 
     const handleLoginFormSubmit = async () => {
         const formData = await new FormData();
         await formData.append('username', loginDetails.username);
         await formData.append('password', loginDetails.password);
         await handleFormStatus();
-    }
+    };
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
 
     useEffect(() => {
         document.title = "Admin - Login"
@@ -62,20 +73,34 @@ const AdminLogin = () => {
                                 id="username-field"
                                 label="Email or Username"
                                 variant="filled"
+                                type="email"
                                 fullWidth
                                 sx={{ backgroundColor: '#D1D5DB', borderRadius: 2, }}
                                 onChange={(event) => handleTextFeildsChange('username', event.target.value)}
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                id="password-field"
-                                label="Password"
-                                variant="filled"
-                                fullWidth
-                                sx={{ backgroundColor: '#D1D5DB', borderRadius: 2, }}
-                                onChange={(event) => handleTextFeildsChange('password', event.target.value)}
-                            />
+                            <FormControl variant="filled" fullWidth sx={{ backgroundColor: '#D1D5DB', borderRadius: 2 }}>
+                                <InputLabel htmlFor="password-field">Password</InputLabel>
+                                <FilledInput
+                                    id="password-field"
+                                    type={showPassword ? 'text' : 'password'}
+                                    sx={{ backgroundColor: '#D1D5DB', borderRadius: 2, '& input': { borderRadius: 2 } }}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                edge="end"
+                                            >
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    onChange={(event) => handleTextFeildsChange('password', event.target.value)}
+                                />
+                            </FormControl>
                         </Grid>
                         <Grid item xs={8}>
                             <Button
