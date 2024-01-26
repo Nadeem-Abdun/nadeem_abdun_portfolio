@@ -102,6 +102,7 @@ const ContactMe = () => {
                                     onChange={(event) => handleTextFeildsChange('message', event.target.value)}
                                 />
                             </Grid>
+                            <Grid item xs={12}></Grid>
                             <Grid item xs={12}>
                                 <Button variant="contained" color="primary" size="large" onClick={() => handleContactFormSubmit()} fullWidth>Submit</Button>
                             </Grid>
