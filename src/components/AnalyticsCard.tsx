@@ -3,6 +3,7 @@ import { Grid, Typography } from '@mui/material';
 import { Work, Assignment, MailOutline } from '@mui/icons-material';
 import './ComponentStyles.css';
 import { useMediaQuery } from 'react-responsive';
+import AnalyticsChart from './AnalyticsChart';
 
 interface Props {
 
@@ -27,7 +28,9 @@ const AnalyticsCard: React.FC<Props> = (props) => {
                         <Typography component="h2" variant="h6" fontWeight={500} fontFamily='inter' className="text-center">Users Overview</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        
+                        <div className="flex justify-center">
+                            <AnalyticsChart value={42} />
+                        </div>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography component="h2" variant="h2" fontWeight={600} fontFamily='inter' className="text-center">12</Typography>
