@@ -3,6 +3,7 @@ import { Grid, Typography } from '@mui/material';
 import './ScreenStyles.css';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
+import AnalyticsCard from '../components/AnalyticsCard';
 
 const AdminHome = () => {
 
@@ -23,7 +24,10 @@ const AdminHome = () => {
             <Grid item xs={12} className='text-center'>
                 <Typography component="h2" variant="h4" fontWeight={500} fontFamily='inter'>Admin Home</Typography>
             </Grid>
-            <Grid container item xl={6} lg={6} md={8} sm={10} xs={10} justifyContent='center' alignItems='center' rowSpacing={2}>
+            <Grid container item xl={10} lg={10} md={11} sm={11} xs={11} justifyContent='center' alignItems='center' rowSpacing={2}>
+                <Grid item xs={12}>
+                    <AnalyticsCard />
+                </Grid>
 
             </Grid>
         </Grid>
