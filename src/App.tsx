@@ -11,6 +11,7 @@ import AdminPanel from './screens/AdminPanel';
 import AdminLogin from './screens/AdminLogin';
 import AdminHome from './screens/AdminHome';
 import { Route, Routes } from 'react-router-dom';
+import Summary from './screens/Summary';
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
     <Experience key="experience" />,
     <Projects key="projects" />,
     <ContactMe key="contactMe" />,
+    <Summary key="summary" />
   ];
 
   // Event tracker for the cursor light background
