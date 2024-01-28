@@ -21,8 +21,8 @@ const AdminLayout: React.FC<Props> = (props) => {
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
 
     return (
-        <Grid container className='min-h-full'>
-            <Grid container className={`h-full ${(isXs || isSm || isMd) ? 'mx-5 my-3' : 'mx-10 my-10'}`} id='section-admin-home'>
+        <Grid container>
+            <Grid container className={`${(isXs || isSm || isMd) ? 'mx-5 my-3' : 'mx-10 my-10'}`} id='section-admin-home'>
                 {childElement}
             </Grid>
             <ScrollToTop scrollToIdLarge="section-admin-home" scrollToIdSmall="section-admin-home" />
