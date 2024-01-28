@@ -5,11 +5,7 @@ import './ComponentStyles.css';
 import { useMediaQuery } from 'react-responsive';
 import AnalyticsChart from './AnalyticsChart';
 
-interface Props {
-
-}
-
-const AnalyticsCard: React.FC<Props> = (props) => {
+const AnalyticsCard = () => {
 
     const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
     const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
@@ -21,7 +17,7 @@ const AnalyticsCard: React.FC<Props> = (props) => {
         <div className={`admin-card ${(isXs) ? 'px-3' : 'px-6'} ${(isXs) ? 'py-2' : 'py-6'} w-full`}>
             <Grid container columnSpacing={2} rowGap={3}>
                 <Grid item xs={12}>
-                    <Typography variant="h5" fontWeight={500}>Analytics</Typography>
+                    <Typography component="h2" variant="h5" fontWeight={500} fontFamily='inter'>Analytics</Typography>
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
                     <Grid item xs={12}>
