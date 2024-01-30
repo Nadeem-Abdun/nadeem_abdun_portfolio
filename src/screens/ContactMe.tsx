@@ -60,7 +60,7 @@ const ContactMe = () => {
                             <Grid item xs={12}>
                                 <Typography variant="body1" fontWeight={400} fontFamily='inter'>How about having a quick conversation? Please fill out the form below, and I'll reach out to you shortly.</Typography>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={9}>
                                 <TextField
                                     id="name-field"
                                     label="Name"
@@ -80,7 +80,7 @@ const ContactMe = () => {
                                     onChange={(event) => handleTextFeildsChange('email', event.target.value)}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={7}>
                                 <TextField
                                     id="contactNumber-field"
                                     label="Contact Number(Optional)"
@@ -90,7 +90,7 @@ const ContactMe = () => {
                                     onChange={(event) => handleTextFeildsChange('contactNumber', event.target.value)}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={10}>
                                 <TextField
                                     id="message-field"
                                     label="Message"
@@ -103,7 +103,7 @@ const ContactMe = () => {
                                 />
                             </Grid>
                             <Grid item xs={12}></Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={11}>
                                 <Button variant="contained" color="primary" size="large" onClick={() => handleContactFormSubmit()} fullWidth>Submit</Button>
                             </Grid>
                         </Grid>
