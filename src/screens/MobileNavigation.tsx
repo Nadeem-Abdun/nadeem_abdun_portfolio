@@ -36,36 +36,36 @@ const MobileNavigation = () => {
                 <Grid container item rowSpacing={isSm ? 2 : isXs ? 3 : 0} xs={12}>
                     <Grid container item rowSpacing={isSm ? 1 : isXs ? 1 : 0} xs={12}>
                         <Grid item xs={12}>
-                            <Typography component="h1" variant="h2" fontWeight={600} fontFamily='inter'>
+                            <Typography variant="h2" fontWeight={600} fontFamily='inter'>
                                 <span className='easter-egg' onClick={() => adminPanelNavigation()}>N</span>a
                                 <span className='easter-egg' onClick={() => adminPanelNavigation()}>d</span>eem Abdun
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component="h2" variant="h4" fontWeight={500} fontFamily='inter'>Web & App Developer</Typography>
+                            <Typography variant="h4" fontWeight={500} fontFamily='inter'>Web & App Developer</Typography>
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography component="h3" variant={isXs ? "body1" : "h6"} fontWeight={400} fontFamily='inter'>Transforming concepts into code, Specialized in delivering pixel-perfect, accessible wonders as a full-stack web and app developer.</Typography>
+                        <Typography variant={isXs ? "body1" : "h6"} fontWeight={400} fontFamily='inter'>Transforming concepts into code, Specialized in delivering pixel-perfect, accessible wonders as a full-stack web and app developer.</Typography>
                     </Grid>
                     <Grid container item rowSpacing={isSm ? 2 : isXs ? 1 : 0} xs={12}>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section0')}>
+                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section0')}>
                                 <pre>&lt;About Me /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section1')}>
+                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section1')}>
                                 <pre>&lt;Experience /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section2')}>
+                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section2')}>
                                 <pre>&lt;Projects /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography component="h3" variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section3')}>
+                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section3')}>
                                 <pre>&lt;Contact Me /&gt;</pre>
                             </Typography>
                         </Grid>

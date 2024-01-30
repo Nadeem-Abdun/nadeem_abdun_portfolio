@@ -63,7 +63,7 @@ const AdminLogin = () => {
     return (
         <Grid container justifyContent='center' alignItems='center' flexDirection='column' rowSpacing={4} wrap='nowrap'>
             <Grid item xs={12} className='text-center'>
-                <Typography component="h2" variant="h4" fontWeight={500} fontFamily='inter'>Admin Login</Typography>
+                <Typography variant="h4" fontWeight={500} fontFamily='inter'>Admin Login</Typography>
             </Grid>
             <Grid container item xl={6} lg={6} md={8} sm={10} xs={10} justifyContent='center' alignItems='center' rowSpacing={2}>
                 {!formLoading &&
@@ -124,7 +124,7 @@ const AdminLogin = () => {
                             </div>
                         </Grid>
                         <Grid item xs={12} className="text-center">
-                            <Typography component='h2' variant={isXs ? 'body1' : 'h6'} fontWeight={400} fontFamily='inter'>
+                            <Typography variant={isXs ? 'body1' : 'h6'} fontWeight={400} fontFamily='inter'>
                                 Please wait...
                             </Typography>
                         </Grid>

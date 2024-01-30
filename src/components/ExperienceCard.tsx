@@ -27,7 +27,7 @@ const ExperienceCard: React.FC<Props> = (props) => {
                 {!isXs &&
                     <Grid container item sm={3} xs={12} justifyContent='flex-start' alignItems='flex-start'>
                         <Grid item xs={12}>
-                            <Typography component="h6" variant="body2" fontWeight={600} fontFamily='inter' className='hover:text-cyan-300 py-2'>
+                            <Typography variant="body2" fontWeight={600} fontFamily='inter' className='hover:text-cyan-300 py-2'>
                                 {jobTenure}
                             </Typography>
                         </Grid>
@@ -35,20 +35,20 @@ const ExperienceCard: React.FC<Props> = (props) => {
                 }
                 <Grid container item sm={9} xs={12} justifyContent='flex-start' alignItems='flex-start'>
                     <Grid item xs={12}>
-                        <Typography component="h2" variant="h5" fontWeight={500} fontFamily='inter'>{jobTitle}</Typography>
+                        <Typography variant="h5" fontWeight={500} fontFamily='inter'>{jobTitle}</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography component="h2" variant="body1" fontWeight={400} fontFamily='inter'>{jobCompany}</Typography>
+                        <Typography variant="body1" fontWeight={400} fontFamily='inter'>{jobCompany}</Typography>
                     </Grid>
                     {isXs &&
                         <Grid item xs={12}>
-                            <Typography component="h6" variant="body2" fontWeight={600} fontFamily='inter' className='hover:text-cyan-300 py-2'>
+                            <Typography variant="body2" fontWeight={600} fontFamily='inter' className='hover:text-cyan-300 py-2'>
                                 {jobTenure}
                             </Typography>
                         </Grid>
                     }
                     <Grid item xs={12}>
-                        <Typography component="h2" variant="body2" fontWeight={400} fontFamily='inter'>
+                        <Typography variant="body2" fontWeight={400} fontFamily='inter'>
                             <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
                                 {jobDescription && jobDescription.map((desc, index) => (
                                     <li key={index} style={{ marginBottom: '4px', marginTop: '4px' }}>

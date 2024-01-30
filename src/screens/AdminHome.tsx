@@ -22,7 +22,7 @@ const AdminHome = () => {
     return (
         <Grid container justifyContent='center' alignItems='center' flexDirection='column' rowSpacing={4} wrap='nowrap'>
             <Grid item xs={12} className='text-center'>
-                <Typography component="h2" variant="h4" fontWeight={500} fontFamily='inter'>Admin Home</Typography>
+                <Typography variant="h4" fontWeight={500} fontFamily='inter'>Admin Home</Typography>
             </Grid>
             <Grid container item xl={10} lg={10} md={11} sm={11} xs={11} justifyContent='center' alignItems='center' rowSpacing={2}>
                 <Grid item xs={12}>

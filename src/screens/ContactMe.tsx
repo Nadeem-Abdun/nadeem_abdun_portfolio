@@ -51,14 +51,14 @@ const ContactMe = () => {
             <Grid container xs={12} justifyContent='flex-start' alignItems='center' rowSpacing={2}>
                 <Grid container item xs={12} justifyContent='flex-start' alignItems='center'>
                     <Grid item xs={12}>
-                        <Typography component="h2" variant="h4" fontWeight={500} fontFamily='inter'>Contact Me</Typography>
+                        <Typography variant="h4" fontWeight={500} fontFamily='inter'>Contact Me</Typography>
                     </Grid>
                 </Grid>
                 <Grid container item xs={12} justifyContent='flex-start' alignItems='center'>
                     {!formStatus.success && !formStatus.loading &&
                         <Grid container item xs={12} rowSpacing={2}>
                             <Grid item xs={12}>
-                                <Typography component="h2" variant="body1" fontWeight={400} fontFamily='inter'>How about having a quick conversation? Please fill out the form below, and I'll reach out to you shortly.</Typography>
+                                <Typography variant="body1" fontWeight={400} fontFamily='inter'>How about having a quick conversation? Please fill out the form below, and I'll reach out to you shortly.</Typography>
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
@@ -116,7 +116,7 @@ const ContactMe = () => {
                                 </div>
                             </Grid>
                             <Grid item xs={12} className="text-center">
-                                <Typography component='h2' variant={isXs ? 'body1' : 'h6'} fontWeight={400} fontFamily='inter'>
+                                <Typography variant={isXs ? 'body1' : 'h6'} fontWeight={400} fontFamily='inter'>
                                     Please wait...
                                 </Typography>
                             </Grid>
@@ -128,7 +128,7 @@ const ContactMe = () => {
                                 <img src={SendSuccessfullyLogo} className='h-80 mx-auto' alt='Form_Submitted' />
                             </Grid>
                             <Grid item xs={12} className="text-center">
-                                <Typography component='h2' variant={isXs ? 'body1' : 'h6'} fontWeight={400} fontFamily='inter'>
+                                <Typography variant={isXs ? 'body1' : 'h6'} fontWeight={400} fontFamily='inter'>
                                     Thank you for reaching out! Your details have been received, and I'll get back to you soon to continue our conversation.
                                 </Typography>
                             </Grid>
