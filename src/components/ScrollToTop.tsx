@@ -39,7 +39,7 @@ const ScrollToTop: React.FC<Props> = (props) => {
                     <KeyboardDoubleArrowUp className='text-cyan-300' fontSize='large' />
                 </IconButton>
                 :
-                <IconButton sx={{ position: 'absolute', bottom: '2dvh', right: '2dvw', '&:hover': { backgroundColor: '#0F172A', } }} onClick={() => scrollToTop()} aria-label="scroll to top">
+                <IconButton sx={{ position: 'sticky', bottom: '2dvh', left: '82%', '&:hover': { backgroundColor: '#0F172A', } }} onClick={() => scrollToTop()} aria-label="scroll to top">
                     <KeyboardDoubleArrowUp className='text-cyan-300' fontSize='large' />
                 </IconButton>
             }
