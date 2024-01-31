@@ -46,6 +46,27 @@ const ContactMe = () => {
         await handleFormStatus();
     };
 
+    const [formGridSize, setFormGridSize] = useState({
+        name: 9,
+        email: 12,
+        contactNumber: 7,
+        message: 10,
+    });
+
+    const handleGridOnFocus = (element: string, value: number) => {
+        setFormGridSize(prevState => ({
+            ...prevState,
+            [element]: value,
+        }));
+    };
+
+    const handleGridOnBlur = (element: string, value: number) => {
+        setFormGridSize(prevState => ({
+            ...prevState,
+            [element]: value,
+        }));
+    };
+
     return (
         <div id='section-contact-me' className={`flex flex-col justify-center items-center ${(isXs || isSm || isMd) ? 'my-3' : 'my-10'}`}>
             <Grid container xs={12} justifyContent='flex-start' alignItems='center' rowSpacing={2}>
@@ -60,7 +81,7 @@ const ContactMe = () => {
                             <Grid item xs={12}>
                                 <Typography variant="body1" fontWeight={400} fontFamily='inter'>How about having a quick conversation? Please fill out the form below, and I'll reach out to you shortly.</Typography>
                             </Grid>
-                            <Grid item xs={9}>
+                            <Grid item xs={formGridSize.name}>
                                 <TextField
                                     id="name-field"
                                     label="Name"
@@ -68,9 +89,11 @@ const ContactMe = () => {
                                     fullWidth
                                     sx={{ backgroundColor: '#D1D5DB', borderRadius: 3, }}
                                     onChange={(event) => handleTextFeildsChange('name', event.target.value)}
+                                    onMouseOver={() => handleGridOnFocus("name", 12)}
+                                    onMouseOut={() => handleGridOnBlur("name", 9)}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={formGridSize.email}>
                                 <TextField
                                     id="email-field"
                                     label="Email"
@@ -78,9 +101,11 @@ const ContactMe = () => {
                                     fullWidth
                                     sx={{ backgroundColor: '#D1D5DB', borderRadius: 3, }}
                                     onChange={(event) => handleTextFeildsChange('email', event.target.value)}
+                                    onMouseOver={() => handleGridOnFocus("email", 12)}
+                                    onMouseOut={() => handleGridOnBlur("email", 12)}
                                 />
                             </Grid>
-                            <Grid item xs={7}>
+                            <Grid item xs={formGridSize.contactNumber}>
                                 <TextField
                                     id="contactNumber-field"
                                     label="Contact Number(Optional)"
@@ -88,9 +113,11 @@ const ContactMe = () => {
                                     fullWidth
                                     sx={{ backgroundColor: '#D1D5DB', borderRadius: 3, }}
                                     onChange={(event) => handleTextFeildsChange('contactNumber', event.target.value)}
+                                    onMouseOver={() => handleGridOnFocus("contactNumber", 12)}
+                                    onMouseOut={() => handleGridOnBlur("contactNumber", 7)}
                                 />
                             </Grid>
-                            <Grid item xs={10}>
+                            <Grid item xs={formGridSize.message}>
                                 <TextField
                                     id="message-field"
                                     label="Message"
@@ -100,10 +127,12 @@ const ContactMe = () => {
                                     rows={4}
                                     sx={{ backgroundColor: '#D1D5DB', borderRadius: 3, }}
                                     onChange={(event) => handleTextFeildsChange('message', event.target.value)}
+                                    onMouseOver={() => handleGridOnFocus("message", 12)}
+                                    onMouseOut={() => handleGridOnBlur("message", 10)}
                                 />
                             </Grid>
                             <Grid item xs={12}></Grid>
-                            <Grid item xs={11}>
+                            <Grid item xs={12}>
                                 <Button variant="contained" color="primary" size="large" onClick={() => handleContactFormSubmit()} fullWidth>Submit</Button>
                             </Grid>
                         </Grid>
