@@ -45,14 +45,14 @@ const ProjectCard: React.FC<Props> = (props) => {
           </Tooltip>
         </Grid>
         <Grid container item xs={9} justifyContent='flex-start' alignItems='center'>
-          <Grid container item xs={12} justifyContent='flex-start' alignItems='center' rowSpacing={1}>
+          <Grid container item xs={12} justifyContent='flex-start' alignItems='center' columnSpacing={1}>
             <Grid item>
               <Typography variant="h5" fontWeight={500} fontFamily='inter' className='hover:text-cyan-300'>{projectName}</Typography>
             </Grid>
             <Grid item>
               <Tooltip title={`Open ${projectName} Repository`} arrow placement='right'>
-                <IconButton href={githubRepoLink || ''} target='_blank'>
-                  <OpenInNew className='text-gray-300 hover:text-cyan-300' />
+                <IconButton size='small' href={githubRepoLink || ''} target='_blank'>
+                  <OpenInNew fontSize='small' className='text-gray-300 hover:text-cyan-300' />
                 </IconButton>
               </Tooltip>
             </Grid>
