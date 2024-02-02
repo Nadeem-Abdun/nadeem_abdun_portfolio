@@ -33,9 +33,9 @@ const MobileNavigation = () => {
 
     return (
         <div id='section-mobile-home' className='flex flex-col justify-center items-center my-6'>
-            <Grid container justifyContent='flex-start' alignItems='center' rowSpacing={isSm ? 6 : isXs ? 5 : 0}>
+            <Grid container justifyContent='flex-start' alignItems='center' rowSpacing={(isSm || isXs) ? 6 : 0}>
                 <Grid container item rowSpacing={isSm ? 2 : isXs ? 3 : 0} xs={12}>
-                    <Grid container item rowSpacing={isSm ? 1 : isXs ? 1 : 0} xs={12}>
+                    <Grid container item rowSpacing={isSm ? 1 : isXs ? 2 : 0} xs={12}>
                         <Grid item xs={12}>
                             <Typography variant="h2" fontWeight={600} fontFamily='inter'>
                                 <span className='easter-egg' onClick={() => adminPanelNavigation()}>N</span>a
