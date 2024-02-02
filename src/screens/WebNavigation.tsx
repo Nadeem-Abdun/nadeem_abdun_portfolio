@@ -4,6 +4,7 @@ import './ScreenStyles.css';
 import { GithubIcon, LinkedInIcon, TwitterIcon, DiscordIcon } from '../assets/SvgIcons';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
+import Typewriter from 'typewriter-effect';
 
 const WebNavigation = () => {
 
@@ -42,7 +43,15 @@ const WebNavigation = () => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h5" fontWeight={500} fontFamily='inter'>Web & App Developer</Typography>
+                            <Typography variant="h5" fontWeight={500} fontFamily='inter'>
+                                <Typewriter
+                                    options={{
+                                        strings: ["Web App Developer", "Mobile App Developer", "Mechanical Engineer"],
+                                        autoStart: true,
+                                        loop: true,
+                                    }}
+                                />
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
