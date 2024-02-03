@@ -25,7 +25,7 @@ const AdminLayout: React.FC<Props> = (props) => {
             <Grid container className={`${(isXs || isSm || isMd) ? 'mx-5 my-3' : 'mx-10 my-10'}`} id='section-admin-home'>
                 {childElement}
             </Grid>
-            <ScrollToTop scrollToIdLarge="section-admin-home" scrollToIdSmall="section-admin-home" />
+            <ScrollToTop source="admin" scrollToIdLarge="section-admin-home" scrollToIdSmall="section-admin-home" />
         </Grid >
     );
 };
