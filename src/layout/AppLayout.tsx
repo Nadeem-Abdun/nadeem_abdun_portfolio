@@ -55,7 +55,7 @@ const AppLayout: React.FC<Props> = (props) => {
                     </div>
                 </Grid>
             }
-            <ScrollToTop scrollToIdLarge="section0" scrollToIdSmall="section-app-home" />
+            <ScrollToTop source="app" scrollToIdLarge="section0" scrollToIdSmall="section-app-home" />
         </Grid >
     );
 };
