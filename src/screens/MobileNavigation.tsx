@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Grid, IconButton, Typography } from '@mui/material';
 import './ScreenStyles.css';
-import { GithubIcon, LinkedInIcon, TwitterIcon, DiscordIcon } from '../assets/SvgIcons';
+import { GithubIcon, LinkedInIcon, TwitterXIcon, DiscordIcon } from '../assets/SvgIcons';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import Typewriter from 'typewriter-effect';
@@ -91,7 +91,7 @@ const MobileNavigation = () => {
                         <IconButton className="icon-btn" aria-label="Discord"><DiscordIcon /></IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="Twitter"><TwitterIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="Twitter"><TwitterXIcon /></IconButton>
                     </Grid>
                 </Grid>
             </Grid>
