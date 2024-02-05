@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Grid, Typography, TextField, Button, CircularProgress } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
 import SendSuccessfullyLogo from '../assets/images/SendSuccessfully.png';
@@ -86,6 +86,7 @@ const ContactMe = () => {
                                     id="name-field"
                                     label="Name"
                                     variant="filled"
+                                    type="text"
                                     fullWidth
                                     sx={{ backgroundColor: '#D1D5DB', borderRadius: 3, }}
                                     onChange={(event) => handleTextFeildsChange('name', event.target.value)}
@@ -98,6 +99,7 @@ const ContactMe = () => {
                                     id="email-field"
                                     label="Email"
                                     variant="filled"
+                                    type="email"
                                     fullWidth
                                     sx={{ backgroundColor: '#D1D5DB', borderRadius: 3, }}
                                     onChange={(event) => handleTextFeildsChange('email', event.target.value)}
@@ -110,6 +112,7 @@ const ContactMe = () => {
                                     id="contactNumber-field"
                                     label="Contact Number(Optional)"
                                     variant="filled"
+                                    type="number"
                                     fullWidth
                                     sx={{ backgroundColor: '#D1D5DB', borderRadius: 3, }}
                                     onChange={(event) => handleTextFeildsChange('contactNumber', event.target.value)}
@@ -122,6 +125,7 @@ const ContactMe = () => {
                                     id="message-field"
                                     label="Message"
                                     variant="filled"
+                                    type="text"
                                     fullWidth
                                     multiline
                                     rows={4}
