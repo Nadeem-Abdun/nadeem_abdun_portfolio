@@ -10,14 +10,16 @@ import MobileNavigation from './screens/MobileNavigation';
 import AdminPanel from './screens/AdminPanel';
 import AdminLogin from './screens/AdminLogin';
 import AdminHome from './screens/AdminHome';
-import { Route, Routes } from 'react-router-dom';
 import Summary from './screens/Summary';
+import WallOfCode from './screens/WallOfCode';
+import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
 
   const rightElementsArray = [
     <AboutMe key="aboutMe" />,
     <Experience key="experience" />,
+    <WallOfCode key="wallofcode" />,
     <Projects key="projects" />,
     <ContactMe key="contactMe" />,
     <Summary key="summary" />
