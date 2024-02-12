@@ -33,8 +33,8 @@ const WebNavigation = () => {
 
     return (
         <div className="flex flex-col justify-center items-center h-full">
-            <Grid container justifyContent='flex-start' alignItems='center' spacing={(isXl || isLg) ? 8 : 2} className='h-full'>
-                <Grid container item spacing={(isXl || isLg) ? 4 : 2} xs={12}>
+            <Grid container justifyContent='flex-start' alignItems='center' spacing={(isXl || isLg) ? 8 : (isMd) ? 1 : 2} className='h-full'>
+                <Grid container item spacing={(isXl || isLg) ? 4 : (isMd) ? 1 : 2} xs={12}>
                     <Grid container item spacing={(isXl || isLg) ? 1 : 0} xs={12}>
                         <Grid item xs={12}>
                             <Typography variant="h2" fontWeight={600} fontFamily='inter'>
@@ -83,6 +83,11 @@ const WebNavigation = () => {
                                 <pre>&lt;Contact Me /&gt;</pre>
                             </Typography>
                         </Grid>
+                        <Grid item xs={12}>
+                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section5')}>
+                                <pre>&lt;Summary /&gt;</pre>
+                            </Typography>
+                        </Grid>
                     </Grid>
                 </Grid>
                 <Grid container item spacing={(isXl || isLg) ? 2 : 1} xs={12}>
@@ -96,7 +101,7 @@ const WebNavigation = () => {
                         <IconButton className="icon-btn" aria-label="Discord"><DiscordIcon /></IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="Twitter"><TwitterXIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="TwitterX"><TwitterXIcon /></IconButton>
                     </Grid>
                 </Grid>
             </Grid>
