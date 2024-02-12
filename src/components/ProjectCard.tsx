@@ -32,8 +32,8 @@ const ProjectCard: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className={`card ${(isXs) ? 'px-3' : 'px-6'} ${(isXs) ? 'py-2' : 'py-6'} w-full`}>
-      <Grid container justifyContent={(isXs || isSm || isMd) ? 'flex-start' : 'center'} alignItems={(isXs || isSm || isMd) ? 'flex-start' : 'center'} columnSpacing={1}>
+    <div className={`card ${(isXs) ? 'px-3' : 'px-4'} ${(isXs) ? 'py-2' : 'py-4'} w-full`}>
+      <Grid container justifyContent={(isXs || isSm || isMd) ? 'flex-start' : 'center'} alignItems='flex-start' columnSpacing={1}>
         <Grid item xs={3}>
           <Tooltip title={`Open ${projectName} Page`} arrow>
             <img
@@ -44,7 +44,7 @@ const ProjectCard: React.FC<Props> = (props) => {
             />
           </Tooltip>
         </Grid>
-        <Grid container item xs={9} justifyContent='flex-start' alignItems='center'>
+        <Grid container item xs={9} justifyContent='flex-start' alignItems='center' rowGap={isXl ? 1 : 0}>
           <Grid container item xs={12} justifyContent='flex-start' alignItems='center' columnSpacing={1}>
             <Grid item>
               <Typography variant="h5" fontWeight={500} fontFamily='inter' className='hover:text-cyan-300'>{projectName}</Typography>
