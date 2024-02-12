@@ -47,19 +47,21 @@ const Projects = () => {
                 <Grid item xs={12}>
                     <Typography variant="h4" fontWeight={500} fontFamily='inter'>Projects</Typography>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid container item xs={12} justifyContent="flex-start" alignItems="flex-start" rowGap={1}>
                     {projects && projects.map((project, index) => {
                         const { projectImgURL, projectName, projectDescription, projectTechStack, projectLink, githubRepoLink } = project;
                         return (
-                            <ProjectCard
-                                key={index}
-                                projectImgURL={projectImgURL}
-                                projectName={projectName}
-                                projectDescription={projectDescription}
-                                projectTechStack={projectTechStack}
-                                projectLink={projectLink}
-                                githubRepoLink={githubRepoLink}
-                            />
+                            <Grid item xs={12}>
+                                <ProjectCard
+                                    key={index}
+                                    projectImgURL={projectImgURL}
+                                    projectName={projectName}
+                                    projectDescription={projectDescription}
+                                    projectTechStack={projectTechStack}
+                                    projectLink={projectLink}
+                                    githubRepoLink={githubRepoLink}
+                                />
+                            </Grid>
                         )
                     })}
                 </Grid>
