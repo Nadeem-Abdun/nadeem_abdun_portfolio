@@ -83,6 +83,11 @@ const MobileNavigation = () => {
                                 <pre>&lt;Contact Me /&gt;</pre>
                             </Typography>
                         </Grid>
+                        <Grid item xs={12}>
+                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section5')}>
+                                <pre>&lt;Summary /&gt;</pre>
+                            </Typography>
+                        </Grid>
                     </Grid>
                 </Grid>
                 <Grid container item justifyContent='space-evenly' alignItems='center' xs={12}>
