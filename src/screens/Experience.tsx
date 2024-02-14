@@ -44,17 +44,19 @@ const Experience = () => {
                 <Grid item xs={12}>
                     <Typography variant="h4" fontWeight={500} fontFamily='inter'>Experience</Typography>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid container item xs={12} justifyContent="flex-start" alignItems="flex-start" rowGap={1}>
                     {experienceList && experienceList.map((experience, index) => {
                         return (
-                            <ExperienceCard
-                                key={index}
-                                jobTenure={experience.jobTenure}
-                                jobTitle={experience.jobTitle}
-                                jobCompany={experience.jobCompany}
-                                jobDescription={experience.jobDescription}
-                                jobTechStack={experience.jobTechStack}
-                            />
+                            <Grid item xs={12}>
+                                <ExperienceCard
+                                    key={index}
+                                    jobTenure={experience.jobTenure}
+                                    jobTitle={experience.jobTitle}
+                                    jobCompany={experience.jobCompany}
+                                    jobDescription={experience.jobDescription}
+                                    jobTechStack={experience.jobTechStack}
+                                />
+                            </Grid>
                         )
                     })}
                 </Grid>
