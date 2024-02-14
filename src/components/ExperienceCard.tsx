@@ -22,12 +22,12 @@ const ExperienceCard: React.FC<Props> = (props) => {
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
 
     return (
-        <div className={`card ${(isXs) ? 'px-3' : 'px-6'} ${(isXs) ? 'py-2' : 'py-6'} w-full`}>
+        <div className={`card ${(isXs) ? 'px-3' : 'px-4'} ${(isXs) ? 'py-2' : 'py-4'} w-full`}>
             <Grid container justifyContent='space-between' alignItems='flex-start' columnSpacing={1}>
                 {!isXs &&
                     <Grid container item sm={3} xs={12} justifyContent='flex-start' alignItems='flex-start'>
                         <Grid item xs={12}>
-                            <Typography variant="body2" fontWeight={600} fontFamily='inter' className='hover:text-cyan-300 py-2'>
+                            <Typography variant="body2" fontWeight={600} fontFamily='inter' className='py-2'>
                                 {jobTenure}
                             </Typography>
                         </Grid>
@@ -42,7 +42,7 @@ const ExperienceCard: React.FC<Props> = (props) => {
                     </Grid>
                     {isXs &&
                         <Grid item xs={12}>
-                            <Typography variant="body2" fontWeight={600} fontFamily='inter' className='hover:text-cyan-300 py-2'>
+                            <Typography variant="body2" fontWeight={600} fontFamily='inter' className='py-2'>
                                 {jobTenure}
                             </Typography>
                         </Grid>
@@ -59,7 +59,7 @@ const ExperienceCard: React.FC<Props> = (props) => {
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <div className="flex flex-wrap gap-2 my-4">
+                        <div className="flex flex-wrap gap-2 mt-4">
                             {jobTechStack && jobTechStack.map((tech, index) => (
                                 <span key={index} className="bg-teal-300 bg-opacity-15 text-teal-300 px-3 py-1 rounded-full text-sm hover:bg-teal-900 hover:text-teal-300 hover:bg-opacity-50 transition">{tech}</span>
                             ))}
