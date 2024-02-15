@@ -33,9 +33,9 @@ const MobileNavigation = () => {
 
     return (
         <div id='section-mobile-home' className='flex flex-col justify-center items-center my-6'>
-            <Grid container justifyContent='flex-start' alignItems='center' rowSpacing={(isSm || isXs) ? 6 : 0}>
-                <Grid container item rowSpacing={isSm ? 2 : isXs ? 3 : 0} xs={12}>
-                    <Grid container item rowSpacing={isSm ? 1 : isXs ? 2 : 0} xs={12}>
+            <Grid container justifyContent='flex-start' alignItems='center' rowGap={isSm ? 24 : isXs ? 5 : 0}>
+                <Grid container item rowGap={isSm ? 6 : isXs ? 2 : 0} xs={12}>
+                    <Grid container item rowGap={2} xs={12}>
                         <Grid item xs={12}>
                             <Typography variant="h2" fontWeight={600} fontFamily='inter'>
                                 <span className='easter-egg' onClick={() => adminPanelNavigation()}>N</span>a
@@ -55,42 +55,42 @@ const MobileNavigation = () => {
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant={isXs ? "body1" : "h6"} fontWeight={400} fontFamily='inter'>Transforming concepts into code, Specialized in delivering pixel-perfect, accessible wonders as a full-stack web and app developer.</Typography>
+                        <Typography variant={isSm ? "h5" : "body1"} fontWeight={400} fontFamily='inter'>Transforming concepts into code, Specialized in delivering pixel-perfect, accessible wonders as a full-stack web and app developer.</Typography>
                     </Grid>
-                    <Grid container item rowSpacing={isSm ? 2 : isXs ? 1 : 0} xs={12}>
+                    <Grid container item rowGap={isSm ? 2 : isXs ? 1 : 0} xs={12}>
                         <Grid item xs={12}>
-                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section0')}>
+                            <Typography variant={isSm ? "h4" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section0')}>
                                 <pre>&lt;About Me /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section1')}>
+                            <Typography variant={isSm ? "h4" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section1')}>
                                 <pre>&lt;Experience /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section2')}>
+                            <Typography variant={isSm ? "h4" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section2')}>
                                 <pre>&lt;Wall of Code /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section3')}>
+                            <Typography variant={isSm ? "h4" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section3')}>
                                 <pre>&lt;Projects /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section4')}>
+                            <Typography variant={isSm ? "h4" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section4')}>
                                 <pre>&lt;Contact Me /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h5" fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section5')}>
+                            <Typography variant={isSm ? "h4" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section5')}>
                                 <pre>&lt;Summary /&gt;</pre>
                             </Typography>
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid container item justifyContent='space-evenly' alignItems='center' xs={12}>
+                <Grid container item justifyContent="space-evenly" alignItems="center" xs={12}>
                     <Grid item>
                         <IconButton className="icon-btn" aria-label="GitHub" href='https://github.com/Nadeem-Abdun' target="_blank"><GithubIcon /></IconButton>
                     </Grid>
@@ -101,7 +101,7 @@ const MobileNavigation = () => {
                         <IconButton className="icon-btn" aria-label="Discord"><DiscordIcon /></IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="Twitter"><TwitterXIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="TwitterX"><TwitterXIcon /></IconButton>
                     </Grid>
                 </Grid>
             </Grid>
