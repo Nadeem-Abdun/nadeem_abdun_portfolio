@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Grid, Typography, TextField, Button, CircularProgress } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
 import SendSuccessfullyLogo from '../assets/images/SendSuccessfully.png';
+import './ScreenStyles.css';
 
 const ContactMe = () => {
 
@@ -69,13 +70,11 @@ const ContactMe = () => {
 
     return (
         <div id='section-contact-me' className={`flex flex-col justify-center items-center ${(isXs || isSm || isMd) ? 'my-3' : 'my-10'}`}>
-            <Grid container xs={12} justifyContent='flex-start' alignItems='center' rowSpacing={2}>
-                <Grid container item xs={12} justifyContent='flex-start' alignItems='center'>
-                    <Grid item xs={12}>
-                        <Typography variant="h4" fontWeight={500} fontFamily='inter'>Contact Me</Typography>
-                    </Grid>
+            <Grid container xs={12} justifyContent='flex-start' alignItems='center' rowGap={2}>
+                <Grid item xs={12}>
+                    <Typography variant="h4" fontWeight={500} fontFamily='inter'>Contact Me</Typography>
                 </Grid>
-                <Grid container item xs={12} justifyContent='flex-start' alignItems='center'>
+                <Grid container item xs={12} className={`card ${(isXs) ? 'px-3' : 'px-4'} ${(isXs) ? 'py-2' : 'py-4'}`} justifyContent='flex-start' alignItems='center'>
                     {!formStatus.success && !formStatus.loading &&
                         <Grid container item xs={12} rowSpacing={2}>
                             <Grid item xs={12}>
