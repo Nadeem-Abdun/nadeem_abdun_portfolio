@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Grid, IconButton, Typography } from '@mui/material';
-import './ScreenStyles.css';
-import { GithubIcon, LinkedInIcon, TwitterXIcon, DiscordIcon } from '../assets/SvgIcons';
+import '../ScreenStyles.css';
+import { GithubIcon, LinkedInIcon, TwitterXIcon, DiscordIcon } from '../../assets/SvgIcons';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import Typewriter from 'typewriter-effect';

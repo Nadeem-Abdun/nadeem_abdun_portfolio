@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Dialog, IconButton, Typography, Tooltip } from '@mui/material';
 import { Close, OpenInNew } from '@mui/icons-material';
-import './ComponentStyles.css';
+import '../ComponentStyles.css';
 import { useMediaQuery } from 'react-responsive';
 
 interface Props {
@@ -32,7 +32,7 @@ const ProjectCard: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className={`card ${(isXs) ? 'px-3' : 'px-4'} ${(isXs) ? 'py-2' : 'py-4'} w-full`}>
+    <div className={`card ${(isXs) ? 'px-2' : 'px-4'} ${(isXs) ? 'py-1' : 'py-4'} w-full`}>
       <Grid container justifyContent={(isXs || isSm || isMd) ? 'flex-start' : 'center'} alignItems='flex-start' columnSpacing={1}>
         <Grid item xs={3}>
           <Tooltip title={`Open ${projectName} Page`} arrow>

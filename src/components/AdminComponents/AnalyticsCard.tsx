@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Typography } from '@mui/material';
 import { Work, Assignment, MailOutline } from '@mui/icons-material';
-import './ComponentStyles.css';
+import '../ComponentStyles.css';
 import { useMediaQuery } from 'react-responsive';
 import AnalyticsChart from './AnalyticsChart';
 
@@ -14,8 +14,8 @@ const AnalyticsCard = () => {
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
 
     return (
-        <div className={`admin-card ${(isXs) ? 'px-3' : 'px-6'} ${(isXs) ? 'py-2' : 'py-6'} w-full`}>
-            <Grid container columnSpacing={2} rowGap={3}>
+        <div className={`admin-card ${(isXs) ? 'px-2' : 'px-4'} ${(isXs) ? 'py-2' : 'py-4'} w-full`}>
+            <Grid container columnSpacing={(isXs) ? 0 : 2} rowGap={3}>
                 <Grid item xs={12}>
                     <Typography variant="h5" fontWeight={500} fontFamily='inter'>Analytics</Typography>
                 </Grid>
@@ -40,7 +40,7 @@ const AnalyticsCard = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid container item xs={12} sm={6} md={3} rowGap={3}>
+                <Grid container item xs={12} sm={6} md={3} rowGap={isXs ? 3 : 7}>
                     <Grid item xs={12}>
                         <Typography variant="h6" fontWeight={500} fontFamily='inter' className="text-center">Experience Overview</Typography>
                     </Grid>
@@ -56,7 +56,7 @@ const AnalyticsCard = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid container item xs={12} sm={6} md={3} rowGap={3}>
+                <Grid container item xs={12} sm={6} md={3} rowGap={isXs ? 3 : 7}>
                     <Grid item xs={12}>
                         <Typography variant="h6" fontWeight={500} fontFamily='inter' className="text-center">Projects Overview</Typography>
                     </Grid>
@@ -72,7 +72,7 @@ const AnalyticsCard = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid container item xs={12} sm={6} md={3} rowGap={3}>
+                <Grid container item xs={12} sm={6} md={3} rowGap={isXs ? 3 : 7}>
                     <Grid item xs={12}>
                         <Typography variant="h6" fontWeight={500} fontFamily='inter' className="text-center">Contact Form Requests</Typography>
                     </Grid>

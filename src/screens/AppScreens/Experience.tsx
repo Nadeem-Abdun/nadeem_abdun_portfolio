@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Typography } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
-import ExperienceCard from '../components/ExperienceCard';
+import ExperienceCard from '../../components/AppComponents/ExperienceCard';
 
 const Experience = () => {
 

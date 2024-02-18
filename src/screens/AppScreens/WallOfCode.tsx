@@ -1,9 +1,9 @@
 import React from 'react';
 import { Grid, Typography } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
-import './ScreenStyles.css';
-import { HtmlIcon, CssIcon, JavascriptIcon, TypescriptIcon, ReactIcon, ReactNativeIcon, JavaIcon, NodeJsIcon, ExpressJsIcon, MaterialUiIcon, MongoDbIcon, MySqlIcon, TailwindCssIcon, ReduxIcon } from '../assets/SvgIcons';
-import SkillCard from '../components/SkillCard';
+import '../ScreenStyles.css';
+import { HtmlIcon, CssIcon, JavascriptIcon, TypescriptIcon, ReactIcon, ReactNativeIcon, JavaIcon, NodeJsIcon, ExpressJsIcon, MaterialUiIcon, MongoDbIcon, MySqlIcon, TailwindCssIcon, ReduxIcon } from '../../assets/SvgIcons';
+import SkillCard from '../../components/AppComponents/SkillCard';
 
 const WallOfCode = () => {
 

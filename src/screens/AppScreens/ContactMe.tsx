@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Grid, Typography, TextField, Button, CircularProgress } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
-import SendSuccessfullyLogo from '../assets/images/SendSuccessfully.png';
-import './ScreenStyles.css';
+import SendSuccessfullyLogo from '../../assets/images/SendSuccessfully.png';
+import '../ScreenStyles.css';
 
 const ContactMe = () => {
 

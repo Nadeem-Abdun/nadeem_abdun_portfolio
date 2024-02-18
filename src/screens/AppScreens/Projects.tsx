@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid, Typography } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
-import ProjectCard from '../components/ProjectCard';
-import FuelCalculatorImg from '../assets/images/Fuel_Calculator.png';
+import ProjectCard from '../../components/AppComponents/ProjectCard';
+import FuelCalculatorImg from '../../assets/images/Fuel_Calculator.png';
 
 const Projects = () => {
 

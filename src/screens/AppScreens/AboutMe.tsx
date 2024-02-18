@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid, Typography } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
-import ProfilePic from '../assets/images/Profile_Avatar.png';
-import './ScreenStyles.css';
+import ProfilePic from '../../assets/images/Profile_Avatar.png';
+import '../ScreenStyles.css';
 
 const AboutMe = () => {
 

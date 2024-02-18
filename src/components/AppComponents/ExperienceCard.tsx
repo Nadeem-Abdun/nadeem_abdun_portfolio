@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography } from '@mui/material';
-import './ComponentStyles.css';
+import '../ComponentStyles.css';
 import { useMediaQuery } from 'react-responsive';
 
 interface Props {
@@ -22,7 +22,7 @@ const ExperienceCard: React.FC<Props> = (props) => {
     const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
 
     return (
-        <div className={`card ${(isXs) ? 'px-3' : 'px-4'} ${(isXs) ? 'py-2' : 'py-4'} w-full`}>
+        <div className={`card ${(isXs) ? 'px-2' : 'px-4'} ${(isXs) ? 'py-1' : 'py-4'} w-full`}>
             <Grid container justifyContent='space-between' alignItems='flex-start' columnSpacing={1}>
                 {!isXs &&
                     <Grid container item sm={3} xs={12} justifyContent='flex-start' alignItems='flex-start'>
