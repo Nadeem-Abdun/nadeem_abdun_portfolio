@@ -51,11 +51,11 @@ const ScrollToTop: React.FC<Props> = (props) => {
                 : source === "admin" ?
                     <>
                         {isXl || isLg || isMd ?
-                            <IconButton sx={{ position: 'absolute', bottom: '4dvh', right: '4dvw', '&:hover': { backgroundColor: '#0F172A', } }} onClick={() => scrollToTop()} aria-label="scroll to top">
+                            <IconButton sx={{ position: 'fixed', bottom: '4dvh', right: '4dvw', '&:hover': { backgroundColor: '#0F172A', } }} onClick={() => scrollToTop()} aria-label="scroll to top">
                                 <KeyboardDoubleArrowUp className='text-cyan-300' fontSize='large' />
                             </IconButton>
                             :
-                            <IconButton sx={{ position: 'sticky', bottom: '2dvh', left: '82%', '&:hover': { backgroundColor: '#0F172A', } }} onClick={() => scrollToTop()} aria-label="scroll to top">
+                            <IconButton sx={{ position: 'fixed', bottom: '2dvh', right: '4dvw', '&:hover': { backgroundColor: '#0F172A', } }} onClick={() => scrollToTop()} aria-label="scroll to top">
                                 <KeyboardDoubleArrowUp className='text-cyan-300' fontSize='large' />
                             </IconButton>
                         }
