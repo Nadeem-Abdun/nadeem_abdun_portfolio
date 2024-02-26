@@ -33,3 +33,10 @@
     background-color: rgba(0, 255, 255, 0.2);
     backdrop-filter: blur(10px);
 }
+
+.experience-card {
+    background-color: rgba(15, 23, 42, 0.6);
+    color: #D1D5DB;
+    border-radius: 0.5dvw;
+    transition: background-color 0.3s ease-in-out;
+}
