@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import AnalyticsCard from '../../components/AdminComponents/AnalyticsCard';
 import AboutMeCard from '../../components/AdminComponents/AboutMeCard';
+import ExperienceCard from '../../components/AdminComponents/ExperienceCard';
 
 const AdminHome = () => {
 
@@ -29,24 +30,12 @@ const AdminHome = () => {
                 <Grid item xs={12}>
                     <AnalyticsCard />
                 </Grid>
-                <Grid container item xs={12} justifyContent="center" alignItems="flex-start" rowGap={2} columnSpacing={2}>
+                <Grid container item xs={12} justifyContent="flex-start" alignItems="flex-start" rowGap={2} columnSpacing={2}>
                     <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
                         <AboutMeCard />
                     </Grid>
                     <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-                        <AboutMeCard />
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-                        <AboutMeCard />
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-                        <AboutMeCard />
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-                        <AboutMeCard />
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
-                        <AboutMeCard />
+                        <ExperienceCard />
                     </Grid>
                 </Grid>
             </Grid>
