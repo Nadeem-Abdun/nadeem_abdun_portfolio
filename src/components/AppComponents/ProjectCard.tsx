@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Grid, Dialog, IconButton, Typography, Tooltip } from '@mui/material';
-import { Close, OpenInNew } from '@mui/icons-material';
-import '../ComponentStyles.css';
-import { useMediaQuery } from 'react-responsive';
+import React, { useState } from "react";
+import { Grid, Dialog, IconButton, Typography, Tooltip } from "@mui/material";
+import { Close, OpenInNew } from "@mui/icons-material";
+import { useBreakpoints } from "../../utils/Breakpoints";
+import "../../styles/componentStyles.css";
 
 interface Props {
   projectImgURL?: string,
@@ -17,11 +17,7 @@ const ProjectCard: React.FC<Props> = (props) => {
 
   const { projectImgURL, projectName, projectDescription, projectTechStack, projectLink, githubRepoLink } = props;
 
-  const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
-  const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
-  const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
-  const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
-  const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+  const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
   const [iframeOpen, setIframeOpen] = useState(false);
   const handleProjectImageClick = () => {
