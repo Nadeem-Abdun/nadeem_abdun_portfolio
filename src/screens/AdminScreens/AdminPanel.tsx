@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react';
-import { Grid, Typography } from '@mui/material';
-import '../ScreenStyles.css';
-import { useMediaQuery } from 'react-responsive';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { Grid, Typography } from "@mui/material";
+import { useBreakpoints } from "../../utils/Breakpoints";
+import { useNavigate } from "react-router-dom";
+import "../../styles/screenStyles.css";
 
 const AdminPanel = () => {
 
     const history = useNavigate();
 
-    const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
-    const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
-    const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
-    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
-    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
     const portfolioPageNavigation = () => {
         history('/');
