@@ -1,16 +1,12 @@
-import React from 'react';
-import { Grid, Typography } from '@mui/material';
-import { useMediaQuery } from 'react-responsive';
-import ProfilePic from '../../assets/images/Profile_Avatar.png';
-import '../ScreenStyles.css';
+import React from "react";
+import { Grid, Typography } from "@mui/material";
+import { useBreakpoints } from "../../utils/Breakpoints";
+import ProfilePic from "../../assets/images/Profile_Avatar.png";
+import "../../styles/screenStyles.css";
 
 const AboutMe = () => {
 
-    const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
-    const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
-    const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
-    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
-    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
     return (
         <div id='section-about-me' className={`flex flex-col justify-center items-center ${(isXs || isSm || isMd) ? 'my-3' : 'my-10'}`}>
