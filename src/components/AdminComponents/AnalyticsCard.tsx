@@ -1,17 +1,13 @@
-import React from 'react';
-import { Grid, Typography } from '@mui/material';
-import { Work, Assignment, MailOutline } from '@mui/icons-material';
-import '../ComponentStyles.css';
-import { useMediaQuery } from 'react-responsive';
-import AnalyticsChart from './AnalyticsChart';
+import React from "react";
+import { Grid, Typography } from "@mui/material";
+import { Work, Assignment, MailOutline } from "@mui/icons-material";
+import { useBreakpoints } from "../../utils/Breakpoints";
+import AnalyticsChart from "./AnalyticsChart";
+import "../../styles/componentStyles.css";
 
 const AnalyticsCard = () => {
 
-    const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
-    const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
-    const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
-    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
-    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
     return (
         <div className={`admin-card ${(isXs) ? 'px-2' : 'px-4'} ${(isXs) ? 'py-2' : 'py-4'} w-full`}>
