@@ -1,7 +1,7 @@
-import React from 'react';
-import { Grid, Typography } from '@mui/material';
-import '../ComponentStyles.css';
-import { useMediaQuery } from 'react-responsive';
+import React from "react";
+import { Grid, Typography } from "@mui/material";
+import { useBreakpoints } from "../../utils/Breakpoints";
+import "../../styles/componentStyles.css";
 
 interface Props {
     jobTenure?: string;
@@ -15,11 +15,7 @@ const ExperienceCard: React.FC<Props> = (props) => {
 
     const { jobTenure, jobTitle, jobCompany, jobDescription, jobTechStack } = props;
 
-    const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
-    const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
-    const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
-    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
-    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
     return (
         <div className={`card ${(isXs) ? 'px-2' : 'px-4'} ${(isXs) ? 'py-1' : 'py-4'} w-full`}>
