@@ -1,18 +1,18 @@
-import React from 'react';
-import AppLayout from './layout/AppLayout';
-import AdminLayout from './layout/AdminLayout';
-import AboutMe from './screens/AppScreens/AboutMe';
-import Experience from './screens/AppScreens/Experience';
-import Projects from './screens/AppScreens/Projects';
-import ContactMe from './screens/AppScreens/ContactMe';
-import WebNavigation from './screens/AppScreens/WebNavigation';
-import MobileNavigation from './screens/AppScreens/MobileNavigation';
-import WallOfCode from './screens/AppScreens/WallOfCode';
-import Summary from './screens/AppScreens/Summary';
-import AdminPanel from './screens/AdminScreens/AdminPanel';
-import AdminLogin from './screens/AdminScreens/AdminLogin';
-import AdminHome from './screens/AdminScreens/AdminHome';
-import { Route, Routes } from 'react-router-dom';
+import React from "react";
+import AppLayout from "./layout/AppLayout";
+import AdminLayout from "./layout/AdminLayout";
+import AboutMe from "./screens/AppScreens/AboutMe";
+import Experience from "./screens/AppScreens/Experience";
+import Projects from "./screens/AppScreens/Projects";
+import ContactMe from "./screens/AppScreens/ContactMe";
+import WebNavigation from "./screens/AppScreens/WebNavigation";
+import MobileNavigation from "./screens/AppScreens/MobileNavigation";
+import WallOfCode from "./screens/AppScreens/WallOfCode";
+import Summary from "./screens/AppScreens/Summary";
+import AdminPanel from "./screens/AdminScreens/AdminPanel";
+import AdminLogin from "./screens/AdminScreens/AdminLogin";
+import AdminHome from "./screens/AdminScreens/AdminHome";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
 
