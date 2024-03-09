@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, Typography } from '@mui/material';
+import React from "react";
+import { Grid, Typography } from "@mui/material";
 
 interface Props {
     icon: JSX.Element,
