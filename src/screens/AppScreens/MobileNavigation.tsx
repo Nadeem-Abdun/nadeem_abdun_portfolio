@@ -34,8 +34,7 @@ const MobileNavigation = () => {
                     <Grid container item rowGap={2} xs={12}>
                         <Grid item xs={12}>
                             <Typography variant="h2" fontWeight={600} fontFamily='inter'>
-                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>N</span>a
-                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>d</span>eem Abdun
+                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>N</span>adeem Abdun
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
