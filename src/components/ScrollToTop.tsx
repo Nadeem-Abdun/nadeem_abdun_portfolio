@@ -1,7 +1,7 @@
-import React from 'react';
-import { IconButton } from '@mui/material';
-import { KeyboardDoubleArrowUp } from '@mui/icons-material/';
-import { useMediaQuery } from 'react-responsive';
+import React from "react";
+import { IconButton } from "@mui/material";
+import { KeyboardDoubleArrowUp } from "@mui/icons-material/";
+import { useBreakpoints } from "../utils/Breakpoints";
 
 interface Props {
     source: string;
@@ -13,11 +13,7 @@ const ScrollToTop: React.FC<Props> = (props) => {
 
     const { source, scrollToIdLarge, scrollToIdSmall } = props;
 
-    const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
-    const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
-    const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
-    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
-    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
     const scrollToTop = () => {
         if (isXl || isLg || isMd) {
