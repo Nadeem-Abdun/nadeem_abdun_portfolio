@@ -29,18 +29,20 @@ const ProjectCard: React.FC<Props> = (props) => {
 
   return (
     <div className={`card ${(isXs) ? 'px-2' : 'px-4'} ${(isXs) ? 'py-1' : 'py-4'} w-full`}>
-      <Grid container justifyContent={(isXs || isSm || isMd) ? 'flex-start' : 'center'} alignItems='flex-start' columnSpacing={1}>
-        <Grid item xs={3}>
-          <Tooltip title={`Open ${projectName} Page`} arrow>
-            <img
-              src={projectImgURL}
-              alt={`${projectName} Preview`}
-              style={{ width: '90%', height: '90%', objectFit: 'cover', cursor: 'pointer', marginTop: (isXs || isSm || isMd) ? '9px' : '0px', borderRadius: '10%' }}
-              onClick={() => handleProjectImageClick()}
-            />
-          </Tooltip>
+      <Grid container justifyContent='center' alignItems='flex-start' columnSpacing={isXs ? 0 : 1} rowGap={isXs ? 2 : 0}>
+        <Grid container xs={12} sm={3} justifyContent='center' alignItems='center'>
+          <Grid item xs={12}>
+            <Tooltip title={`Open ${projectName} Page`} arrow>
+              <img
+                src={projectImgURL}
+                alt={`${projectName} Preview`}
+                style={{ width: (isXs ? '100%' : '90%'), height: (isXs ? '100%' : '90%'), objectFit: 'cover', cursor: 'pointer', marginTop: (isXs) ? '4px' : (isSm || isMd) ? '6px' : '0px', borderRadius: '10%' }}
+                onClick={() => handleProjectImageClick()}
+              />
+            </Tooltip>
+          </Grid>
         </Grid>
-        <Grid container item xs={9} justifyContent='flex-start' alignItems='center' rowGap={isXl ? 1 : 0}>
+        <Grid container item xs={12} sm={9} justifyContent='flex-start' alignItems='center' rowGap={isXl ? 1 : 0}>
           <Grid container item xs={12} justifyContent='flex-start' alignItems='center' columnSpacing={1}>
             <Grid item>
               <Typography variant="h5" fontWeight={500} fontFamily='inter' className='hover:text-cyan-300'>{projectName}</Typography>
