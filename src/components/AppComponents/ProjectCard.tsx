@@ -42,7 +42,7 @@ const ProjectCard: React.FC<Props> = (props) => {
             </Tooltip>
           </Grid>
         </Grid>
-        <Grid container item xs={12} sm={9} justifyContent="flex-start" alignItems="center" rowGap={isXl ? 1 : 0}>
+        <Grid container item xs={12} sm={9} justifyContent="flex-start" alignItems="center" rowGap={isXs ? 0 : 1}>
           <Grid container item xs={12} justifyContent="flex-start" alignItems="center" columnSpacing={1}>
             <Grid item>
               <Typography variant="h5" fontWeight={500} fontFamily="inter" className="hover:text-cyan-300">{projectName}</Typography>
