@@ -14,7 +14,7 @@ const AboutMe = () => {
                 <Grid item xs={12}>
                     <Typography variant="h4" fontWeight={500} fontFamily='inter'>About Me</Typography>
                 </Grid>
-                <Grid container item xs={12} className={`card ${(isXs) ? 'px-2' : 'px-4'} ${(isXs) ? 'py-2' : 'py-4'}`} justifyContent='flex-start' alignItems='center' rowGap={1}>
+                <Grid container item xs={12} className={`${(!isXs) && 'card'} ${(!isXs) && 'px-3'} ${(!isXs) && 'py-3'}`} justifyContent='flex-start' alignItems='center' rowGap={1}>
                     <Grid item xs={12}>
                         <div className="bg-gradient-to-r from-gray-400 via-0F172A to-0F172A rounded-bl-full rounded-tl-full">
                             <img
