@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Grid, IconButton, Typography } from "@mui/material";
 import { useBreakpoints } from "../../utils/Breakpoints";
-import { GithubIcon, LinkedInIcon, TwitterXIcon, DiscordIcon } from "../../assets/SvgIcons";
+import { GithubIcon, LinkedInIcon, TwitterXIcon, DiscordIcon, MailIcon } from "../../assets/SvgIcons";
 import { useNavigate } from "react-router-dom";
 import Typewriter from "typewriter-effect";
 import "../../styles/screenStyles.css";
@@ -98,9 +98,12 @@ const WebNavigation = () => {
                     <Grid item>
                         <IconButton className="icon-btn" aria-label="TwitterX"><TwitterXIcon /></IconButton>
                     </Grid>
+                    <Grid item>
+                        <IconButton className="icon-btn" aria-label="Email" href='mailto:nadeemabdun@gmail.com'><MailIcon /></IconButton>
+                    </Grid>
                 </Grid>
             </Grid>
-        </div >
+        </div>
     )
 }
 
