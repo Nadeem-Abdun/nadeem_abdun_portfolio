@@ -70,7 +70,7 @@ const ContactMe = () => {
                 <Grid item xs={12}>
                     <Typography variant="h4" fontWeight={500} fontFamily='inter'>Contact Me</Typography>
                 </Grid>
-                <Grid container item xs={12} className={`card ${(isXs) ? 'px-2' : 'px-4'} ${(isXs) ? 'py-2' : 'py-4'}`} justifyContent='flex-start' alignItems='center'>
+                <Grid container item xs={12} className={`${(!isXs) && 'card'} ${(!isXs) && 'px-3'} ${(!isXs) && 'py-3'}`} justifyContent='flex-start' alignItems='center'>
                     {!formStatus.success && !formStatus.loading &&
                         <Grid container item xs={12} rowSpacing={2}>
                             <Grid item xs={12}>
