@@ -28,8 +28,8 @@ const ProjectCard: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className={`card ${(isXs) ? "px-2" : "px-4"} ${(isXs) ? "py-1" : "py-4"} w-full`}>
-      <Grid container justifyContent="center" alignItems="flex-start" columnSpacing={isXs ? 0 : 1} rowGap={isXs ? 2 : 0}>
+    <div className={`card ${(isXs) ? "px-1" : "px-3"} ${(isXs) ? "py-1" : "py-3"} w-full`}>
+      <Grid container justifyContent="center" alignItems="flex-start" rowGap={isXs ? 2 : 0}>
         <Grid container xs={12} sm={3} justifyContent="center" alignItems="center">
           <Grid item xs={12}>
             <Tooltip title={`Open ${projectName} Page`} arrow>
