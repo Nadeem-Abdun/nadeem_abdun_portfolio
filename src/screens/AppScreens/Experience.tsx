@@ -1,15 +1,11 @@
-import React from 'react';
-import { Grid, Typography } from '@mui/material';
-import { useMediaQuery } from 'react-responsive';
-import ExperienceCard from '../../components/AppComponents/ExperienceCard';
+import React from "react";
+import { Grid, Typography } from "@mui/material";
+import { useBreakpoints } from "../../utils/Breakpoints";
+import ExperienceCard from "../../components/AppComponents/ExperienceCard";
 
 const Experience = () => {
 
-    const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
-    const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
-    const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
-    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
-    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
     const experienceList = [
         {

@@ -1,20 +1,16 @@
-import React, { useEffect } from 'react';
-import { Grid, IconButton, Typography } from '@mui/material';
-import '../ScreenStyles.css';
-import { GithubIcon, LinkedInIcon, TwitterXIcon, DiscordIcon } from '../../assets/SvgIcons';
-import { useMediaQuery } from 'react-responsive';
-import { useNavigate } from 'react-router-dom';
-import Typewriter from 'typewriter-effect';
+import React, { useEffect } from "react";
+import { Grid, IconButton, Typography } from "@mui/material";
+import { useBreakpoints } from "../../utils/Breakpoints";
+import { GithubIcon, LinkedInIcon, TwitterXIcon, DiscordIcon, MailIcon } from "../../assets/SvgIcons";
+import { useNavigate } from "react-router-dom";
+import Typewriter from "typewriter-effect";
+import "../../styles/screenStyles.css";
 
 const MobileNavigation = () => {
 
     const history = useNavigate();
 
-    const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
-    const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
-    const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
-    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
-    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
     const scrollToSectionMobile = (sectionId: string) => {
         const sectionElement = document.getElementById(sectionId);
@@ -38,8 +34,7 @@ const MobileNavigation = () => {
                     <Grid container item rowGap={2} xs={12}>
                         <Grid item xs={12}>
                             <Typography variant="h2" fontWeight={600} fontFamily='inter'>
-                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>N</span>a
-                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>d</span>eem Abdun
+                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>N</span>adeem Abdun
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
@@ -102,6 +97,9 @@ const MobileNavigation = () => {
                     </Grid>
                     <Grid item>
                         <IconButton className="icon-btn" aria-label="TwitterX"><TwitterXIcon /></IconButton>
+                    </Grid>
+                    <Grid item>
+                        <IconButton className="icon-btn" aria-label="Email" href='mailto:nadeemabdun@gmail.com'><MailIcon /></IconButton>
                     </Grid>
                 </Grid>
             </Grid>

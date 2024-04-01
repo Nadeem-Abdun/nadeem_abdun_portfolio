@@ -1,6 +1,6 @@
-import React from 'react';
-import { PieChart, Pie, Cell } from 'recharts';
-import { useMediaQuery } from 'react-responsive';
+import React from "react";
+import { PieChart, Pie, Cell } from "recharts";
+import { useBreakpoints } from "../../utils/Breakpoints";
 
 interface ChartData {
     name: string;
@@ -16,11 +16,7 @@ const AnalyticsChart: React.FC<Props> = (props) => {
 
     const { value } = props;
 
-    const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
-    const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
-    const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
-    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
-    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
     const cx = isXl ? 175 : isLg ? 107 : isMd ? 88 : isSm ? 107 : isXs ? 110 : 115;
     const cy = isXl ? 110 : isLg ? 105 : isMd ? 95 : isSm ? 105 : isXs ? 105 : 120;

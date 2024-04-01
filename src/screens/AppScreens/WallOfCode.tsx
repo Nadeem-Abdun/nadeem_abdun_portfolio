@@ -1,17 +1,13 @@
-import React from 'react';
-import { Grid, Typography } from '@mui/material';
-import { useMediaQuery } from 'react-responsive';
-import '../ScreenStyles.css';
-import { HtmlIcon, CssIcon, JavascriptIcon, TypescriptIcon, ReactIcon, ReactNativeIcon, JavaIcon, NodeJsIcon, ExpressJsIcon, MaterialUiIcon, MongoDbIcon, MySqlIcon, TailwindCssIcon, ReduxIcon } from '../../assets/SvgIcons';
-import SkillCard from '../../components/AppComponents/SkillCard';
+import React from "react";
+import { Grid, Typography } from "@mui/material";
+import { useBreakpoints } from "../../utils/Breakpoints";
+import { HtmlIcon, CssIcon, JavascriptIcon, TypescriptIcon, ReactIcon, ReactNativeIcon, JavaIcon, NodeJsIcon, ExpressJsIcon, MaterialUiIcon, MongoDbIcon, MySqlIcon, TailwindCssIcon, ReduxIcon } from "../../assets/SvgIcons";
+import SkillCard from "../../components/AppComponents/SkillCard";
+import "../../styles/screenStyles.css";
 
 const WallOfCode = () => {
 
-    const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
-    const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
-    const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
-    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
-    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
     const skillData = [
         {

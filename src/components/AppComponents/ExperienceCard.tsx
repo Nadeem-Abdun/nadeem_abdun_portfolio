@@ -1,7 +1,7 @@
-import React from 'react';
-import { Grid, Typography } from '@mui/material';
-import '../ComponentStyles.css';
-import { useMediaQuery } from 'react-responsive';
+import React from "react";
+import { Grid, Typography } from "@mui/material";
+import { useBreakpoints } from "../../utils/Breakpoints";
+import "../../styles/componentStyles.css";
 
 interface Props {
     jobTenure?: string;
@@ -15,17 +15,13 @@ const ExperienceCard: React.FC<Props> = (props) => {
 
     const { jobTenure, jobTitle, jobCompany, jobDescription, jobTechStack } = props;
 
-    const isXl = useMediaQuery({ query: '(min-width: 1920px)' });
-    const isLg = useMediaQuery({ query: '(min-width: 1280px) and (max-width: 1919px)' });
-    const isMd = useMediaQuery({ query: '(min-width: 960px) and (max-width: 1279px)' });
-    const isSm = useMediaQuery({ query: '(min-width: 600px) and (max-width: 959px)' });
-    const isXs = useMediaQuery({ query: '(min-width: 320px) and (max-width: 599px)' });
+    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
     return (
-        <div className={`card ${(isXs) ? 'px-2' : 'px-4'} ${(isXs) ? 'py-1' : 'py-4'} w-full`}>
-            <Grid container justifyContent='space-between' alignItems='flex-start' columnSpacing={1}>
-                {!isXs &&
-                    <Grid container item sm={3} xs={12} justifyContent='flex-start' alignItems='flex-start'>
+        <div className={`card ${(isXs) ? 'px-1' : 'px-3'} ${(isXs) ? 'py-1' : 'py-3'} w-full`}>
+            <Grid container justifyContent='space-between' alignItems='flex-start'>
+                {!(isXs || isSm) &&
+                    <Grid container item xl={2} lg={3} md={3} sm={12} xs={12} justifyContent='flex-start' alignItems='flex-start'>
                         <Grid item xs={12}>
                             <Typography variant="body2" fontWeight={600} fontFamily='inter' className='py-2'>
                                 {jobTenure}
@@ -33,14 +29,14 @@ const ExperienceCard: React.FC<Props> = (props) => {
                         </Grid>
                     </Grid>
                 }
-                <Grid container item sm={9} xs={12} justifyContent='flex-start' alignItems='flex-start'>
+                <Grid container item xl={10} lg={9} md={9} sm={12} xs={12} justifyContent='flex-start' alignItems='flex-start'>
                     <Grid item xs={12}>
                         <Typography variant="h5" fontWeight={500} fontFamily='inter'>{jobTitle}</Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <Typography variant="body1" fontWeight={400} fontFamily='inter'>{jobCompany}</Typography>
                     </Grid>
-                    {isXs &&
+                    {(isXs || isSm) &&
                         <Grid item xs={12}>
                             <Typography variant="body2" fontWeight={600} fontFamily='inter' className='py-2'>
                                 {jobTenure}
