@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Grid, Typography, TextField, Button, CircularProgress } from "@mui/material";
 import { useBreakpoints } from "../../utils/Breakpoints";
-import SendSuccessfullyLogo from "../../assets/images/SendSuccessfully.png";
+import SuccessLogo from "../../assets/images/Success.png";
 import "../../styles/screenStyles.css";
 
 const ContactMe = () => {
@@ -153,7 +153,7 @@ const ContactMe = () => {
                     {formStatus.success && !formStatus.loading &&
                         <Grid container item xs={12} rowSpacing={isXs ? 0 : 2}>
                             <Grid item xs={12}>
-                                <img src={SendSuccessfullyLogo} className='h-80 mx-auto' alt='Form_Submitted' />
+                                <img src={SuccessLogo} className='h-80 mx-auto' alt='Form_Submitted' />
                             </Grid>
                             <Grid item xs={12} className="text-center">
                                 <Typography variant={isXs ? 'body1' : 'h6'} fontWeight={400} fontFamily='inter'>
