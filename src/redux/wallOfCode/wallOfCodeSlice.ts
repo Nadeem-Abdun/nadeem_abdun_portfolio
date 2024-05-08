@@ -40,10 +40,6 @@ const initialState: WallOfCodeState = {
             skillIcon: "ReactNativeIcon",
         },
         {
-            skillName: "Java",
-            skillIcon: "JavaIcon",
-        },
-        {
             skillName: "Node Js",
             skillIcon: "NodeJsIcon",
         },
