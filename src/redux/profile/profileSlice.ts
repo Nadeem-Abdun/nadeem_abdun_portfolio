@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import ProfilePic from "../../assets/images/Profile_Avatar.png";
 
-export interface AboutMeState {
+export interface ProfileState {
     fullName?: string,
     professionalRoles?: string[],
     introducingLine?: string,
@@ -17,7 +17,7 @@ export interface AboutMeState {
     loading?: boolean,
 }
 
-const initialState: AboutMeState = {
+const initialState: ProfileState = {
     fullName: "Nadeem Abdun",
     professionalRoles: ["Web App Developer", "Mobile App Developer", "Mechanical Engineer"],
     introducingLine: "Transforming concepts into code, Specialized in delivering pixel-perfect, accessible wonders as a full-stack web and app developer.",
@@ -32,8 +32,8 @@ const initialState: AboutMeState = {
     loading: false
 }
 
-export const aboutMeSlice = createSlice({
-    name: "AboutMe",
+export const profileSlice = createSlice({
+    name: "Profile",
     initialState,
     reducers: {
         loadData: (state) => {
@@ -43,6 +43,6 @@ export const aboutMeSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { loadData } = aboutMeSlice.actions;
+export const { loadData } = profileSlice.actions;
 
-export default aboutMeSlice.reducer;
+export default profileSlice.reducer;
