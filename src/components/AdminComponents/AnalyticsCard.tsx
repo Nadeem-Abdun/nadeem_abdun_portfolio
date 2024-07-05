@@ -3,9 +3,20 @@ import { Grid, Typography } from "@mui/material";
 import { Work, Assignment, MailOutline } from "@mui/icons-material";
 import { useBreakpoints } from "../../utils/Breakpoints";
 import AnalyticsChart from "./AnalyticsChart";
+import { Experience } from "../../redux/experience/experienceSlice";
+import { Project } from "../../redux/project/projectSlice";
+import { ContactMe } from "../../redux/contactMe/contactMeSlice";
 import "../../styles/componentStyles.css";
 
-const AnalyticsCard = () => {
+interface Props {
+    experiences?: Experience[];
+    projects?: Project[];
+    contactMeForms?: ContactMe[];
+}
+
+const AnalyticsCard: React.FC<Props> = (props) => {
+
+    const { experiences, projects, contactMeForms } = props;
 
     const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
@@ -15,7 +26,7 @@ const AnalyticsCard = () => {
                 <Grid item xs={12}>
                     <Typography variant="h5" fontWeight={500} fontFamily='inter'>Analytics</Typography>
                 </Grid>
-                <Grid item xs={12} sm={6} md={3}>
+                <Grid container item xs={12} sm={6} md={3}>
                     <Grid item xs={12}>
                         <Typography variant="h6" fontWeight={500} fontFamily='inter' className="text-center">Users Overview</Typography>
                     </Grid>
@@ -25,7 +36,7 @@ const AnalyticsCard = () => {
                         </div>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="h2" fontWeight={600} fontFamily='inter' className="text-center">12</Typography>
+                        <Typography variant="h2" fontWeight={600} fontFamily='inter' className="text-center">42</Typography>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center' alignItems='center' columnGap={1}>
                         <Grid item>
@@ -41,7 +52,7 @@ const AnalyticsCard = () => {
                         <Typography variant="h6" fontWeight={500} fontFamily='inter' className="text-center">Experience Overview</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="h2" fontWeight={600} fontFamily='inter' className="text-center">1</Typography>
+                        <Typography variant="h2" fontWeight={600} fontFamily='inter' className="text-center">{experiences?.length}</Typography>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center' alignItems='center' columnGap={1}>
                         <Grid item>
@@ -57,7 +68,7 @@ const AnalyticsCard = () => {
                         <Typography variant="h6" fontWeight={500} fontFamily='inter' className="text-center">Projects Overview</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="h2" fontWeight={600} fontFamily='inter' className="text-center">5</Typography>
+                        <Typography variant="h2" fontWeight={600} fontFamily='inter' className="text-center">{projects?.length}</Typography>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center' alignItems='center' columnGap={1}>
                         <Grid item>
@@ -73,7 +84,7 @@ const AnalyticsCard = () => {
                         <Typography variant="h6" fontWeight={500} fontFamily='inter' className="text-center">Contact Form Requests</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant="h2" fontWeight={600} fontFamily='inter' className="text-center">10</Typography>
+                        <Typography variant="h2" fontWeight={600} fontFamily='inter' className="text-center">{contactMeForms?.length}</Typography>
                     </Grid>
                     <Grid container item xs={12} justifyContent='center' alignItems='center' columnGap={1}>
                         <Grid item>
