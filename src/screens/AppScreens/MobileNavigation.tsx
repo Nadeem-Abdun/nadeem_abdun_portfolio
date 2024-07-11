@@ -4,6 +4,8 @@ import { useBreakpoints } from "../../utils/Breakpoints";
 import { GithubIcon, LinkedInIcon, TwitterXIcon, DiscordIcon, MailIcon } from "../../assets/SvgIcons";
 import { useNavigate } from "react-router-dom";
 import Typewriter from "typewriter-effect";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../redux/store";
 import "../../styles/screenStyles.css";
 
 const MobileNavigation = () => {
@@ -11,6 +13,9 @@ const MobileNavigation = () => {
     const history = useNavigate();
 
     const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
+
+    const { fullName, professionalRoles, introducingLine, githubUrl, linkedInUrl, discordUrl, twitterUrl, mailToId } = useSelector((state: RootState) => state.profile);
+    const dispatch = useDispatch();
 
     const scrollToSectionMobile = (sectionId: string) => {
         const sectionElement = document.getElementById(sectionId);
@@ -34,14 +39,14 @@ const MobileNavigation = () => {
                     <Grid container item rowGap={2} xs={12}>
                         <Grid item xs={12}>
                             <Typography variant="h2" fontWeight={600} fontFamily='inter'>
-                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>N</span>adeem Abdun
+                                <span className='easter-egg' onClick={() => adminPanelNavigation()}>{fullName?.slice(0, 1)}</span>{fullName?.slice(1)}
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant={isSm ? "h4" : "h5"} fontWeight={500} fontFamily='inter'>
                                 <Typewriter
                                     options={{
-                                        strings: ["Web App Developer", "Mobile App Developer", "Mechanical Engineer"],
+                                        strings: professionalRoles,
                                         autoStart: true,
                                         loop: true,
                                     }}
@@ -50,7 +55,7 @@ const MobileNavigation = () => {
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                        <Typography variant={isSm ? "h5" : "body1"} fontWeight={400} fontFamily='inter'>Transforming concepts into code, Specialized in delivering pixel-perfect, accessible wonders as a full-stack web and app developer.</Typography>
+                        <Typography variant={isSm ? "h5" : "body1"} fontWeight={400} fontFamily='inter'>{introducingLine}</Typography>
                     </Grid>
                     <Grid container item rowGap={isSm ? 2 : isXs ? 1 : 0} xs={12}>
                         <Grid item xs={12}>
@@ -87,19 +92,19 @@ const MobileNavigation = () => {
                 </Grid>
                 <Grid container item justifyContent="space-evenly" alignItems="center" xs={12}>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="GitHub" href='https://github.com/Nadeem-Abdun' target="_blank"><GithubIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="GitHub" href={githubUrl as string} target="_blank"><GithubIcon /></IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="LinkedIn" href='https://in.linkedin.com/in/abdun-nadeem' target="_blank"><LinkedInIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="LinkedIn" href={linkedInUrl as string} target="_blank"><LinkedInIcon /></IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="Discord"><DiscordIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="Discord" href={discordUrl as string} target="_blank"><DiscordIcon /></IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="TwitterX"><TwitterXIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="TwitterX" href={twitterUrl as string} target="_blank"><TwitterXIcon /></IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="Email" href='mailto:nadeemabdun@gmail.com'><MailIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="Email" href={mailToId as string}><MailIcon /></IconButton>
                     </Grid>
                 </Grid>
             </Grid>
