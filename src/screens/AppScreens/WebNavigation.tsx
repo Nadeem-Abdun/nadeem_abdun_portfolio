@@ -9,7 +9,6 @@ import { RootState } from "../../redux/store";
 import "../../styles/screenStyles.css";
 
 const WebNavigation = () => {
-
     const history = useNavigate();
 
     const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
@@ -31,7 +30,6 @@ const WebNavigation = () => {
     useEffect(() => {
         document.title = "Nadeem Abdun - Portfolio"
     }, []);
-
     return (
         <div className="flex flex-col justify-center items-center h-full">
             <Grid container justifyContent='flex-start' alignItems='center' rowGap={isXl ? 10 : isLg ? 4 : isMd ? 1 : 2} className='h-full'>
@@ -104,7 +102,7 @@ const WebNavigation = () => {
                         <IconButton className="icon-btn" aria-label="TwitterX" href={twitterUrl as string} target="_blank"><TwitterXIcon /></IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="Email" href={mailToId as string}><MailIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="Email" href={`mailto:${mailToId}` as string}><MailIcon /></IconButton>
                     </Grid>
                 </Grid>
             </Grid>
