@@ -9,7 +9,6 @@ import { RootState } from "../../redux/store";
 import "../../styles/screenStyles.css";
 
 const MobileNavigation = () => {
-
     const history = useNavigate();
 
     const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
@@ -31,7 +30,6 @@ const MobileNavigation = () => {
     useEffect(() => {
         document.title = "Nadeem Abdun - Portfolio"
     }, []);
-
     return (
         <div id='section-mobile-home' className='flex flex-col justify-center items-center my-6'>
             <Grid container justifyContent='flex-start' alignItems='center' rowGap={isSm ? 24 : isXs ? 5 : 0}>
@@ -104,7 +102,7 @@ const MobileNavigation = () => {
                         <IconButton className="icon-btn" aria-label="TwitterX" href={twitterUrl as string} target="_blank"><TwitterXIcon /></IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton className="icon-btn" aria-label="Email" href={mailToId as string}><MailIcon /></IconButton>
+                        <IconButton className="icon-btn" aria-label="Email" href={`mailto:${mailToId}` as string}><MailIcon /></IconButton>
                     </Grid>
                 </Grid>
             </Grid>
