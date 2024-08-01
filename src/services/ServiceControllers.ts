@@ -1,7 +1,8 @@
 import { CommunicationModule } from "./CommunicationModule";
-import { contactMePaths, profilePaths, userPaths } from "../services/EndPoints";
+import { contactMePaths, experiencePaths, profilePaths, userPaths } from "../services/EndPoints";
 import { UsersState } from "../redux/users/usersSlice";
 import { ContactMe } from "../redux/contactMe/contactMeSlice";
+import { Experience } from "../redux/experience/experienceSlice";
 
 // User Service Controllers
 export const PostUserSignUp = async (formData: UsersState) => {
@@ -57,6 +58,41 @@ export const PutUpdateProfile = async (formData: FormData, profileId: string) =>
 };
 export const DeleteProfileData = async (profileId: string) => {
     return await CommunicationModule(profilePaths.DeleteProfile(profileId), {
+        method: "DELETE",
+        credentials: "include",
+    });
+};
+
+// Experience Service Controllers
+export const PostCreateExperience = async (formData: Experience, profileId: string) => {
+    return await CommunicationModule(experiencePaths.CreateExperience(profileId), {
+        method: "POST",
+        body: formData,
+        isFormData: false,
+        credentials: "include",
+    });
+};
+export const GetExperienceData = async (id: string) => {
+    return await CommunicationModule(experiencePaths.GetExperience(id), {
+        method: "GET",
+    });
+};
+export const GetExperienceAllData = async (profileId: string) => {
+    return await CommunicationModule(experiencePaths.GetAllExperience(profileId), {
+        method: "GET",
+        credentials: "include",
+    });
+};
+export const PutUpdateExperience = async (formData: Experience, id: string) => {
+    return await CommunicationModule(experiencePaths.UpdateExperience(id), {
+        method: "PUT",
+        body: formData,
+        isFormData: false,
+        credentials: "include",
+    });
+};
+export const DeleteExperienceData = async (id: string) => {
+    return await CommunicationModule(experiencePaths.DeleteExperience(id), {
         method: "DELETE",
         credentials: "include",
     });
