@@ -30,6 +30,13 @@ export const experiencePaths = {
     DeleteExperience: (id: string) => `${serviceUrls.baseUrl}${apiVersionV1}/experience/delete/${id}`,
 };
 
+export const wallOfCodePaths = {
+    CreateSkill: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/wallOfCode/create/${profileId}`,
+    GetAllSkills: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/wallOfCode/getSkills/${profileId}`,
+    UpdateSkill: (id: string) => `${serviceUrls.baseUrl}${apiVersionV1}/wallOfCode/update/${id}`,
+    DeleteSkill: (id: string) => `${serviceUrls.baseUrl}${apiVersionV1}/wallOfCode/delete/${id}`,
+};
+
 export const contactMePaths = {
     CreateContactForm: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/contactMe/create/${profileId}`,
     GetContactForms: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/contactMe/getForms/${profileId}`,
