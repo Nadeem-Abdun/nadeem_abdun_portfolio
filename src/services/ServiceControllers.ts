@@ -1,8 +1,9 @@
 import { CommunicationModule } from "./CommunicationModule";
-import { contactMePaths, experiencePaths, profilePaths, userPaths } from "../services/EndPoints";
+import { contactMePaths, experiencePaths, profilePaths, userPaths, wallOfCodePaths } from "../services/EndPoints";
 import { UsersState } from "../redux/users/usersSlice";
 import { ContactMe } from "../redux/contactMe/contactMeSlice";
 import { Experience } from "../redux/experience/experienceSlice";
+import { WallOfCode } from "../redux/wallOfCode/wallOfCodeSlice";
 
 // User Service Controllers
 export const PostUserSignUp = async (formData: UsersState) => {
@@ -93,6 +94,36 @@ export const PutUpdateExperience = async (formData: Experience, id: string) => {
 };
 export const DeleteExperienceData = async (id: string) => {
     return await CommunicationModule(experiencePaths.DeleteExperience(id), {
+        method: "DELETE",
+        credentials: "include",
+    });
+};
+
+// WallOfCode Service Controllers
+export const PostCreateSkill = async (formData: WallOfCode, profileId: string) => {
+    return await CommunicationModule(wallOfCodePaths.CreateSkill(profileId), {
+        method: "POST",
+        body: formData,
+        isFormData: false,
+        credentials: "include",
+    });
+};
+export const GetAllSkillsData = async (profileId: string) => {
+    return await CommunicationModule(wallOfCodePaths.GetAllSkills(profileId), {
+        method: "GET",
+        credentials: "include",
+    });
+};
+export const PutUpdateSkill = async (formData: WallOfCode, id: string) => {
+    return await CommunicationModule(wallOfCodePaths.UpdateSkill(id), {
+        method: "PUT",
+        body: formData,
+        isFormData: false,
+        credentials: "include",
+    });
+};
+export const DeleteSkillData = async (id: string) => {
+    return await CommunicationModule(wallOfCodePaths.DeleteSkill(id), {
         method: "DELETE",
         credentials: "include",
     });
