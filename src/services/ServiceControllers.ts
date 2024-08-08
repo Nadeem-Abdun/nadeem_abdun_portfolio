@@ -1,5 +1,5 @@
 import { CommunicationModule } from "./CommunicationModule";
-import { contactMePaths, experiencePaths, profilePaths, userPaths, wallOfCodePaths } from "../services/EndPoints";
+import { contactMePaths, experiencePaths, profilePaths, projectPaths, userPaths, wallOfCodePaths } from "../services/EndPoints";
 import { UsersState } from "../redux/users/usersSlice";
 import { ContactMe } from "../redux/contactMe/contactMeSlice";
 import { Experience } from "../redux/experience/experienceSlice";
@@ -124,6 +124,41 @@ export const PutUpdateSkill = async (formData: WallOfCode, id: string) => {
 };
 export const DeleteSkillData = async (id: string) => {
     return await CommunicationModule(wallOfCodePaths.DeleteSkill(id), {
+        method: "DELETE",
+        credentials: "include",
+    });
+};
+
+// Project Service Controllers
+export const PostCreateProject = async (formData: FormData, profileId: string) => {
+    return await CommunicationModule(projectPaths.CreateProject(profileId), {
+        method: "POST",
+        body: formData,
+        isFormData: true,
+        credentials: "include",
+    });
+};
+export const GetProjectData = async (id: string) => {
+    return await CommunicationModule(projectPaths.GetProject(id), {
+        method: "GET",
+    });
+};
+export const GetAllProjectsData = async (profileId: string) => {
+    return await CommunicationModule(projectPaths.GetAllProjects(profileId), {
+        method: "GET",
+        credentials: "include",
+    });
+};
+export const PutUpdateProject = async (formData: FormData, id: string) => {
+    return await CommunicationModule(projectPaths.UpdateProject(id), {
+        method: "PUT",
+        body: formData,
+        isFormData: true,
+        credentials: "include",
+    });
+};
+export const DeleteProjectData = async (id: string) => {
+    return await CommunicationModule(projectPaths.DeleteProject(id), {
         method: "DELETE",
         credentials: "include",
     });
