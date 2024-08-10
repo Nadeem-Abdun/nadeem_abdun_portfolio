@@ -1,5 +1,5 @@
 import React from 'react';
-import { HtmlIcon, CssIcon, JavascriptIcon, TypescriptIcon, ReactIcon, ReactNativeIcon, JavaIcon, NodeJsIcon, ExpressJsIcon, MaterialUiIcon, MongoDbIcon, MySqlIcon, TailwindCssIcon, ReduxIcon } from "../assets/SvgIcons";
+import { HtmlIcon, CssIcon, JavascriptIcon, TypescriptIcon, ReactIcon, ReactNativeIcon, JavaIcon, NodeJsIcon, ExpressJsIcon, MaterialUiIcon, MongoDbIcon, MySqlIcon, TailwindCssIcon, ReduxIcon, AngularIcon } from "../assets/SvgIcons";
 
 interface IconProps {
     iconReference?: string;
@@ -23,6 +23,9 @@ const SvgIconProvider: React.FC<IconProps> = ({ iconReference }) => {
     }
     else if (iconReference === "ReactNativeIcon") {
         return <ReactNativeIcon aria-label="React_Native" />;
+    }
+    else if (iconReference === "AngularIcon") {
+        return <AngularIcon aria-label="Angular_JS" />;
     }
     else if (iconReference === "JavaIcon") {
         return <JavaIcon aria-label="Java" />;
