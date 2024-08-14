@@ -6,11 +6,9 @@ import { RootState } from "../../redux/store";
 import SkillCard from "../../components/AppComponents/SkillCard";
 import "../../styles/screenStyles.css";
 
-const WallOfCode = () => {
-    
+const WallOfCode = () => {    
     const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
-
-    const { wallOfCode } = useSelector((state: RootState) => state.wallOfCode);
+    const { wallOfCodeList } = useSelector((state: RootState) => state.wallOfCode);
     const dispatch = useDispatch;
 
     return (
@@ -20,7 +18,7 @@ const WallOfCode = () => {
                     <Typography variant="h4" fontWeight={500} fontFamily='inter'>Wall of Code</Typography>
                 </Grid>
                 <Grid container xs={12} justifyContent='flex-start' alignItems='center' spacing={1}>
-                    {wallOfCode && wallOfCode.map((skill, index) => {
+                    {wallOfCodeList && wallOfCodeList.map((skill, index) => {
                         const { skillName, skillIcon } = skill
                         return (
                             <Grid key={index} item xl={3} lg={3} md={4} sm={6} xs={6}>
