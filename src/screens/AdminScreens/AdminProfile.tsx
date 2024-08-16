@@ -14,7 +14,7 @@ const AdminProfile = () => {
     const history = useNavigate();
     const dispatch = useDispatch();
     const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
-    const { _id, username, email, profiles, loading, success } = useSelector((state: RootState) => state.user);
+    const { _id, username, email, profile, loading, success } = useSelector((state: RootState) => state.user);
 
     // Api Calls
     const userDetailsApiCall = async () => {
@@ -98,13 +98,13 @@ const AdminProfile = () => {
                     <Grid item xs={6}>
                         <Typography variant="body1" fontWeight={500} fontFamily='inter'>
                             <div className="flex flex-wrap gap-2">
-                                {profiles && profiles.map((item, index) => (
+                                {profile && profile.map((item, index) => (
                                     <span key={index}>
-                                        {item}{index < profiles.length - 1 && ','}
+                                        {item}{index < profile.length - 1 && ','}
                                     </span>
                                 ))}
                             </div>
-                            {profiles?.length === 0 && "None"}
+                            {profile?.length === 0 && "None"}
                         </Typography>
                     </Grid>
                 </Grid>
