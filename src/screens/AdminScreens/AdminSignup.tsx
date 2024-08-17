@@ -5,7 +5,7 @@ import { useBreakpoints } from "../../utils/Breakpoints";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { submitForm, submitFormSuccess, submitFormFailure, resetForm } from "../../redux/users/usersSlice"
+import { submitSignUpForm, signUpFormSuccess, signUpFormFailure, resetSignUpForm, } from "../../redux/users/usersSlice"
 import { PostUserSignUp } from "../../services/ServiceControllers";
 import AlertSlider from "../../components/AlertSlider";
 import delay from "../../utils/Delay";
@@ -15,7 +15,7 @@ const AdminSignup = () => {
     const history = useNavigate();
     const dispatch = useDispatch();
     const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
-    const { _id, username, email, profiles, loading, success } = useSelector((state: RootState) => state.user);
+    const { _id, username, email, profile, loading, success } = useSelector((state: RootState) => state.user);
 
     // State Handling
     const [signupDetails, setSignupDetails] = useState({
@@ -43,7 +43,7 @@ const AdminSignup = () => {
             }
         } catch (error) {
             console.error("Unexpected error:" + error);
-            handleAlertSliderOpen("error", "Unexpected error occurred");
+            handleAlertSliderOpen("error", "Unexpected error encountered");
         }
     };
 
@@ -57,15 +57,15 @@ const AdminSignup = () => {
 
     // SignUp Submit Functions
     const handleSignUpFormSubmit = async () => {
-        dispatch(submitForm());
+        dispatch(submitSignUpForm());
         const response = await userSignUpApiCall();
         if (response) {
-            dispatch(submitFormSuccess());
+            dispatch(signUpFormSuccess());
             await delay(3000);
             history('/admin/login');
-            dispatch(resetForm());
+            dispatch(resetSignUpForm());
         } else {
-            dispatch(submitFormFailure());
+            dispatch(signUpFormFailure());
         }
     };
 
@@ -96,7 +96,7 @@ const AdminSignup = () => {
 
     return (
         <Grid container justifyContent='center' alignItems='center' flexDirection='column' rowSpacing={4} wrap='nowrap'>
-            <Grid item xs={12} className='text-center'>
+            <Grid item>
                 <Typography variant="h4" fontWeight={500} fontFamily='inter'>Admin Signup</Typography>
             </Grid>
             <Grid container item xl={6} lg={6} md={8} sm={10} xs={10} justifyContent='center' alignItems='center' rowSpacing={2}>
