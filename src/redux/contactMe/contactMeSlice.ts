@@ -30,14 +30,14 @@ export const contactMeSlice = createSlice({
 
         },
         // Create Contact Form Actions
-        submitCreateContactForm: (state,) => {
+        submitCreateContactForm: (state) => {
             state.loading = true;
             state.success = null;
         },
         createContactFormSuccess: (state, action: PayloadAction<ContactMe>) => {
             state.loading = false;
             state.success = true;
-            const existingIndex = state.contactMeForms.findIndex(form => form._id === action.payload._id);
+            const existingIndex = state.contactMeForms?.findIndex(form => form._id === action.payload._id);
             if (existingIndex >= 0) {
                 state.contactMeForms[existingIndex] = action.payload;
             } else {
@@ -53,7 +53,7 @@ export const contactMeSlice = createSlice({
             state.success = null;
         },
         // Get Contact Forms Actions
-        submitGetContactForm: (state,) => {
+        submitGetContactForm: (state) => {
             state.loading = true;
             state.success = null;
         },
@@ -71,7 +71,7 @@ export const contactMeSlice = createSlice({
             state.success = null;
         },
         // Reply Contact Forms Actions
-        submitReplyContactForm: (state,) => {
+        submitReplyContactForm: (state) => {
             state.loading = true;
             state.success = null;
         },
@@ -94,7 +94,7 @@ export const contactMeSlice = createSlice({
             state.success = null;
         },
         // Delete Contact Forms Actions
-        submitDeleteContactForm: (state,) => {
+        submitDeleteContactForm: (state) => {
             state.loading = true;
             state.success = null;
         },
