@@ -1,5 +1,5 @@
 import React from 'react';
-import { HtmlIcon, CssIcon, JavascriptIcon, TypescriptIcon, ReactIcon, ReactNativeIcon, JavaIcon, NodeJsIcon, ExpressJsIcon, MaterialUiIcon, MongoDbIcon, MySqlIcon, TailwindCssIcon, ReduxIcon, AngularIcon, VueIcon } from "../assets/SvgIcons";
+import { HtmlIcon, CssIcon, JavascriptIcon, TypescriptIcon, ReactIcon, ReactNativeIcon, JavaIcon, NodeJsIcon, ExpressJsIcon, MaterialUiIcon, MongoDbIcon, MySqlIcon, TailwindCssIcon, ReduxIcon, AngularIcon, VueIcon, SvelteIcon } from "../assets/SvgIcons";
 
 interface IconProps {
     iconReference?: string;
@@ -29,6 +29,9 @@ const SvgIconProvider: React.FC<IconProps> = ({ iconReference }) => {
     }
     else if (iconReference === "VueJsIcon") {
         return <VueIcon aria-label="Vue_JS" />;
+    }
+    else if (iconReference === "SvelteIcon") {
+        return <SvelteIcon aria-label="Svelte" />;
     }
     else if (iconReference === "JavaIcon") {
         return <JavaIcon aria-label="Java" />;
