@@ -1,5 +1,5 @@
 import React from 'react';
-import { HtmlIcon, CssIcon, JavascriptIcon, TypescriptIcon, ReactIcon, ReactNativeIcon, JavaIcon, NodeJsIcon, ExpressJsIcon, MaterialUiIcon, MongoDbIcon, MySqlIcon, TailwindCssIcon, ReduxIcon, AngularIcon, VueIcon, SvelteIcon, SpringIcon, SpringBootIcon, PythonIcon, DjangoIcon, FlaskIcon, BootstrapIcon, PostgreSQLIcon } from "../assets/SvgIcons";
+import { HtmlIcon, CssIcon, JavascriptIcon, TypescriptIcon, ReactIcon, ReactNativeIcon, JavaIcon, NodeJsIcon, ExpressJsIcon, MaterialUiIcon, MongoDbIcon, MySqlIcon, TailwindCssIcon, ReduxIcon, AngularIcon, VueIcon, SvelteIcon, SpringIcon, SpringBootIcon, PythonIcon, DjangoIcon, FlaskIcon, BootstrapIcon, PostgreSQLIcon, SASSIcon, GraphQLIcon } from "../assets/SvgIcons";
 
 interface IconProps {
     iconReference?: string;
@@ -74,6 +74,9 @@ const SvgIconProvider: React.FC<IconProps> = ({ iconReference }) => {
     }
     else if (iconReference === "TailwindCssIcon") {
         return <TailwindCssIcon aria-label="Tailwind_Css" />;
+    }
+    else if (iconReference === "SassIcon") {
+        return <SASSIcon aria-label="SASS_Css" />;
     }
     else if (iconReference === "ReduxIcon") {
         return <ReduxIcon aria-label="Redux_Toolkit" />;
