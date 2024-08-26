@@ -7,7 +7,7 @@ import "../../styles/componentStyles.css";
 
 const ProjectCard: React.FC<Project> = (props) => {
 
-  const { image, title, description, skillsInvolved, websiteUrl, repositoryUrl } = props;
+  const { projectPicture, title, description, skillsInvolved, websiteUrl, repositoryUrl } = props;
 
   const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
@@ -26,7 +26,7 @@ const ProjectCard: React.FC<Project> = (props) => {
           <Grid item xs={12}>
             <Tooltip title={`Open ${title} Page`} arrow>
               <img
-                src={image}
+                src={projectPicture}
                 alt={`${title} Preview`}
                 style={{ width: (isXs ? "100%" : "90%"), height: (isXs ? "100%" : "90%"), objectFit: "cover", cursor: "pointer", marginTop: (isXs) ? "4px" : (isSm || isMd) ? "6px" : "0px", borderRadius: "10%" }}
                 onClick={() => handleProjectImageClick()}
