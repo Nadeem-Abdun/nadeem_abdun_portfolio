@@ -81,6 +81,9 @@ const SvgIconProvider: React.FC<IconProps> = ({ iconReference }) => {
     else if (iconReference === "ReduxIcon") {
         return <ReduxIcon aria-label="Redux_Toolkit" />;
     }
+    else if (iconReference === "GraphqlIcon") {
+        return <GraphQLIcon aria-label="GraphQL" />;
+    }
     else {
         return null;
     }
