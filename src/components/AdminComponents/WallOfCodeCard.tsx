@@ -1,66 +1,186 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { useBreakpoints } from "../../utils/Breakpoints";
 import { Add } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { WallOfCode, WallOfCodeState } from "../../redux/wallOfCode/wallOfCodeSlice";
-import { addSkill, deleteSkill } from "../../redux/wallOfCode/wallOfCodeSlice";
+import { createSkillFormFailure, createSkillFormSuccess, deleteSkillFormFailure, deleteSkillFormSuccess, getSkillsFormFailure, getSkillsFormSuccess, resetCreateSkillForm, resetDeleteSkillForm, resetGetSkillsForm, resetUpdateSkillForm, submitCreateSkillForm, submitDeleteSkillForm, submitGetSkillsForm, submitUpdateSkillForm, updateSkillFormFailure, updateSkillFormSuccess, WallOfCode, WallOfCodeState } from "../../redux/wallOfCode/wallOfCodeSlice";
+import { DeleteSkillData, GetAllSkillsData, PostCreateSkill, PutUpdateSkill } from "../../services/ServiceControllers";
 import SvgIconProvider from "../SvgIconProvider";
 import ellipsisString from "../../utils/EllipsisString";
 import "../../styles/componentStyles.css";
 
-const WallOfCodeCard: React.FC<WallOfCodeState> = (props) => {
-    const { wallOfCode, availableSkillsList } = props;
+interface Props extends WallOfCodeState {
+    profile: string[] | undefined;
+    handleAlertSliderOpen: (type: string, message: string) => void
+}
 
+const WallOfCodeCard: React.FC<Props> = (props) => {
+    const { profile, wallOfCodeList, availableSkillsList, handleAlertSliderOpen } = props;
     const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
     const dispatch = useDispatch();
 
+    // Local State Management
     const [selectedSkill, setSelectedSkill] = useState<WallOfCode>({
+        _id: "",
         skillName: "",
         skillIcon: "",
     });
     const [skillDialogOpen, setSkillDialogOpen] = useState(false);
-    const [dialogType, setDialogType] = useState("add");
+    const [dialogType, setDialogType] = useState("");
+
+    // Api Calls
+    const postCreateSkillApiCall = async () => {
+        try {
+            const formData = {
+                skillName: selectedSkill.skillName,
+                skillIcon: selectedSkill.skillIcon,
+            };
+            const profileId = (profile && profile.length !== 0) ? profile[0] : '';
+            const response = await PostCreateSkill(formData, profileId);
+            if (response.success === true) {
+                handleAlertSliderOpen("success", response.message);
+            } else {
+                handleAlertSliderOpen("error", response.message);
+            }
+            return response;
+        } catch (error) {
+            console.error("Unexpected error: " + error);
+            handleAlertSliderOpen("error", "Unexpected error encountered");
+        }
+    };
+    const getAllSkillsApiCall = async () => {
+        try {
+            const profileId = (profile && profile.length !== 0) ? profile[0] : '';
+            const response = await GetAllSkillsData(profileId);
+            if (response.success === true) {
+                handleAlertSliderOpen("success", response.message);
+            } else {
+                handleAlertSliderOpen("error", response.message);
+            }
+            return response;
+        } catch (error) {
+            console.error("Unexpected error: " + error);
+            handleAlertSliderOpen("error", "Unexpected error encountered");
+        }
+    };
+    const putUpdateSkillApiCall = async () => {
+        try {
+            const formData = {
+                skillName: selectedSkill.skillName,
+                skillIcon: selectedSkill.skillIcon,
+            };
+            const skillId = selectedSkill._id || "";
+            const response = await PutUpdateSkill(formData, skillId);
+            if (response.success === true) {
+                handleAlertSliderOpen("success", response.message);
+            } else {
+                handleAlertSliderOpen("error", response.message);
+            }
+            return response;
+        } catch (error) {
+            console.error("Unexpected error: " + error);
+            handleAlertSliderOpen("error", "Unexpected error encountered");
+        }
+    };
+    const deleteSkillDataApiCall = async () => {
+        try {
+            const skillId = selectedSkill._id || "";
+            const response = await DeleteSkillData(skillId);
+            if (response.success === true) {
+                handleAlertSliderOpen("success", response.message);
+            } else {
+                handleAlertSliderOpen("error", response.message);
+            }
+            return response;
+        } catch (error) {
+            console.error("Unexpected error: " + error);
+            handleAlertSliderOpen("error", "Unexpected error encountered");
+        }
+    };
+
+    // Contact Form Submit Functions
+    const handleCreateSkillSubmit = async () => {
+        dispatch(submitCreateSkillForm());
+        const response = await postCreateSkillApiCall();
+        if (response.success) {
+            const skillsData = response?.data;
+            dispatch(createSkillFormSuccess(skillsData));
+            dispatch(resetCreateSkillForm());
+            handleSkillDialogClose();
+        } else {
+            dispatch(createSkillFormFailure());
+        }
+    };
+    const handleGetSkillsSubmit = async () => {
+        dispatch(submitGetSkillsForm());
+        const response = await getAllSkillsApiCall();
+        if (response.success) {
+            const skillsData = response?.data;
+            dispatch(getSkillsFormSuccess(skillsData));
+            dispatch(resetGetSkillsForm());
+        } else {
+            dispatch(getSkillsFormFailure());
+        }
+    };
+    const handleUpdateSkillSubmit = async () => {
+        dispatch(submitUpdateSkillForm());
+        const response = await putUpdateSkillApiCall();
+        if (response.success) {
+            const skillsData = response?.data;
+            dispatch(updateSkillFormSuccess(skillsData));
+            dispatch(resetUpdateSkillForm());
+        } else {
+            dispatch(updateSkillFormFailure());
+        }
+    };
+    const handleDeleteSkillSubmit = async () => {
+        dispatch(submitDeleteSkillForm());
+        const response = await deleteSkillDataApiCall();
+        if (response.success) {
+            const skillsData = response?.data;
+            dispatch(deleteSkillFormSuccess(skillsData));
+            dispatch(resetDeleteSkillForm());
+            handleSkillDialogClose();
+        } else {
+            dispatch(deleteSkillFormFailure());
+        }
+    };
+
+    // Dropdown OnChange Function
+    const addSkillOnChange = (value: string) => {
+        availableSkillsList?.find((item) => {
+            if (item.skillName === value) {
+                setSelectedSkill({
+                    _id: item._id,
+                    skillName: item.skillName,
+                    skillIcon: item.skillIcon,
+                });
+            }
+        });
+    };
+
+    // Dialog Functions
     const handleSkillDialogOpen = (type: string, item?: WallOfCode) => {
         setSkillDialogOpen(true);
         setDialogType(type);
         if (item) {
             setSelectedSkill(item);
         }
-    }
+    };
     const handleSkillDialogClose = () => {
         setSkillDialogOpen(false);
         setSelectedSkill({
+            _id: "",
             skillName: "",
             skillIcon: "",
         });
-    }
-    const addSkillOnChange = (value: string) => {
-        availableSkillsList?.find((item) => {
-            if (item.skillName === value) {
-                setSelectedSkill({
-                    skillName: item.skillName,
-                    skillIcon: item.skillIcon,
-                });
-            }
-        });
-    }
-    const handleSkillAdd = async () => {
-        if ((selectedSkill.skillName !== "") && (selectedSkill.skillIcon !== "")) {
-            const skillExists = wallOfCode?.find((item) => item.skillName === selectedSkill.skillName);
-            if (!skillExists) {
-                await dispatch(addSkill(selectedSkill));
-                handleSkillDialogClose();
-            }
-        }
-    }
-    const handleSkillDelete = async () => {
-        if (selectedSkill.skillName !== "") {
-            await dispatch(deleteSkill(selectedSkill));
-            handleSkillDialogClose();
-        }
-    }
+    };
 
+    useEffect(() => {
+        if (profile && profile.length !== 0) {
+            handleGetSkillsSubmit();
+        }
+    }, []);
     return (
         <div className={`admin-card ${(isXs) ? "px-2" : "px-4"} ${(isXs) ? "py-2" : "py-4"} relative min-h-96 max-h-96 overflow-auto`}>
             <Grid container justifyContent="center" alignItems="center" rowGap={2}>
@@ -68,7 +188,7 @@ const WallOfCodeCard: React.FC<WallOfCodeState> = (props) => {
                     <Typography variant="h5" fontWeight={500} fontFamily="inter">Wall Of Code</Typography>
                 </Grid>
                 <Grid container item xs={12} justifyContent="center" alignItems="center" rowGap={2} columnGap={2}>
-                    {wallOfCode && wallOfCode.map((item, index) => {
+                    {wallOfCodeList && wallOfCodeList.map((item, index) => {
                         return (
                             <Grid
                                 key={index}
@@ -91,7 +211,7 @@ const WallOfCodeCard: React.FC<WallOfCodeState> = (props) => {
                         )
                     })}
                 </Grid>
-                {wallOfCode?.length === 0 &&
+                {wallOfCodeList?.length === 0 &&
                     <Grid item xs={12}>
                         <Typography variant="body2" fontWeight={400} fontFamily="inter" className="text-center">There are no skills to display.</Typography>
                     </Grid>
@@ -140,11 +260,11 @@ const WallOfCodeCard: React.FC<WallOfCodeState> = (props) => {
                         </Grid>
                         <Grid item>
                             {dialogType === "add" ?
-                                <Button variant="contained" color="success" onClick={() => handleSkillAdd()}>
+                                <Button variant="contained" color="success" onClick={() => handleCreateSkillSubmit()}>
                                     Add
                                 </Button>
                                 :
-                                <Button variant="contained" color="success" onClick={() => handleSkillDelete()}>
+                                <Button variant="contained" color="success" onClick={() => handleDeleteSkillSubmit()}>
                                     Delete
                                 </Button>
                             }
