@@ -37,6 +37,14 @@ export const wallOfCodePaths = {
     DeleteSkill: (id: string) => `${serviceUrls.baseUrl}${apiVersionV1}/wallOfCode/delete/${id}`,
 };
 
+export const projectPaths = {
+    CreateProject: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/project/create/${profileId}`,
+    GetProject: (id: string) => `${serviceUrls.baseUrl}${apiVersionV1}/project/get/${id}`,
+    GetAllProjects: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/project/getAll/${profileId}`,
+    UpdateProject: (id: string) => `${serviceUrls.baseUrl}${apiVersionV1}/project/update/${id}`,
+    DeleteProject: (id: string) => `${serviceUrls.baseUrl}${apiVersionV1}/project/delete/${id}`,
+};
+
 export const contactMePaths = {
     CreateContactForm: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/contactMe/create/${profileId}`,
     GetContactForms: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/contactMe/getForms/${profileId}`,
