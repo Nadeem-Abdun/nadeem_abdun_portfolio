@@ -20,12 +20,12 @@ const Projects = () => {
                 </Grid>
                 <Grid container item xs={12} justifyContent="flex-start" alignItems="flex-start" rowGap={1}>
                     {projects && projects.map((project, index) => {
-                        const { image, title, description, skillsInvolved, websiteUrl, repositoryUrl } = project;
+                        const { projectPicture, title, description, skillsInvolved, websiteUrl, repositoryUrl } = project;
                         return (
                             <Grid item xs={12}>
                                 <ProjectCard
                                     key={index}
-                                    image={image}
+                                    projectPicture={projectPicture}
                                     title={title}
                                     description={description}
                                     skillsInvolved={skillsInvolved}
