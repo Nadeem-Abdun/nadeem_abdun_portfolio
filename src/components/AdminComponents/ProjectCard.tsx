@@ -1,55 +1,198 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, IconButton, TextField } from "@mui/material";
 import { useBreakpoints } from "../../utils/Breakpoints";
 import { Add, DeleteForeverOutlined } from "@mui/icons-material";
-import { Project, ProjectState } from "../../redux/project/projectSlice";
+import { Project, ProjectState, submitCreateProjectForm, createProjectFormSuccess, createProjectFormFailure, resetCreateProjectForm, submitGetProjectForm, getProjectFormSuccess, getProjectFormFailure, resetGetProjectForm, submitUpdateProjectForm, updateProjectFormSuccess, updateProjectFormFailure, resetUpdateProjectForm, submitDeleteProjectForm, deleteProjectFormSuccess, deleteProjectFormFailure, resetDeleteProjectForm } from "../../redux/project/projectSlice";
 import ellipsisString from "../../utils/EllipsisString";
 import "../../styles/componentStyles.css";
 import FileUploader from "../FileUploader";
+import { DeleteProjectData, GetAllProjectsData, PostCreateProject, PutUpdateProject } from "../../services/ServiceControllers";
+import { useDispatch } from "react-redux";
 
-const ProjectCard: React.FC<ProjectState> = (props) => {
-    const { projects } = props;
+interface Props extends ProjectState {
+    profile: string[] | undefined;
+    handleAlertSliderOpen: (type: string, message: string) => void
+}
 
+const ProjectCard: React.FC<Props> = (props) => {
+    const { profile, projects, handleAlertSliderOpen } = props;
     const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
+    const dispatch = useDispatch();
 
+    // Local State Management
     const [selectedProject, setSelectedProject] = useState<Project>({
-        image: "",
+        _id: "",
+        projectPicture: "",
         title: "",
         description: "",
         skillsInvolved: [],
         websiteUrl: "",
         repositoryUrl: "",
     });
+    const [projectPictureFile, setProjectPictureFile] = useState<File | null>(null);
     const [projectDialogOpen, setProjectDialogOpen] = useState(false);
     const [dialogType, setDialogType] = useState("add");
+
+    // API Calls
+    const getAllProjectsApiCall = async () => {
+        try {
+            const profileId = (profile && profile.length !== 0) ? profile[0] : '';
+            const response = await GetAllProjectsData(profileId);
+            if (response.success === true) {
+                handleAlertSliderOpen("success", response.message);
+            } else {
+                handleAlertSliderOpen("error", response.message);
+            }
+            return response;
+        } catch (error) {
+            console.error("Unexpected error: " + error);
+            handleAlertSliderOpen("error", "Unexpected error encountered");
+        }
+    };
+    const postCreateProjectApiCall = async () => {
+        try {
+            const profileId = (profile && profile.length !== 0) ? profile[0] : '';
+            const formData = new FormData();
+            if (projectPictureFile) formData.append("projectPicture", projectPictureFile);
+            if (selectedProject.title) formData.append("title", selectedProject.title);
+            if (selectedProject.description) formData.append("description", selectedProject.description);
+            if (selectedProject.skillsInvolved) formData.append("skillsInvolved", JSON.stringify(selectedProject.skillsInvolved));
+            if (selectedProject.websiteUrl) formData.append("websiteUrl", selectedProject.websiteUrl);
+            if (selectedProject.repositoryUrl) formData.append("repositoryUrl", selectedProject.repositoryUrl);
+            const response = await PostCreateProject(formData, profileId);
+            if (response.success === true) {
+                handleAlertSliderOpen("success", response.message);
+            } else {
+                handleAlertSliderOpen("error", response.message);
+            }
+            return response;
+        } catch (error) {
+            console.error("Unexpected error: " + error);
+            handleAlertSliderOpen("error", "Unexpected error encountered");
+        }
+    };
+    const putUpdateProjectApiCall = async () => {
+        try {
+            const projectId = selectedProject._id || "";
+            const formData = new FormData();
+            if (projectPictureFile) formData.append("projectPicture", projectPictureFile);
+            if (selectedProject.title) formData.append("title", selectedProject.title);
+            if (selectedProject.description) formData.append("description", selectedProject.description);
+            if (selectedProject.skillsInvolved) formData.append("skillsInvolved", JSON.stringify(selectedProject.skillsInvolved));
+            if (selectedProject.websiteUrl) formData.append("websiteUrl", selectedProject.websiteUrl);
+            if (selectedProject.repositoryUrl) formData.append("repositoryUrl", selectedProject.repositoryUrl);
+            const response = await PutUpdateProject(formData, projectId);
+            if (response.success === true) {
+                handleAlertSliderOpen("success", response.message);
+            } else {
+                handleAlertSliderOpen("error", response.message);
+            }
+            return response;
+        } catch (error) {
+            console.error("Unexpected error: " + error);
+            handleAlertSliderOpen("error", "Unexpected error encountered");
+        }
+    };
+    const deleteProjectDataApiCall = async () => {
+        try {
+            const projectId = selectedProject._id || "";
+            const response = await DeleteProjectData(projectId);
+            if (response.success === true) {
+                handleAlertSliderOpen("success", response.message);
+            } else {
+                handleAlertSliderOpen("error", response.message);
+            }
+            return response;
+        } catch (error) {
+            console.error("Unexpected error: " + error);
+            handleAlertSliderOpen("error", "Unexpected error encountered");
+        }
+    };
+
+    // Project Submit Functions
+    const handleGetAllProjectsSubmit = async () => {
+        dispatch(submitGetProjectForm());
+        const response = await getAllProjectsApiCall();
+        if (response.success === true) {
+            const projectsData = response?.data;
+            dispatch(getProjectFormSuccess(projectsData));
+            dispatch(resetGetProjectForm());
+        } else {
+            dispatch(getProjectFormFailure());
+        }
+    };
+    const handlePostCreateProjectSubmit = async () => {
+        dispatch(submitCreateProjectForm());
+        const response = await postCreateProjectApiCall();
+        if (response.success === true) {
+            const projectsData = response?.data;
+            dispatch(createProjectFormSuccess(projectsData));
+            dispatch(resetCreateProjectForm());
+            handleProjectDialogClose();
+        } else {
+            dispatch(createProjectFormFailure());
+        }
+    };
+    const handlePutUpdateProjectSubmit = async () => {
+        dispatch(submitUpdateProjectForm());
+        const response = await putUpdateProjectApiCall();
+        if (response.success === true) {
+            const projectsData = response?.data;
+            dispatch(updateProjectFormSuccess(projectsData));
+            dispatch(resetUpdateProjectForm());
+            handleProjectDialogClose();
+        } else {
+            dispatch(updateProjectFormFailure());
+        }
+    };
+    const handleDeleteProjectDataSubmit = async () => {
+        dispatch(submitDeleteProjectForm());
+        const response = await deleteProjectDataApiCall();
+        if (response.success === true) {
+            const projectsData = response?.data;
+            dispatch(deleteProjectFormSuccess(projectsData));
+            dispatch(resetDeleteProjectForm());
+            handleProjectDialogClose();
+        } else {
+            dispatch(deleteProjectFormFailure());
+        }
+    };
+
+    // Dialog Functions
     const handleProjectDialogOpen = (type: string, item?: Project) => {
         setProjectDialogOpen(true);
         setDialogType(type);
         if (item) {
             setSelectedProject(item);
         }
-    }
+    };
     const handleProjectDialogClose = () => {
         setProjectDialogOpen(false);
         setSelectedProject({
-            image: "",
+            projectPicture: "",
             title: "",
             description: "",
             skillsInvolved: [],
             websiteUrl: "",
             repositoryUrl: "",
         });
-    }
+    };
 
+    // Event Handling Functions
     const handleSkillsChange = (value: string) => {
         const skills = value.split("\n").map(skill => skill.trim());
         setSelectedProject({ ...selectedProject, skillsInvolved: skills });
-    }
-
+    };
     const handleFileSelect = (file: File) => {
-        setSelectedProject({ ...selectedProject, image: URL.createObjectURL(file) });
+        setSelectedProject({ ...selectedProject, projectPicture: URL.createObjectURL(file) });
+        setProjectPictureFile(file);
     };
 
+    useEffect(() => {
+        if (profile && profile.length !== 0) {
+            handleGetAllProjectsSubmit();
+        }
+    }, []);
     return (
         <div className={`admin-card ${(isXs) ? "px-2" : "px-4"} ${(isXs) ? "py-2" : "py-4"} relative min-h-96 max-h-96 overflow-auto`}>
             <Grid container justifyContent="center" alignItems="center" rowGap={2}>
@@ -112,7 +255,6 @@ const ProjectCard: React.FC<ProjectState> = (props) => {
                 <DialogTitle>
                     <Typography variant="h6" fontWeight={500} fontFamily="inter">
                         {(dialogType === "add") ? "Add" : (dialogType === "edit") ? "Edit" : "Delete"} Project
-                        {/* {(dialogType === "add") ? "Add" : "Edit"} Project */}
                     </Typography>
                 </DialogTitle>
                 <DialogContent>
@@ -120,20 +262,10 @@ const ProjectCard: React.FC<ProjectState> = (props) => {
                         {(dialogType === "add") || (dialogType === "edit") ?
                             <>
                                 <Grid item>
-                                    {
-                                        selectedProject.image ?
-                                            <img
-                                                src={selectedProject.image}
-                                                alt='Project_Picture'
-                                                style={{
-                                                    width: isXs ? '45vw' : isSm ? '35vw' : '14vw',
-                                                    height: isXs ? '45vw' : isSm ? '35vw' : '14vw',
-                                                    borderRadius: '10%',
-                                                }}
-                                            />
-                                            :
-                                            <FileUploader onFileSelect={handleFileSelect} />
-                                    }
+                                    <FileUploader
+                                        onFileSelect={handleFileSelect}
+                                        existingFileUrl={selectedProject.projectPicture}
+                                    />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
@@ -207,13 +339,19 @@ const ProjectCard: React.FC<ProjectState> = (props) => {
                         <Grid item>
                             <Button variant="contained" color={(dialogType === "add") || (dialogType === "edit") ? "error" : "success"} onClick={() => handleProjectDialogClose()}>Close</Button>
                         </Grid>
-                        {(dialogType === "add") || (dialogType === "edit") ?
+                        {(dialogType === "add") &&
                             <Grid item>
-                                <Button variant="contained" color="success" onClick={() => handleProjectDialogClose()}>{(dialogType === "add") ? "Add" : "Update"} Project</Button>
+                                <Button variant="contained" color="success" onClick={() => handlePostCreateProjectSubmit()}>Add Project</Button>
                             </Grid>
-                            :
+                        }
+                        {(dialogType === "edit") &&
                             <Grid item>
-                                <Button variant="contained" color="error" onClick={() => handleProjectDialogClose()}>Delete Project</Button>
+                                <Button variant="contained" color="success" onClick={() => handlePutUpdateProjectSubmit()}>Update Project</Button>
+                            </Grid>
+                        }
+                        {(dialogType === "delete") &&
+                            <Grid item>
+                                <Button variant="contained" color="error" onClick={() => handleDeleteProjectDataSubmit()}>Delete Project</Button>
                             </Grid>
                         }
                     </Grid>
