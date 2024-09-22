@@ -1,6 +1,7 @@
 import React from "react";
 import { PieChart, Pie, Cell } from "recharts";
 import { useBreakpoints } from "../../utils/Breakpoints";
+import randomColorGenerator from "../../utils/RandomColorGenerator";
 
 interface ChartData {
     name: string;
@@ -28,9 +29,9 @@ const AnalyticsChart: React.FC<Props> = (props) => {
     const outerRadius = (isXl || isLg || isSm || isXs) ? 100 : (isMd) ? 90 : 100;
 
     const data: ChartData[] = [
-        { name: 'A', value: 45, color: '#00FFFF' },
-        { name: 'B', value: 45, color: '#FF0000' },
-        { name: 'C', value: 10, color: '#FFD700' },
+        { name: 'A', value: 34, color: randomColorGenerator() },
+        { name: 'B', value: 33, color: randomColorGenerator() },
+        { name: 'C', value: 33, color: randomColorGenerator() },
     ];
 
     const RADIAN = Math.PI / 180;
@@ -78,7 +79,7 @@ const AnalyticsChart: React.FC<Props> = (props) => {
                     <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
             </Pie>
-            {renderNeedle(value, data, cx, cy, innerRadius, outerRadius, '#d0d000')}
+            {renderNeedle(value, data, cx, cy, innerRadius, outerRadius, randomColorGenerator())}
         </PieChart>
     );
 };

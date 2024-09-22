@@ -5,65 +5,67 @@ import { useBreakpoints } from "../../utils/Breakpoints";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { submitLoginForm, loginFormSuccess, loginFormFailure, resetLoginForm } from "../../redux/users/usersSlice";
-import { PostUserLogin } from "../../services/ServiceControllers";
+import { submitSignUpForm, signUpFormSuccess, signUpFormFailure, resetSignUpForm, } from "../../redux/users/usersSlice"
+import { PostUserSignUp } from "../../services/ServiceControllers";
 import AlertSlider from "../../components/AlertSlider";
 import delay from "../../utils/Delay";
 import "../../styles/screenStyles.css";
 
-const AdminLogin = () => {
+const AdminSignup = () => {
     const history = useNavigate();
     const dispatch = useDispatch();
     const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
     const { _id, username, email, profile, loading, success } = useSelector((state: RootState) => state.user);
 
     // State Handling
-    const [loginDetails, setLoginDetails] = useState({
+    const [signupDetails, setSignupDetails] = useState({
+        username: '',
         email: '',
         password: '',
     });
     const [showPassword, setShowPassword] = useState(false);
 
     // Api Calls
-    const userLoginApiCall = async () => {
+    const userSignUpApiCall = async () => {
         try {
             const formData = {
-                email: loginDetails.email,
-                password: loginDetails.password
+                username: signupDetails.username,
+                email: signupDetails.email,
+                password: signupDetails.password
             }
-            const response = await PostUserLogin(formData);
+            const response = await PostUserSignUp(formData);
             if (response.success === true) {
                 handleAlertSliderOpen("success", response.message);
+                return true;
             } else {
                 handleAlertSliderOpen("error", response.message);
+                return false;
             }
-            return response;
         } catch (error) {
-            console.error("Unexpected error: " + error);
+            console.error("Unexpected error:" + error);
             handleAlertSliderOpen("error", "Unexpected error encountered");
         }
     };
 
     // Textfield OnChange Handling
     const handleTextFeildsChange = (name: string, value: string) => {
-        setLoginDetails({
-            ...loginDetails,
+        setSignupDetails({
+            ...signupDetails,
             [name]: value
         });
     };
 
-    // Login Submit Functions
-    const handleLoginFormSubmit = async () => {
-        dispatch(submitLoginForm());
-        const response = await userLoginApiCall();
-        if (response.success) {
-            const userData = response?.data;
-            dispatch(loginFormSuccess(userData));
+    // SignUp Submit Functions
+    const handleSignUpFormSubmit = async () => {
+        dispatch(submitSignUpForm());
+        const response = await userSignUpApiCall();
+        if (response) {
+            dispatch(signUpFormSuccess());
             await delay(3000);
-            history('/admin/profile');
-            dispatch(resetLoginForm());
+            history('/admin/login');
+            dispatch(resetSignUpForm());
         } else {
-            dispatch(loginFormFailure());
+            dispatch(signUpFormFailure());
         }
     };
 
@@ -89,14 +91,26 @@ const AdminLogin = () => {
     };
 
     useEffect(() => {
-        document.title = "Admin - Login"
+        document.title = "Admin - Signup"
     }, []);
+
     return (
         <Grid container justifyContent='center' alignItems='center' flexDirection='column' rowSpacing={4} wrap='nowrap'>
             <Grid item>
-                <Typography variant="h4" fontWeight={500} fontFamily='inter'>Admin Login</Typography>
+                <Typography variant="h4" fontWeight={500} fontFamily='inter'>Admin Signup</Typography>
             </Grid>
             <Grid container item xl={6} lg={6} md={8} sm={10} xs={10} justifyContent='center' alignItems='center' rowSpacing={2}>
+                <Grid item xs={12}>
+                    <TextField
+                        id="username-field"
+                        label="Username"
+                        variant="filled"
+                        type="text"
+                        fullWidth
+                        sx={{ backgroundColor: '#D1D5DB', borderRadius: 2, }}
+                        onChange={(event) => handleTextFeildsChange('username', event.target.value)}
+                    />
+                </Grid>
                 <Grid item xs={12}>
                     <TextField
                         id="email-field"
@@ -137,12 +151,12 @@ const AdminLogin = () => {
                         variant="contained"
                         color="primary"
                         size="large"
-                        onClick={() => handleLoginFormSubmit()}
+                        onClick={() => handleSignUpFormSubmit()}
                         fullWidth
                         startIcon={loading && <CircularProgress size={24} style={{ color: '#fff' }} thickness={6} />}
                         disabled={success === true ? true : false}
                     >
-                        {loading ? 'Logging in...' : 'Login'}
+                        {loading ? 'Signing up...' : 'Signup'}
                     </Button>
                 </Grid>
             </Grid>
@@ -156,4 +170,4 @@ const AdminLogin = () => {
     )
 }
 
-export default AdminLogin
+export default AdminSignup

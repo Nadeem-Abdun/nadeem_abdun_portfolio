@@ -3,6 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import ProfilePic from "../../assets/images/Profile_Avatar.png";
 
 export interface ProfileState {
+    _id?: string,
     fullName?: string,
     professionalRoles?: string[],
     introducingLine?: string,
@@ -15,9 +16,11 @@ export interface ProfileState {
     twitterUrl?: string,
     mailToId?: string,
     loading?: boolean,
+    success?: boolean | null,
 }
 
 const initialState: ProfileState = {
+    _id: "",
     fullName: "Nadeem Abdun",
     professionalRoles: ["Web App Developer", "Mobile App Developer", "Mechanical Engineer"],
     introducingLine: "Transforming concepts into code, Specialized in delivering pixel-perfect, accessible wonders as a full-stack web and app developer.",
@@ -28,8 +31,9 @@ const initialState: ProfileState = {
     linkedInUrl: "https://in.linkedin.com/in/abdun-nadeem",
     discordUrl: "",
     twitterUrl: "",
-    mailToId: "mailto:nadeemabdun@gmail.com",
-    loading: false
+    mailToId: "nadeemabdun@gmail.com",
+    loading: false,
+    success: null,
 }
 
 export const profileSlice = createSlice({
@@ -38,11 +42,39 @@ export const profileSlice = createSlice({
     reducers: {
         loadData: (state) => {
 
-        }
+        },
+        submitGetProfileForm: (state) => {
+            state.loading = true;
+            state.success = null;
+        },
+        getProfileSuccess: (state, action: PayloadAction<ProfileState>) => {
+            state.loading = false;
+            state.success = true;
+            state._id = action.payload._id;
+            state.fullName = action.payload.fullName;
+            state.professionalRoles = action.payload.professionalRoles;
+            state.introducingLine = action.payload.introducingLine;
+            state.profilePicture = action.payload.profilePicture;
+            state.primaryDescription = action.payload.primaryDescription;
+            state.secondaryDescription = action.payload.secondaryDescription;
+            state.githubUrl = action.payload.githubUrl;
+            state.linkedInUrl = action.payload.linkedInUrl;
+            state.discordUrl = action.payload.discordUrl;
+            state.twitterUrl = action.payload.twitterUrl;
+            state.mailToId = action.payload.mailToId;
+        },
+        getProfileFailure: (state) => {
+            state.loading = false;
+            state.success = false;
+        },
+        resetGetProfileForm: (state) => {
+            state.loading = false;
+            state.success = null;
+        },
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { loadData } = profileSlice.actions;
+export const { loadData, submitGetProfileForm, getProfileSuccess, getProfileFailure, resetGetProfileForm } = profileSlice.actions;
 
 export default profileSlice.reducer;

@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import usersReducer from "./users/usersSlice";
 import profileReducer from "./profile/profileSlice";
 import experienceReducer from "./experience/experienceSlice";
 import wallOfCodeReducer from "./wallOfCode/wallOfCodeSlice";
@@ -7,6 +8,7 @@ import contactMeReducer from "./contactMe/contactMeSlice";
 
 export const store = configureStore({
     reducer: {
+        user: usersReducer,
         profile: profileReducer,
         experience: experienceReducer,
         wallOfCode: wallOfCodeReducer,
