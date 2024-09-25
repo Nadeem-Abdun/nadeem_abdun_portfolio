@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { AppBar, Box, Toolbar, IconButton, Typography, Menu, MenuItem, Container, Avatar, Button, Tooltip, Dialog, DialogActions, DialogContent, DialogTitle, Grid } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, MenuItem, Container, Avatar, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -151,29 +150,76 @@ const TopNavBar = () => {
       <AppBar position="static" color="transparent">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* Page Logo And Title */}
-            {isXs ?
+            {/* Mobile And Tab View Nav Menu */}
+            {(isXs || isSm) &&
+              <Grid container xs={12} justifyContent="space-between" alignItems="center">
+                <Grid item>
+                  {/* Page Logo And Title */}
+                  <img alt="page_logo" src={AppLogo} style={{ marginRight: "1rem", }} onClick={handleOpenNavMenu} />
+                  {/* Page Navigations Menu */}
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorElNav}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    open={Boolean(anchorElNav)}
+                    onClose={handleCloseNavMenu}
+                    sx={{
+                      display: { xs: "block", md: "none" },
+                    }}
+                  >
+                    {pages.map((page) => (
+                      <MenuItem key={page} onClick={() => handlePageNavigations(page)} style={{ textDecoration: "none" }}>
+                        <Typography textAlign="center">{page}</Typography>
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </Grid>
+                <Grid item>
+                  {/* Avatar Section */}
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    {username === "" ?
+                      <Avatar alt={username} />
+                      :
+                      <Avatar alt={username} {...avatarInitialsGenerator(username as string)} />
+                    }
+                  </IconButton>
+                  <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    {settings.map((option) => (
+                      <MenuItem key={option} onClick={() => handleUserMenuClick(option)}>
+                        <Typography>{option}</Typography>
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </Grid>
+              </Grid>
+            }
+            {/* Desktop View Nav Menu */}
+            {!(isXs || isSm) &&
               <>
-                <img alt="page_logo" src={AppLogo} style={{ marginRight: "1rem", }} />
-                <Typography
-                  variant="h5"
-                  noWrap
-                  sx={{
-                    mr: 2,
-                    display: "flex",
-                    flexGrow: 1,
-                    fontFamily: "monospace",
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    color: "inherit",
-                    textDecoration: "none",
-                  }}
-                >
-                  {pageTitle}
-                </Typography>
-              </>
-              :
-              <>
+                {/* Page Logo And Title */}
                 <img alt="page_logo" src={AppLogo} style={{ marginRight: "1rem", }} />
                 <Typography
                   variant="h5"
@@ -190,91 +236,52 @@ const TopNavBar = () => {
                 >
                   {pageTitle}
                 </Typography>
+                {/* Page Navigations Menu */}
+                <Box sx={{ flexGrow: 1, display: "flex" }}>
+                  {pages.map((page) => (
+                    <Button
+                      key={page}
+                      onClick={() => handlePageNavigations(page)}
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
+                      {page}
+                    </Button>
+                  ))}
+                </Box>
+                {/* Avatar Section */}
+                <Box sx={{ flexGrow: 0 }}>
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    {username === "" ?
+                      <Avatar alt={username} />
+                      :
+                      <Avatar alt={username} {...avatarInitialsGenerator(username as string)} />
+                    }
+                  </IconButton>
+                  <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    {settings.map((option) => (
+                      <MenuItem key={option} onClick={() => handleUserMenuClick(option)}>
+                        <Typography>{option}</Typography>
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </Box>
               </>
             }
-            {/* Page Navigations Menu */}
-            {isXs ?
-              <Box sx={{ flexGrow: 1, display: "flex" }}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{
-                    display: { xs: "block", md: "none" },
-                  }}
-                >
-                  {pages.map((page) => (
-                    <MenuItem key={page} onClick={() => handlePageNavigations(page)} style={{ textDecoration: "none" }}>
-                      <Typography textAlign="center">{page}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-              :
-              <Box sx={{ flexGrow: 1, display: "flex" }}>
-                {pages.map((page) => (
-                  <Button
-                    key={page}
-                    onClick={() => handlePageNavigations(page)}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    {page}
-                  </Button>
-                ))}
-              </Box>
-            }
-            {/* Avatar Section */}
-            <Box sx={{ flexGrow: 0 }}>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {username === "" ?
-                  <Avatar alt={username} />
-                  :
-                  <Avatar alt={username} {...avatarInitialsGenerator(username as string)} />
-                }
-              </IconButton>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((option) => (
-                  <MenuItem key={option} onClick={() => handleUserMenuClick(option)}>
-                    <Typography>{option}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
           </Toolbar>
         </Container>
       </AppBar>
