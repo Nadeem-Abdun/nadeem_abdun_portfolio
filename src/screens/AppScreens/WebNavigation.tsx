@@ -68,21 +68,26 @@ const WebNavigation = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant={isXl ? "h4" : isMd ? "h6" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section2')}>
-                                <pre>&lt;Wall of Code /&gt;</pre>
+                                <pre>&lt;Resume /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant={isXl ? "h4" : isMd ? "h6" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section3')}>
-                                <pre>&lt;Projects /&gt;</pre>
+                                <pre>&lt;Wall of Code /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant={isXl ? "h4" : isMd ? "h6" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section4')}>
-                                <pre>&lt;Contact Me /&gt;</pre>
+                                <pre>&lt;Projects /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant={isXl ? "h4" : isMd ? "h6" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section5')}>
+                                <pre>&lt;Contact Me /&gt;</pre>
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Typography variant={isXl ? "h4" : isMd ? "h6" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSection('section6')}>
                                 <pre>&lt;Summary /&gt;</pre>
                             </Typography>
                         </Grid>
