@@ -68,21 +68,26 @@ const MobileNavigation = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant={isSm ? "h4" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section2')}>
-                                <pre>&lt;Wall of Code /&gt;</pre>
+                                <pre>&lt;Resume /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant={isSm ? "h4" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section3')}>
-                                <pre>&lt;Projects /&gt;</pre>
+                                <pre>&lt;Wall of Code /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant={isSm ? "h4" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section4')}>
-                                <pre>&lt;Contact Me /&gt;</pre>
+                                <pre>&lt;Projects /&gt;</pre>
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant={isSm ? "h4" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section5')}>
+                                <pre>&lt;Contact Me /&gt;</pre>
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Typography variant={isSm ? "h4" : "h5"} fontWeight={400} fontFamily='inter' className="underline-hover" onClick={() => scrollToSectionMobile('section6')}>
                                 <pre>&lt;Summary /&gt;</pre>
                             </Typography>
                         </Grid>
