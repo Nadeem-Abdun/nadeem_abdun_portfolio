@@ -4,6 +4,7 @@ import AppLayout from "./layout/AppLayout";
 import AdminLayout from "./layout/AdminLayout";
 import AboutMe from "./screens/AppScreens/AboutMe";
 import Experience from "./screens/AppScreens/Experience";
+import Resume from "./screens/AppScreens/Resume";
 import Projects from "./screens/AppScreens/Projects";
 import ContactMe from "./screens/AppScreens/ContactMe";
 import WebNavigation from "./screens/AppScreens/WebNavigation";
@@ -21,6 +22,7 @@ const App = () => {
   const rightElementsArray = [
     <AboutMe key="aboutMe" />,
     <Experience key="experience" />,
+    <Resume key="resume" />,
     <WallOfCode key="wallofcode" />,
     <Projects key="projects" />,
     <ContactMe key="contactMe" />,
