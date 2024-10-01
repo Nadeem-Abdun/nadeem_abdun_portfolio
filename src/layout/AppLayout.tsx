@@ -6,18 +6,24 @@ import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 
-interface RightElementProps {
-    children: React.ReactNode;
+interface ElementProps {
     id: string;
+    children: React.ReactNode;
 }
 
-const RightElement: React.FC<RightElementProps> = ({ children, id }) => {
-    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
-    const minHeightStyle = !(isXs || isSm) ? { minHeight: '100dvh' } : {};
+const RightElement: React.FC<ElementProps> = ({ id, children }) => {
     return (
-        <div id={id} style={{ ...minHeightStyle }}>
+        <Grid item xs={12} id={id} style={{ minHeight: '100dvh' }}>
             {children}
-        </div>
+        </Grid>
+    );
+}
+
+const MobileNavElement: React.FC<ElementProps> = ({ id, children }) => {
+    return (
+        <Grid item xs={12} id={id} style={{ minHeight: '100dvh' }}>
+            {children}
+        </Grid>
     );
 }
 
@@ -36,21 +42,27 @@ const AppLayout: React.FC<Props> = (props) => {
     return (
         <Grid container>
             {(isXl || isLg || isMd) &&
-                <Grid container item xl={5} lg={5} md={5} sm={0} xs={0} className='pl-10 pr-5'>
+                <Grid item xl={5} lg={5} md={5} sm={0} xs={0} className='pl-10 pr-5'>
                     {leftElement}
                 </Grid>
             }
             {(isXl || isLg || isMd || isSm || isXs) &&
-                <Grid container item xl={7} lg={7} md={7} sm={12} xs={12} style={{ overflowY: 'auto', height: '100vh' }} className={`pl-5 ${(isXs || isSm) ? 'pr-5' : 'pr-10'}`}>
-                    <div className="flex flex-col justify-center items-center" id='section-app-home'>
-                        {(isXs || isSm) && mobileElement && <>{mobileElement}</>}
-                        {rightElements && rightElements.map((element, index) => (
-                            <RightElement key={index} id={`section${index}`} children={element} />
-                        ))}
-                    </div>
+                <Grid
+                    container
+                    item
+                    xl={7} lg={7} md={7} sm={12} xs={12}
+                    style={{ overflowY: 'auto', height: '100dvh' }}
+                    className={`pl-5 ${(isXs || isSm) ? 'pr-5' : 'pr-10'}`}
+                >
+                    {(isXs || isSm) && mobileElement &&
+                        <MobileNavElement id='section-mobile-home' children={mobileElement} />
+                    }
+                    {rightElements && rightElements.map((webElement, index) => (
+                        <RightElement key={index} id={`section${index}`} children={webElement} />
+                    ))}
                 </Grid>
             }
-            <ScrollToTop source="app" scrollToIdLarge="section0" scrollToIdSmall="section-app-home" />
+            <ScrollToTop source="app" scrollToIdLarge="section0" scrollToIdSmall="section-mobile-home" />
         </Grid >
     );
 };
