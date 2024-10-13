@@ -30,6 +30,15 @@ export const experiencePaths = {
     DeleteExperience: (id: string) => `${serviceUrls.baseUrl}${apiVersionV1}/experience/delete/${id}`,
 };
 
+export const resumePaths = {
+    UploadResume: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/resume/upload/${profileId}`,
+    GetActiveResume: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/resume/getActive/${profileId}`,
+    DownloadResume: (id: string) => `${serviceUrls.baseUrl}${apiVersionV1}/resume/download/${id}`,
+    GetAllResumes: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/resume/getAll/${profileId}`,
+    UpdateResumeStatus: (id: string) => `${serviceUrls.baseUrl}${apiVersionV1}/resume/update/${id}`,
+    DeleteResume: (id: string) => `${serviceUrls.baseUrl}${apiVersionV1}/resume/delete/${id}`,
+};
+
 export const wallOfCodePaths = {
     CreateSkill: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/wallOfCode/create/${profileId}`,
     GetAllSkills: (profileId: string) => `${serviceUrls.baseUrl}${apiVersionV1}/wallOfCode/getSkills/${profileId}`,
