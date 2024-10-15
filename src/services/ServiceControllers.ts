@@ -1,9 +1,10 @@
 import { CommunicationModule } from "./CommunicationModule";
-import { contactMePaths, experiencePaths, profilePaths, projectPaths, userPaths, wallOfCodePaths } from "../services/EndPoints";
+import { contactMePaths, experiencePaths, profilePaths, projectPaths, resumePaths, userPaths, wallOfCodePaths } from "../services/EndPoints";
 import { UsersState } from "../redux/users/usersSlice";
 import { ContactMe } from "../redux/contactMe/contactMeSlice";
 import { Experience } from "../redux/experience/experienceSlice";
 import { WallOfCode } from "../redux/wallOfCode/wallOfCodeSlice";
+import { Resume } from "../redux/resume/resumeSlice";
 
 // User Service Controllers
 export const PostUserSignUp = async (formData: UsersState) => {
@@ -94,6 +95,46 @@ export const PutUpdateExperience = async (formData: Experience, id: string) => {
 };
 export const DeleteExperienceData = async (id: string) => {
     return await CommunicationModule(experiencePaths.DeleteExperience(id), {
+        method: "DELETE",
+        credentials: "include",
+    });
+};
+
+// Resume Service Controllers
+export const PostUploadResume = async (formData: FormData, profileId: string) => {
+    return await CommunicationModule(resumePaths.UploadResume(profileId), {
+        method: "POST",
+        body: formData,
+        isFormData: true,
+        credentials: "include",
+    });
+};
+export const GetActiveResumeData = async (profileId: string) => {
+    return await CommunicationModule(resumePaths.GetActiveResume(profileId), {
+        method: "GET",
+    });
+};
+export const GetDownloadResume = async (id: string) => {
+    return await CommunicationModule(resumePaths.DownloadResume(id), {
+        method: "GET",
+    });
+};
+export const GetAllResumesData = async (profileId: string) => {
+    return await CommunicationModule(resumePaths.GetAllResumes(profileId), {
+        method: "GET",
+        credentials: "include",
+    });
+};
+export const PatchUpdateResumeStatus = async (formData: Resume, id: string) => {
+    return await CommunicationModule(resumePaths.UpdateResumeStatus(id), {
+        method: "PATCH",
+        body: formData,
+        isFormData: false,
+        credentials: "include",
+    });
+};
+export const DeleteResumeData = async (id: string) => {
+    return await CommunicationModule(resumePaths.DeleteResume(id), {
         method: "DELETE",
         credentials: "include",
     });
