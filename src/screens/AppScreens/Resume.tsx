@@ -13,7 +13,7 @@ const Resume = () => {
                     <Typography variant="h4" fontWeight={500} fontFamily='inter'>Resume</Typography>
                 </Grid>
                 <Grid container item rowGap={2} className={`${(!isXs) && 'card'} ${(!isXs) && 'px-3'} ${(!isXs) && 'py-3'} h-[95%]`}>
-                    <Grid item xs={12} className={`${(isXs) ? "h-[75%]" : "h-[95%]"}`}>
+                    <Grid item xs={12} className={`${(isXs) ? "h-[75%]" : (isSm) ? "h-[93%]" : "h-[90%]"}`}>
                         <iframe
                             src="https://drive.google.com/file/d/1Df_7kkdNqnadwSUrBAFTM2JMTUB8179E/preview"
                             frameBorder="0"
@@ -22,7 +22,7 @@ const Resume = () => {
                             width="100%"
                         />
                     </Grid>
-                    <Grid item xs={12} className={`${(isXs) ? "h-[25%]" : "h-[5%]"}`}>
+                    <Grid item xs={12} className={`${(isXs) ? "h-[25%]" : (isSm) ? "h-[7%]" : "h-[10%]"}`}>
                         <Button variant="contained" color="info" fullWidth>Download</Button>
                     </Grid>
                 </Grid>
