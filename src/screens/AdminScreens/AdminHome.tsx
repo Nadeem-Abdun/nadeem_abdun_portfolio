@@ -7,6 +7,7 @@ import { RootState } from "../../redux/store";
 import AnalyticsCard from "../../components/AdminComponents/AnalyticsCard";
 import AboutMeCard from "../../components/AdminComponents/AboutMeCard";
 import ExperienceCard from "../../components/AdminComponents/ExperienceCard";
+import ResumeCard from "../../components/AdminComponents/ResumeCard";
 import WallOfCodeCard from "../../components/AdminComponents/WallOfCodeCard";
 import ProjectCard from "../../components/AdminComponents/ProjectCard";
 import ContactMeCard from "../../components/AdminComponents/ContactMeCard";
@@ -17,9 +18,11 @@ const AdminHome = () => {
     const history = useNavigate();
     const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
 
+    // Redux States
     const { profile } = useSelector((state: RootState) => state.user);
     const { _id, fullName, professionalRoles, introducingLine, profilePicture, primaryDescription, secondaryDescription, githubUrl, linkedInUrl, discordUrl, twitterUrl, mailToId, } = useSelector((state: RootState) => state.profile)
     const { experiences } = useSelector((state: RootState) => state.experience);
+    const { resumes } = useSelector((state: RootState) => state.resume);
     const { wallOfCodeList, availableSkillsList } = useSelector((state: RootState) => state.wallOfCode);
     const { projects } = useSelector((state: RootState) => state.project);
     const { contactMeForms } = useSelector((state: RootState) => state.contactMe);
@@ -76,6 +79,13 @@ const AdminHome = () => {
                         <ExperienceCard
                             profile={profile}
                             experiences={experiences}
+                            handleAlertSliderOpen={handleAlertSliderOpen}
+                        />
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6} lg={4} xl={4}>
+                        <ResumeCard
+                            profile={profile}
+                            resumes={resumes}
                             handleAlertSliderOpen={handleAlertSliderOpen}
                         />
                     </Grid>
