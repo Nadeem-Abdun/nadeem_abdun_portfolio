@@ -117,6 +117,7 @@ export const GetActiveResumeData = async (profileId: string) => {
 export const GetDownloadResume = async (id: string) => {
     return await CommunicationModule(resumePaths.DownloadResume(id), {
         method: "GET",
+        isBlobResponse: true,
     });
 };
 export const GetAllResumesData = async (profileId: string) => {
