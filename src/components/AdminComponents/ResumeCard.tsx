@@ -8,6 +8,7 @@ import "../../styles/componentStyles.css";
 import FileUploader from "../FileUploader";
 import { DeleteResumeData, GetAllResumesData, PatchUpdateResumeStatus, PostUploadResume } from "../../services/ServiceControllers";
 import { useDispatch } from "react-redux";
+import PdfViewer from "../PdfViewer";
 
 interface Props extends ResumeState {
     profile: string[] | undefined;
@@ -127,7 +128,6 @@ const ResumeCard: React.FC<Props> = (props) => {
     const handleFileSelect = (file: File) => {
         setSelectedResume({ ...selectedResume, resumeURL: URL.createObjectURL(file) });
         setSelectedResumeFile(file);
-        console.log(file, "abc")
     };
 
     // Submit Functions
@@ -149,6 +149,7 @@ const ResumeCard: React.FC<Props> = (props) => {
             const resumeData = response?.data;
             dispatch(uploadResumeFormSuccess(resumeData));
             dispatch(resetUploadResumeForm());
+            handleResumeDialogClose();
         } else {
             dispatch(uploadResumeFormFailure());
         }
@@ -160,6 +161,7 @@ const ResumeCard: React.FC<Props> = (props) => {
             const resumeData = response?.data;
             dispatch(updateResumeFormSuccess(resumeData));
             dispatch(resetUpdateResumeForm());
+            handleResumeDialogClose();
         } else {
             dispatch(updateResumeFormFailure());
         }
@@ -171,6 +173,7 @@ const ResumeCard: React.FC<Props> = (props) => {
             const resumeData = response?.data;
             dispatch(deleteResumeFormSuccess(resumeData));
             dispatch(resetDeleteResumeForm());
+            handleResumeDialogClose();
         } else {
             dispatch(deleteResumeFormFailure());
         }
@@ -217,16 +220,13 @@ const ResumeCard: React.FC<Props> = (props) => {
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <iframe
-                                        src={item.resumeURL}
-                                        frameBorder="0"
-                                        scrolling="auto"
-                                        height="250px"
-                                        width="100%"
-                                    />
-                                    <img
-                                        src={item.resumeURL}
-                                    />
+                                    {item.resumeURL && (
+                                        <PdfViewer
+                                            pdfUrl={item.resumeURL}
+                                            height="100%"
+                                            width="100%"
+                                        />
+                                    )}
                                 </Grid>
                                 <Grid container item xs={12} direction="column">
                                     <Grid item>
