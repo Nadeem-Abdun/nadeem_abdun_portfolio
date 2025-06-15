@@ -3,13 +3,14 @@ export interface RequestOptions {
     headers?: Record<string, string>; // Optional headers for the request
     body?: any; // The payload for the request, can be JSON or FormData
     isFormData?: boolean; // Indicates if the body should be treated as FormData
+    isBlobResponse?: boolean; // Indicates if the response is blob or json
     credentials?: "include" | "same-origin"; // Optional credentials for the request
     // Use "same-origin" when your frontend and backend are on the same origin (same scheme, host, and port).
     // Use "include" when your frontend and backend are on different origins (different scheme, host, or port).
 }
 
 export const CommunicationModule = async (endpoint: string, options: RequestOptions) => {
-    const { method, headers = {}, body, isFormData = false, credentials } = options;
+    const { method, headers = {}, body, isFormData = false, isBlobResponse = false, credentials } = options;
     // Prepare the configuration for the fetch request
     const config: RequestInit = {
         method,
@@ -32,13 +33,21 @@ export const CommunicationModule = async (endpoint: string, options: RequestOpti
     try {
         // Make the API request
         const response = await fetch(endpoint, config);
-        // Parse the JSON response
-        const data = await response.json();
-        // Check if the response was not successful
-        if (!response.ok) {
-            console.error(data.message || "Something went wrong with the API response.");
+
+        // Parse JSON response by default
+        let data: any = null;
+        if (isBlobResponse) {
+            data = await response.blob();
+        } else {
+            data = await response.json();
         }
-        // Return the parsed data
+
+        // Handle unsuccessful responses
+        if (!response.ok) {
+            const errorMessage = `API Error: ${response.status} ${response.statusText}`;
+            console.error(data.message || "Something went wrong with the API response: ", errorMessage);
+        }
+
         return data;
     } catch (error) {
         console.error("API request error:", error);

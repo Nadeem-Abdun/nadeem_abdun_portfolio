@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import usersReducer from "./users/usersSlice";
 import profileReducer from "./profile/profileSlice";
 import experienceReducer from "./experience/experienceSlice";
+import resumeReducer from "./resume/resumeSlice";
 import wallOfCodeReducer from "./wallOfCode/wallOfCodeSlice";
 import projectReducer from "./project/projectSlice";
 import contactMeReducer from "./contactMe/contactMeSlice";
@@ -11,6 +12,7 @@ export const store = configureStore({
         user: usersReducer,
         profile: profileReducer,
         experience: experienceReducer,
+        resume: resumeReducer,
         wallOfCode: wallOfCodeReducer,
         project: projectReducer,
         contactMe: contactMeReducer,
