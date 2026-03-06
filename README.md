@@ -1,46 +1,137 @@
-# Getting Started with Create React App
+# Nadeem Abdun - Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A personal portfolio web application showcasing professional experience, projects, skills, and resume. Built with React 19, TypeScript, Vite, and Tailwind CSS v4.
 
-## Available Scripts
+## Live Demo
 
-In the project directory, you can run:
+Deployed on Vercel — backend hosted on Render.
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+| Layer            | Technology                                     |
+| ---------------- | ---------------------------------------------- |
+| Framework        | React 19 + TypeScript                          |
+| Build Tool       | Vite 6                                         |
+| Styling          | Tailwind CSS v4, Material UI v7 (MUI), Emotion |
+| State Management | Redux Toolkit + React Redux                    |
+| Routing          | React Router DOM v7                            |
+| Charts           | Recharts                                       |
+| Fonts            | Inter (via @fontsource)                        |
+| Effects          | typewriter-effect, react-responsive            |
+| HTTP             | Native fetch (custom CommunicationModule)      |
+| Testing          | Vitest + Testing Library + jsdom               |
+| Code Quality     | ESLint 9, Prettier, Husky, lint-staged         |
+| Minification     | Terser                                         |
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Features
 
-### `npm test`
+### Public Portfolio (Single-Page Scroll)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Hero / Navigation** — Name, animated typewriter roles, tagline, social links, and scroll-to-section navigation. First letter of the name is a hidden easter egg linking to the admin panel.
+- **About Me** — Profile picture with gradient background and bio text. Two-column layout on desktop, stacked on mobile.
+- **Experience** — Job history cards filtered by active status and sorted by date (newest first). Displays role, organization, responsibilities, and tech skill tags.
+- **Resume** — PDF viewer rendering the active resume from the backend. Download functionality available.
+- **Wall of Code** — Skills grid with custom SVG icons.
+- **Projects** — Project cards with images, descriptions, tech tags, and links to live sites and repositories. Filtered by active status.
+- **Contact Me** — Visitor contact form that posts to the backend API with success/error alerts.
+- **Summary** — Footer with closing tagline and copyright.
 
-### `npm run build`
+### Admin Panel
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Authentication** — Signup, login, and logout with session persistence via sessionStorage.
+- **Profile** — View user details with auto-fetch on login.
+- **Dashboard** — Analytics with Recharts (pie/gauge charts) and CRUD management cards for all portfolio sections (About, Experience, Resume, Skills, Projects, Contact Forms).
+- **Session-Aware Navigation** — TopNavBar adapts menu items based on login state, shows avatar with username fallback, and handles proper navigation/logout flows.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### UX & Design
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Cursor-Following Glow** — Radial gradient that follows the mouse cursor across the page.
+- **Responsive Design** — Adaptive layouts for desktop (xl/lg), tablet (md), and mobile (sm/xs) using react-responsive breakpoints.
+- **Conditional Social Icons** — GitHub, LinkedIn, Discord, Twitter/X, and Email icons only render when their URLs are available.
+- **Custom Scrollbar** — Styled cyan scrollbar with matching track and buttons.
+- **Centralized Data Loading** — All portfolio data (profile, experiences, resume, skills, projects) loaded in parallel on app mount via DataLoader.
 
-### `npm run eject`
+## Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+src/
+├── assets/             # SVG icons and image imports
+├── components/
+│   ├── AdminComponents/  # CRUD cards, analytics chart
+│   └── AppComponents/    # ExperienceCard, ProjectCard, SkillCard
+├── layout/             # AppLayout (split-column), AdminLayout
+├── redux/              # Store + slices (users, profile, experience, resume, wallOfCode, project, contactMe)
+├── screens/
+│   ├── AdminScreens/   # AdminPanel, AdminSignup, AdminLogin, AdminProfile, AdminHome
+│   └── AppScreens/     # WebNavigation, MobileNavigation, AboutMe, Experience, Resume, WallOfCode, Projects, ContactMe, Summary
+├── services/           # EndPoints, CommunicationModule, ServiceControllers
+├── styles/             # tailwind.css, screenStyles.css, componentStyles.css
+├── upcoming/           # Prototype components (vertical timeline Experience)
+├── utils/              # Breakpoints, DataLoader, SessionManager, DateFormatter, SecureHttp, etc.
+├── App.tsx             # Routes and cursor effect
+└── main.tsx            # Entry point with Redux Provider and BrowserRouter
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Prerequisites
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Node.js (v18+)
+- npm
 
-## Learn More
+### Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Development
+
+```bash
+npm run dev
+```
+
+Opens at [http://localhost:3000](http://localhost:3000).
+
+### Build
+
+```bash
+npm run build
+```
+
+### Testing
+
+```bash
+npm test
+```
+
+### Code Quality
+
+```bash
+# Lint
+npm run lint
+
+# Lint and fix
+npm run lint:fix
+
+# Format
+npm run format
+
+# Fix all (lint + format)
+npm run fix-all
+
+# Type check
+npm run type-check
+```
+
+## Backend
+
+The portfolio connects to a REST API hosted on Render:
+
+**Base URL:** `https://nadeem-abdun-portfolio-backend.onrender.com/api/v1`
+
+Endpoints cover user auth, profile CRUD, experience, resume upload/download, skills, projects, and contact form management. Authenticated requests use cookie-based credentials.
+
+## License
+
+MIT
