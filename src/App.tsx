@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppLayout from './layout/AppLayout';
 import AdminLayout from './layout/AdminLayout';
@@ -17,8 +17,13 @@ import AdminSignup from './screens/AdminScreens/AdminSignup';
 import AdminLogin from './screens/AdminScreens/AdminLogin';
 import AdminHome from './screens/AdminScreens/AdminHome';
 import AdminProfile from './screens/AdminScreens/AdminProfile';
+import { useDispatch } from 'react-redux';
+import dataLoader from './utils/DataLoader';
 
 const App = () => {
+  const dispatch = useDispatch();
+  const profileId = '6692a6e7a7900e23064b7c75';
+
   const rightElementsArray = [
     <AboutMe key="aboutMe" />,
     <Experience key="experience" />,
@@ -34,6 +39,10 @@ const App = () => {
     document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
     document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
   });
+
+  useEffect(() => {
+    dataLoader({ profileId, dispatch });
+  }, [dispatch]);
 
   return (
     <div className="min-h-screen min-w-full bg-darkblue text-gray-300">
