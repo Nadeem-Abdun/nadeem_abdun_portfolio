@@ -30,6 +30,11 @@ import { GetUserLogout } from '../services/ServiceControllers';
 import AlertSlider from './AlertSlider';
 import { useBreakpoints } from '../utils/Breakpoints';
 import avatarInitialsGenerator from '../utils/AvatarInitialsGenerator';
+import {
+  clearUserSession,
+  getUserSession,
+  verifyUserSession,
+} from '../utils/SessionManager';
 
 const pages = [
   'Portfolio',
@@ -39,16 +44,21 @@ const pages = [
   'Profile',
   'Home',
 ];
-const settings = ['Profile', 'Logout'];
+const settings = ['Profile', 'Login', 'Logout'];
 
 const TopNavBar = () => {
   const history = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const { isSm, isXs } = useBreakpoints();
+  const isLoggedIn = verifyUserSession();
+  const sessionUser = getUserSession();
+  const sessionUserName = sessionUser && sessionUser.username;
 
   // Redux State Management
   const { username } = useSelector((state: RootState) => state.user);
+
+  const avatarDisplayName = username || sessionUserName || '';
 
   // Local State Management
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -88,10 +98,16 @@ const TopNavBar = () => {
   };
   const handleUserMenuClick = (menuName: string) => {
     if (menuName === 'Profile') {
-      console.warn('Profile');
+      history('/admin/profile');
+      handleCloseUserMenu();
     }
     if (menuName === 'Logout') {
       handleLogOutDialogOpen();
+      handleCloseUserMenu();
+    }
+    if (menuName === 'Login') {
+      history('/admin/login');
+      handleCloseUserMenu();
     }
   };
 
@@ -108,9 +124,11 @@ const TopNavBar = () => {
     dispatch(submitLogoutForm());
     const response = await userLogoutApiCall();
     if (response.success) {
-      setLogOutDialogOpen(false);
+      clearUserSession();
+      handleLogOutDialogClose();
       dispatch(logoutFormSuccess());
       dispatch(resetLogoutForm());
+      history('/admin/login');
     } else {
       dispatch(logoutFormFailure());
     }
@@ -132,21 +150,27 @@ const TopNavBar = () => {
   const handlePageNavigations = (page: string) => {
     if (page === 'Portfolio') {
       history('/');
+      handleCloseNavMenu();
     }
     if (page === 'Entry Panel') {
       history('/admin');
+      handleCloseNavMenu();
     }
     if (page === 'Signup') {
       history('/admin/signup');
+      handleCloseNavMenu();
     }
     if (page === 'Login') {
       history('/admin/login');
+      handleCloseNavMenu();
     }
     if (page === 'Profile') {
       history('/admin/profile');
+      handleCloseNavMenu();
     }
     if (page === 'Home') {
       history('/admin/home');
+      handleCloseNavMenu();
     }
   };
   const handlePageTitleUpdate = () => {
@@ -213,28 +237,43 @@ const TopNavBar = () => {
                       display: { xs: 'block', md: 'none' },
                     }}
                   >
-                    {pages.map(page => (
-                      <MenuItem
-                        key={page}
-                        onClick={() => handlePageNavigations(page)}
-                        style={{ textDecoration: 'none' }}
-                      >
-                        <Typography textAlign="center">{page}</Typography>
-                      </MenuItem>
-                    ))}
+                    {pages
+                      .filter(page => {
+                        if (isLoggedIn) {
+                          return (
+                            page === 'Portfolio' ||
+                            page === 'Profile' ||
+                            page === 'Home'
+                          );
+                        } else {
+                          return (
+                            page === 'Portfolio' ||
+                            page === 'Entry Panel' ||
+                            page === 'Signup' ||
+                            page === 'Login'
+                          );
+                        }
+                      })
+                      .map(page => (
+                        <MenuItem
+                          key={page}
+                          onClick={() => handlePageNavigations(page)}
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <Typography textAlign="center">{page}</Typography>
+                        </MenuItem>
+                      ))}
                   </Menu>
                 </Grid>
                 <Grid>
                   {/* Avatar Section */}
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    {username === '' ? (
-                      <Avatar alt={username} />
-                    ) : (
-                      <Avatar
-                        alt={username}
-                        {...avatarInitialsGenerator(username as string)}
-                      />
-                    )}
+                    <Avatar
+                      alt={avatarDisplayName}
+                      {...(avatarDisplayName
+                        ? avatarInitialsGenerator(avatarDisplayName)
+                        : {})}
+                    />
                   </IconButton>
                   <Menu
                     sx={{ mt: '45px' }}
@@ -252,14 +291,22 @@ const TopNavBar = () => {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                   >
-                    {settings.map(option => (
-                      <MenuItem
-                        key={option}
-                        onClick={() => handleUserMenuClick(option)}
-                      >
-                        <Typography>{option}</Typography>
-                      </MenuItem>
-                    ))}
+                    {settings
+                      .filter(option => {
+                        if (isLoggedIn) {
+                          return option === 'Profile' || option === 'Logout';
+                        } else {
+                          return option === 'Login';
+                        }
+                      })
+                      .map(option => (
+                        <MenuItem
+                          key={option}
+                          onClick={() => handleUserMenuClick(option)}
+                        >
+                          <Typography>{option}</Typography>
+                        </MenuItem>
+                      ))}
                   </Menu>
                 </Grid>
               </Grid>
@@ -290,27 +337,42 @@ const TopNavBar = () => {
                 </Typography>
                 {/* Page Navigations Menu */}
                 <Box sx={{ flexGrow: 1, display: 'flex' }}>
-                  {pages.map(page => (
-                    <Button
-                      key={page}
-                      onClick={() => handlePageNavigations(page)}
-                      sx={{ my: 2, color: 'white', display: 'block' }}
-                    >
-                      {page}
-                    </Button>
-                  ))}
+                  {pages
+                    .filter(page => {
+                      if (isLoggedIn) {
+                        return (
+                          page === 'Portfolio' ||
+                          page === 'Profile' ||
+                          page === 'Home'
+                        );
+                      } else {
+                        return (
+                          page === 'Portfolio' ||
+                          page === 'Entry Panel' ||
+                          page === 'Signup' ||
+                          page === 'Login'
+                        );
+                      }
+                    })
+                    .map(page => (
+                      <Button
+                        key={page}
+                        onClick={() => handlePageNavigations(page)}
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                      >
+                        {page}
+                      </Button>
+                    ))}
                 </Box>
                 {/* Avatar Section */}
                 <Box sx={{ flexGrow: 0 }}>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    {username === '' ? (
-                      <Avatar alt={username} />
-                    ) : (
-                      <Avatar
-                        alt={username}
-                        {...avatarInitialsGenerator(username as string)}
-                      />
-                    )}
+                    <Avatar
+                      alt={avatarDisplayName}
+                      {...(avatarDisplayName
+                        ? avatarInitialsGenerator(avatarDisplayName)
+                        : {})}
+                    />
                   </IconButton>
                   <Menu
                     sx={{ mt: '45px' }}
@@ -328,14 +390,22 @@ const TopNavBar = () => {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                   >
-                    {settings.map(option => (
-                      <MenuItem
-                        key={option}
-                        onClick={() => handleUserMenuClick(option)}
-                      >
-                        <Typography>{option}</Typography>
-                      </MenuItem>
-                    ))}
+                    {settings
+                      .filter(option => {
+                        if (isLoggedIn) {
+                          return option === 'Profile' || option === 'Logout';
+                        } else {
+                          return option === 'Login';
+                        }
+                      })
+                      .map(option => (
+                        <MenuItem
+                          key={option}
+                          onClick={() => handleUserMenuClick(option)}
+                        >
+                          <Typography>{option}</Typography>
+                        </MenuItem>
+                      ))}
                   </Menu>
                 </Box>
               </>
