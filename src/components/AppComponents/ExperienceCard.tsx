@@ -53,7 +53,12 @@ const ExperienceCard: React.FC<Experience> = props => {
             </Typography>
           </Grid>
           <Grid size={{ xs: 12 }}>
-            <Typography variant="body1" fontWeight={400} fontFamily="inter">
+            <Typography
+              variant="body1"
+              fontWeight={400}
+              fontFamily="inter"
+              className="text-gray-400"
+            >
               {organizationName}
             </Typography>
           </Grid>
@@ -70,14 +75,17 @@ const ExperienceCard: React.FC<Experience> = props => {
             </Grid>
           )}
           <Grid size={{ xs: 12 }}>
-            <Typography variant="body2" fontWeight={400} fontFamily="inter">
-              <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            <Typography
+              component="div"
+              variant="body2"
+              fontWeight={400}
+              fontFamily="inter"
+              className="text-gray-300"
+            >
+              <ul className="list-disc space-y-1.5 py-1 pl-5 marker:text-cyan-400/50">
                 {responsibilities &&
                   responsibilities.map((description, index) => (
-                    <li
-                      key={index}
-                      style={{ marginBottom: '4px', marginTop: '4px' }}
-                    >
+                    <li key={index} className="leading-relaxed">
                       {description}
                     </li>
                   ))}
@@ -85,12 +93,12 @@ const ExperienceCard: React.FC<Experience> = props => {
             </Typography>
           </Grid>
           <Grid size={{ xs: 12 }}>
-            <div className="flex flex-wrap gap-2 mt-4">
+            <div className="mt-4 flex flex-wrap gap-2">
               {skillsInvolved &&
                 skillsInvolved.map((tech, index) => (
                   <span
                     key={index}
-                    className="font-bold bg-teal-300 bg-opacity-15 text-teal-900 px-3 py-1 rounded-full text-sm hover:bg-teal-900 hover:text-teal-300 hover:bg-opacity-50 transition"
+                    className="rounded-full border border-cyan-400/25 bg-cyan-400/10 px-3 py-1 text-xs font-semibold tracking-wide text-cyan-100/90 transition hover:border-cyan-400/45 hover:bg-cyan-400/15 sm:text-sm"
                   >
                     {tech}
                   </span>
