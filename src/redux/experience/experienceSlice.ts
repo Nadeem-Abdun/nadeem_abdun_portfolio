@@ -9,6 +9,7 @@ export interface Experience {
   organizationName?: string;
   responsibilities?: string[];
   skillsInvolved?: string[];
+  experienceStatus?: string;
 }
 
 export interface ExperienceState {
@@ -44,6 +45,7 @@ const initialState: ExperienceState = {
         'React Testing Library',
         'Jest',
       ],
+      experienceStatus: 'Active',
     },
   ],
   loading: false,
