@@ -10,6 +10,7 @@ export interface Project {
   skillsInvolved?: string[];
   websiteUrl?: string;
   repositoryUrl?: string;
+  projectStatus?: string;
 }
 
 export interface ProjectState {
@@ -29,6 +30,7 @@ const initialState: ProjectState = {
       skillsInvolved: ['React', 'TypeScript', 'Material-UI', 'CSS'],
       websiteUrl: 'https://nadeem-abdun.github.io/fuel-calculator-app/',
       repositoryUrl: 'https://github.com/Nadeem-Abdun/fuel-calculator-app',
+      projectStatus: 'Active',
     },
     {
       _id: '',
@@ -40,6 +42,7 @@ const initialState: ProjectState = {
       skillsInvolved: ['React', 'TypeScript', 'Material-UI', 'CSS'],
       websiteUrl: 'https://nadeem-abdun.github.io/find-my-chef/',
       repositoryUrl: 'https://github.com/Nadeem-Abdun/find-my-chef',
+      projectStatus: 'Active',
     },
   ],
   loading: false,
