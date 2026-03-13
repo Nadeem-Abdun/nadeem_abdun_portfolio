@@ -16,17 +16,12 @@ export interface ResumeState {
 
 const initialState: ResumeState = {
   activeResume: {
-    _id: '',
-    resumeURL: '',
-    resumeStatus: '',
+    _id: '676c03df6651ed029a6eeaa3',
+    resumeURL:
+      'http://res.cloudinary.com/djlfsq3h2/raw/upload/v1735132126/nadeem_abdun_portfolio/ohwwynsozhzqu6tgzho0.pdf',
+    resumeStatus: 'Active',
   },
-  resumes: [
-    {
-      _id: '',
-      resumeURL: '',
-      resumeStatus: 'InActive',
-    },
-  ],
+  resumes: [],
   loading: false,
   success: null,
 };
