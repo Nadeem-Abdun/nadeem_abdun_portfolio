@@ -24,6 +24,7 @@ import {
 import { PostUserLogin } from '../../services/ServiceControllers';
 import AlertSlider from '../../components/AlertSlider';
 import delay from '../../utils/Delay';
+import { setUserSession } from '../../utils/SessionManager';
 import '../../styles/screenStyles.css';
 
 const AdminLogin = () => {
@@ -72,6 +73,9 @@ const AdminLogin = () => {
     const response = await userLoginApiCall();
     if (response.success) {
       const userData = response?.data;
+      if (userData) {
+        setUserSession(userData);
+      }
       dispatch(loginFormSuccess(userData));
       await delay(3000);
       history('/admin/profile');
