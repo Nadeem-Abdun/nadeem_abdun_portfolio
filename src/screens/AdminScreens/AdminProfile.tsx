@@ -10,11 +10,13 @@ import {
   resetGetUser,
 } from '../../redux/users/usersSlice';
 import { GetUserDetails } from '../../services/ServiceControllers';
+import { verifyUserSession } from '../../utils/SessionManager';
 import AlertSlider from '../../components/AlertSlider';
 import '../../styles/screenStyles.css';
 
 const AdminProfile = () => {
   const dispatch = useDispatch();
+  const isLoggedIn = verifyUserSession();
   const { _id, username, email, profile, loading } = useSelector(
     (state: RootState) => state.user
   );
@@ -63,6 +65,9 @@ const AdminProfile = () => {
 
   useEffect(() => {
     document.title = 'Admin - Profile';
+    if (isLoggedIn) {
+      handleFetchUserDetails();
+    }
   }, []);
   return (
     <Grid
