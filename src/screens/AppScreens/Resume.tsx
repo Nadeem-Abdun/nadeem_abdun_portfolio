@@ -1,113 +1,92 @@
-import { useState, useEffect } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { useBreakpoints } from '../../utils/Breakpoints';
-import { GetActiveResumeData } from '../../services/ServiceControllers';
 import PdfViewer from '../../components/PdfViewer';
 import '../../styles/screenStyles.css';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../redux/store';
 
 const Resume = () => {
   const { isMd, isSm, isXs } = useBreakpoints();
+  const isCompact = isXs || isSm || isMd;
 
-  // Local State
-  const [currentResume, setCurrentResume] = useState({
-    _id: '',
-    resumeURL: '',
-    resumeStatus: '',
-  });
+  const { activeResume } = useSelector((state: RootState) => state.resume);
+  const resumeURL = activeResume?.resumeURL;
 
-  // Api Calls
-  const getActiveResumeDataApiCall = async () => {
-    try {
-      const profileId = '6692a6e7a7900e23064b7c75';
-      const response = await GetActiveResumeData(profileId);
-      if (response.success === true) {
-        setCurrentResume({
-          _id: response.data._id,
-          resumeURL: response.data.resumeURL,
-          resumeStatus: response.data.resumeStatus,
-        });
-      } else {
-        setCurrentResume({
-          _id: '',
-          resumeURL: '',
-          resumeStatus: '',
-        });
-      }
-      return response;
-    } catch (error) {
-      console.error('Unexpected error: ' + error);
-    }
-  };
-
-  // const getDownloadResumeApiCall = async () => {
-  //     try {
-  //         const id = currentResume._id || "";
-  //         const response = await GetDownloadResume(id);
-  //         if (response) {
-  //             const pdfUrl = URL.createObjectURL(response);
-  //             window.open(pdfUrl);
-  //         } else {
-  //             console.error("Failed to download resume, Please try again later."); // Need to work on interactive user message method in future
-  //         }
-  //         return response;
-  //     } catch (error) {
-  //         console.error("Unexpected error: " + error);
-  //     }
-  // };
-
-  // Submit Functions
-  // const handleDownloadResumeSubmit = () => {
-  //     if (currentResume._id) {
-  //         getDownloadResumeApiCall();
-  //     } else {
-  //         console.error("Resume Id Missing or Invalid");
-  //     }
-  // };
-
-  useEffect(() => {
-    getActiveResumeDataApiCall();
-  }, []);
   return (
-    <div
+    <Box
       id="section-resume"
-      className={`flex flex-col justify-center items-start ${isXs || isSm || isMd ? 'my-3' : 'my-10'} h-[90%]`}
+      sx={{
+        mx: 'auto',
+        width: 1,
+        maxWidth: '72rem',
+        my: isCompact ? 1.5 : 5,
+        display: 'flex',
+        flexDirection: 'column',
+      }}
     >
-      <Grid container justifyContent="flex-start" rowGap={2} className="h-full">
-        <Grid size={{ xs: 12 }} className="h-[5%]">
-          <Typography variant="h4" fontWeight={500} fontFamily="inter">
-            Resume
-          </Typography>
-        </Grid>
-        <Grid
-          container
-          rowGap={2}
-          className={`${!isXs && 'card'} ${!isXs && 'px-3'} ${!isXs && 'py-3'} h-[95%]`}
+      <Stack spacing={2}>
+        <Typography
+          variant="h4"
+          fontWeight={500}
+          fontFamily="inter"
+          sx={{ letterSpacing: '-0.02em', color: 'grey.100' }}
         >
-          <Grid
-            size={{ xs: 12 }}
-            // className={`${(isXs) ? "h-[75%]" : (isSm) ? "h-[93%]" : "h-[90%]"}`}
+          Resume
+        </Typography>
+
+        {resumeURL ? (
+          <Box
+            className={isXs ? undefined : 'card'}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden',
+              borderRadius: 2,
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow:
+                '0 4px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(34, 211, 238, 0.1)',
+              px: 0,
+              py: 0,
+              ...(isXs ? { bgcolor: 'rgba(255,255,255,0.04)' } : {}),
+            }}
           >
-            {/* <iframe
-                            src="https://drive.google.com/file/d/1Df_7kkdNqnadwSUrBAFTM2JMTUB8179E/preview"
-                            frameBorder="0"
-                            scrolling="auto"
-                            height="100%"
-                            width="100%"
-                        /> */}
-            {currentResume.resumeURL && (
-              <PdfViewer
-                pdfUrl={currentResume.resumeURL}
-                height="100%"
-                width="100%"
-              />
-            )}
-          </Grid>
-          {/* <Grid item xs={12} className={`${(isXs) ? "h-[25%]" : (isSm) ? "h-[7%]" : "h-[10%]"}`}>
-                        <Button variant="contained" color="info" fullWidth onClick={() => handleDownloadResumeSubmit()}>Download</Button>
-                    </Grid> */}
-        </Grid>
-      </Grid>
-    </div>
+            <Box
+              sx={{
+                height: { xs: '85dvh', sm: '82dvh' },
+                minHeight: { xs: 480, sm: 560 },
+                maxHeight: 960,
+                bgcolor: 'rgba(0,0,0,0.25)',
+                '& iframe': {
+                  display: 'block',
+                  border: 0,
+                },
+              }}
+            >
+              <PdfViewer pdfUrl={resumeURL} height="100%" width="100%" />
+            </Box>
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              borderRadius: 2,
+              border: '1px dashed rgba(255,255,255,0.12)',
+              bgcolor: 'rgba(255,255,255,0.03)',
+              px: 3,
+              py: 5,
+              textAlign: 'center',
+            }}
+          >
+            <Typography
+              variant="body1"
+              fontFamily="inter"
+              sx={{ color: 'grey.500' }}
+            >
+              No resume file is available yet.
+            </Typography>
+          </Box>
+        )}
+      </Stack>
+    </Box>
   );
 };
 
