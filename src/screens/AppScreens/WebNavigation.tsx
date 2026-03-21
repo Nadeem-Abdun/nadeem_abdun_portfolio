@@ -185,55 +185,65 @@ const WebNavigation = () => {
           alignItems="center"
           size={{ xs: 12 }}
         >
-          <Grid>
-            <IconButton
-              className="icon-btn"
-              aria-label="GitHub"
-              href={githubUrl as string}
-              target="_blank"
-            >
-              <GithubIcon />
-            </IconButton>
-          </Grid>
-          <Grid>
-            <IconButton
-              className="icon-btn"
-              aria-label="LinkedIn"
-              href={linkedInUrl as string}
-              target="_blank"
-            >
-              <LinkedInIcon />
-            </IconButton>
-          </Grid>
-          <Grid>
-            <IconButton
-              className="icon-btn"
-              aria-label="Discord"
-              href={discordUrl as string}
-              target="_blank"
-            >
-              <DiscordIcon />
-            </IconButton>
-          </Grid>
-          <Grid>
-            <IconButton
-              className="icon-btn"
-              aria-label="TwitterX"
-              href={twitterUrl as string}
-              target="_blank"
-            >
-              <TwitterXIcon />
-            </IconButton>
-          </Grid>
-          <Grid>
-            <IconButton
-              className="icon-btn"
-              aria-label="Email"
-              href={`mailto:${mailToId}` as string}
-            >
-              <MailIcon />
-            </IconButton>
-          </Grid>
+          {githubUrl && (
+            <Grid>
+              <IconButton
+                className="icon-btn"
+                aria-label="GitHub"
+                href={githubUrl as string}
+                target="_blank"
+              >
+                <GithubIcon />
+              </IconButton>
+            </Grid>
+          )}
+          {linkedInUrl && (
+            <Grid>
+              <IconButton
+                className="icon-btn"
+                aria-label="LinkedIn"
+                href={linkedInUrl as string}
+                target="_blank"
+              >
+                <LinkedInIcon />
+              </IconButton>
+            </Grid>
+          )}
+          {discordUrl && (
+            <Grid>
+              <IconButton
+                className="icon-btn"
+                aria-label="Discord"
+                href={discordUrl as string}
+                target="_blank"
+              >
+                <DiscordIcon />
+              </IconButton>
+            </Grid>
+          )}
+          {twitterUrl && (
+            <Grid>
+              <IconButton
+                className="icon-btn"
+                aria-label="TwitterX"
+                href={twitterUrl as string}
+                target="_blank"
+              >
+                <TwitterXIcon />
+              </IconButton>
+            </Grid>
+          )}
+          {mailToId && (
+            <Grid>
+              <IconButton
+                className="icon-btn"
+                aria-label="Email"
+                href={`mailto:${mailToId}` as string}
+              >
+                <MailIcon />
+              </IconButton>
+            </Grid>
+          )}
         </Grid>
       </Grid>
     </div>
