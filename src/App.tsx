@@ -12,6 +12,7 @@ import MobileNavigation from './screens/AppScreens/MobileNavigation';
 import WallOfCode from './screens/AppScreens/WallOfCode';
 import Summary from './screens/AppScreens/Summary';
 import TopNavBar from './components/TopNavBar';
+import ProtectedRoute from './components/ProtectedRoute';
 import AdminPanel from './screens/AdminScreens/AdminPanel';
 import AdminSignup from './screens/AdminScreens/AdminSignup';
 import AdminLogin from './screens/AdminScreens/AdminLogin';
@@ -19,6 +20,13 @@ import AdminHome from './screens/AdminScreens/AdminHome';
 import AdminProfile from './screens/AdminScreens/AdminProfile';
 import { useDispatch } from 'react-redux';
 import dataLoader from './utils/DataLoader';
+import checkServerHealth from './utils/CheckServerHealth';
+import {
+  checkServerHealthFailure,
+  checkServerHealthSuccess,
+  resetCheckServerHealth,
+  submitCheckServerHealth,
+} from './redux/health/healthSlice';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,13 +43,32 @@ const App = () => {
   ];
 
   // Event tracker for the cursor light background
-  document.addEventListener('mousemove', e => {
+  const handleMouseMove = (e: MouseEvent) => {
     document.documentElement.style.setProperty('--cursor-x', e.clientX + 'px');
     document.documentElement.style.setProperty('--cursor-y', e.clientY + 'px');
-  });
+  };
 
+  // Event tracker for the cursor light background
   useEffect(() => {
-    dataLoader({ profileId, dispatch });
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  // Check server health and load data if server is up
+  useEffect(() => {
+    dispatch(resetCheckServerHealth());
+    dispatch(submitCheckServerHealth());
+    checkServerHealth().then(isServerUp => {
+      if (isServerUp) {
+        dispatch(checkServerHealthSuccess());
+        dataLoader({ profileId, dispatch });
+      } else {
+        dispatch(checkServerHealthFailure());
+        console.error('Server is down');
+      }
+    });
   }, [dispatch]);
 
   return (
@@ -87,19 +114,23 @@ const App = () => {
         <Route
           path="/admin/profile"
           element={
-            <AdminLayout
-              navbarElement={<TopNavBar />}
-              childElement={<AdminProfile />}
-            />
+            <ProtectedRoute>
+              <AdminLayout
+                navbarElement={<TopNavBar />}
+                childElement={<AdminProfile />}
+              />
+            </ProtectedRoute>
           }
         />
         <Route
           path="/admin/home"
           element={
-            <AdminLayout
-              navbarElement={<TopNavBar />}
-              childElement={<AdminHome />}
-            />
+            <ProtectedRoute>
+              <AdminLayout
+                navbarElement={<TopNavBar />}
+                childElement={<AdminHome />}
+              />
+            </ProtectedRoute>
           }
         />
       </Routes>
