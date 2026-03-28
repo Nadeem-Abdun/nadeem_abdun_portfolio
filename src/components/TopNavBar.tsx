@@ -38,7 +38,7 @@ import {
 
 const pages = [
   'Portfolio',
-  'Entry Panel',
+  'Admin Panel',
   'Signup',
   'Login',
   'Profile',
@@ -57,6 +57,7 @@ const TopNavBar = () => {
 
   // Redux State Management
   const { username } = useSelector((state: RootState) => state.user);
+  const { serverHealthy } = useSelector((state: RootState) => state.health);
 
   const avatarDisplayName = username || sessionUserName || '';
 
@@ -98,16 +99,40 @@ const TopNavBar = () => {
   };
   const handleUserMenuClick = (menuName: string) => {
     if (menuName === 'Profile') {
-      history('/admin/profile');
-      handleCloseUserMenu();
+      if (!serverHealthy) {
+        handleAlertSliderOpen(
+          'error',
+          'Service unavailable. Please try again later.'
+        );
+        return;
+      } else {
+        history('/admin/profile');
+        handleCloseUserMenu();
+      }
     }
     if (menuName === 'Logout') {
-      handleLogOutDialogOpen();
-      handleCloseUserMenu();
+      if (!serverHealthy) {
+        handleAlertSliderOpen(
+          'error',
+          'Service unavailable. Please try again later.'
+        );
+        return;
+      } else {
+        handleLogOutDialogOpen();
+        handleCloseUserMenu();
+      }
     }
     if (menuName === 'Login') {
-      history('/admin/login');
-      handleCloseUserMenu();
+      if (!serverHealthy) {
+        handleAlertSliderOpen(
+          'error',
+          'Service unavailable. Please try again later.'
+        );
+        return;
+      } else {
+        history('/admin/login');
+        handleCloseUserMenu();
+      }
     }
   };
 
@@ -123,7 +148,7 @@ const TopNavBar = () => {
   const handleLogOutSubmit = async () => {
     dispatch(submitLogoutForm());
     const response = await userLogoutApiCall();
-    if (response.success) {
+    if (response && response.success) {
       clearUserSession();
       handleLogOutDialogClose();
       dispatch(logoutFormSuccess());
@@ -147,30 +172,63 @@ const TopNavBar = () => {
     setAlertSliderOpen(false);
   };
 
+  // Page Navigations Functions
   const handlePageNavigations = (page: string) => {
     if (page === 'Portfolio') {
       history('/');
       handleCloseNavMenu();
     }
-    if (page === 'Entry Panel') {
+    if (page === 'Admin Panel') {
       history('/admin');
       handleCloseNavMenu();
     }
     if (page === 'Signup') {
-      history('/admin/signup');
-      handleCloseNavMenu();
+      if (!serverHealthy) {
+        handleAlertSliderOpen(
+          'error',
+          'Service unavailable. Please try again later.'
+        );
+        return;
+      } else {
+        history('/admin/signup');
+        handleCloseNavMenu();
+      }
     }
     if (page === 'Login') {
-      history('/admin/login');
-      handleCloseNavMenu();
+      if (!serverHealthy) {
+        handleAlertSliderOpen(
+          'error',
+          'Service unavailable. Please try again later.'
+        );
+        return;
+      } else {
+        history('/admin/login');
+        handleCloseNavMenu();
+      }
     }
     if (page === 'Profile') {
-      history('/admin/profile');
-      handleCloseNavMenu();
+      if (!serverHealthy) {
+        handleAlertSliderOpen(
+          'error',
+          'Service unavailable. Please try again later.'
+        );
+        return;
+      } else {
+        history('/admin/profile');
+        handleCloseNavMenu();
+      }
     }
     if (page === 'Home') {
-      history('/admin/home');
-      handleCloseNavMenu();
+      if (!serverHealthy) {
+        handleAlertSliderOpen(
+          'error',
+          'Service unavailable. Please try again later.'
+        );
+        return;
+      } else {
+        history('/admin/home');
+        handleCloseNavMenu();
+      }
     }
   };
   const handlePageTitleUpdate = () => {
@@ -248,7 +306,7 @@ const TopNavBar = () => {
                         } else {
                           return (
                             page === 'Portfolio' ||
-                            page === 'Entry Panel' ||
+                            page === 'Admin Panel' ||
                             page === 'Signup' ||
                             page === 'Login'
                           );
@@ -348,7 +406,7 @@ const TopNavBar = () => {
                       } else {
                         return (
                           page === 'Portfolio' ||
-                          page === 'Entry Panel' ||
+                          page === 'Admin Panel' ||
                           page === 'Signup' ||
                           page === 'Login'
                         );
