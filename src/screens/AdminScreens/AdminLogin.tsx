@@ -56,6 +56,7 @@ const AdminLogin = () => {
     } catch (error) {
       console.error('Unexpected error: ' + error);
       handleAlertSliderOpen('error', 'Unexpected error encountered');
+      return undefined;
     }
   };
 
@@ -70,17 +71,23 @@ const AdminLogin = () => {
   // Login Submit Functions
   const handleLoginFormSubmit = async () => {
     dispatch(submitLoginForm());
-    const response = await userLoginApiCall();
-    if (response.success) {
+    try {
+      const response = await userLoginApiCall();
       const userData = response?.data;
-      if (userData) {
+      if (
+        response?.success === true &&
+        userData &&
+        typeof userData === 'object'
+      ) {
         setUserSession(userData);
+        dispatch(loginFormSuccess(userData));
+        await delay(3000);
+        history('/admin/profile');
+        dispatch(resetLoginForm());
+      } else {
+        dispatch(loginFormFailure());
       }
-      dispatch(loginFormSuccess(userData));
-      await delay(3000);
-      history('/admin/profile');
-      dispatch(resetLoginForm());
-    } else {
+    } catch {
       dispatch(loginFormFailure());
     }
   };
