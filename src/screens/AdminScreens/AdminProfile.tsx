@@ -41,7 +41,7 @@ const AdminProfile = () => {
   const handleFetchUserDetails = async () => {
     dispatch(submitGetUser());
     const response = await userDetailsApiCall();
-    if (response.success) {
+    if (response && response.success) {
       const userData = response?.data;
       dispatch(getUserSuccess(userData));
       dispatch(resetGetUser());
