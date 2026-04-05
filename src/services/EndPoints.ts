@@ -1,6 +1,6 @@
 const serviceUrls = {
-  baseUrl: 'http://localhost:4000',
-  // baseUrl: "https://nadeem-abdun-portfolio-backend.onrender.com",
+  // baseUrl: 'http://localhost:4000',
+  baseUrl: 'https://nadeem-abdun-portfolio-backend.onrender.com',
 };
 const apiVersionV1 = '/api/v1';
 
@@ -87,4 +87,8 @@ export const contactMePaths = {
     `${serviceUrls.baseUrl}${apiVersionV1}/contactMe/reply/${id}`,
   DeleteContactForm: (id: string) =>
     `${serviceUrls.baseUrl}${apiVersionV1}/contactMe/delete/${id}`,
+};
+
+export const healthCheckPaths = {
+  GetHealthCheckStatus: `${serviceUrls.baseUrl}${apiVersionV1}/health/status`,
 };
