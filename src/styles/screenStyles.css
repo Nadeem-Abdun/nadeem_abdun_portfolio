@@ -25,12 +25,12 @@
     left: 0;
     width: 0;
     height: 2px;
-    background-color: cyan;
+    background-color: #22d3ee;
     transition: width 0.5s ease-in-out;
 }
 
 .underline-hover:hover {
-    color: cyan;
+    color: #22d3ee;
 }
 
 .underline-hover:hover::after {
@@ -38,9 +38,9 @@
 }
 
 .icon-btn:hover svg {
-    fill: #00FFFF;
+    fill: #22d3ee;
 }
 
 .easter-egg:hover {
-    color: #00FFFF;
+    color: #22d3ee;
 }
