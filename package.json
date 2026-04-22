@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "React + TypeScript + Vite + Tailwind CSS + ESLint + Prettier + Husky + Lint-Staged",
   "type": "module",
+  "homepage": "https://Nadeem-Abdun.github.io/nadeem_abdun_portfolio",
   "keywords": [],
   "author": "Nadeem Abdun",
   "license": "MIT",
