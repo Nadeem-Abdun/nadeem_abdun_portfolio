@@ -1,26 +1,29 @@
 interface DateOptionType {
-    month?: "numeric" | "2-digit" | "short" | "long" | "narrow",
-    year?: "numeric" | "2-digit",
+  month?: 'numeric' | '2-digit' | 'short' | 'long' | 'narrow';
+  year?: 'numeric' | '2-digit';
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const formatToLocaleString = (date: any) => {
-    date = new Date(date);
-    const options: DateOptionType = { month: "short", year: "numeric" };
-    return new Intl.DateTimeFormat("en-US", options).format(date);
+  date = new Date(date);
+  const options: DateOptionType = { month: 'short', year: 'numeric' };
+  return new Intl.DateTimeFormat('en-US', options).format(date);
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const formatToStringYYYYMMDD = (date: any) => {
-    if (date === "") {
-        return new Date();
-    }
-    date = new Date(date);
-    const year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    if (month < 10) {
-        month = '0' + month;
-    }
-    if (day < 10) {
-        day = '0' + day;
-    }
-    return `${year}-${month}-${day}`;
+  if (date === '') {
+    return new Date();
+  }
+  date = new Date(date);
+  const year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  if (month < 10) {
+    month = '0' + month;
+  }
+  if (day < 10) {
+    day = '0' + day;
+  }
+  return `${year}-${month}-${day}`;
 };
