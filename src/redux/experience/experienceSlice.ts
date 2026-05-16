@@ -28,11 +28,11 @@ const initialState: ExperienceState = {
         'Development Engineer Consultant for JPMorgan Chase (Asia-Pacific Region)',
       organizationName: 'Bluepal Solutions Pvt. Ltd.',
       responsibilities: [
-        'Worked as a consultant on behalf of Bluepal Solutions for JPMorgan Chase, contributing to both consumer-facing and internal applications.',
+        'Worked as a consultant on behalf of BluePal for JP Morgan Chase Bank, contributing to both consumer-facing and internal applications.',
         'Key projects:',
         '1. Story by J.P. Morgan: Collaborated with a team to develop a full-scale rent management application for consumers, implementing features and improving usability and performance.',
-        '2. Line of Business: Contributed to the development of a streamlined bank-to-bank transaction platform within JPMorgan Chase, enhancing operational efficiency.',
-        '3. Connected Archive: Worked as part of a team to build an error-tracking system, enabling admin users to resolve failed transactions and monitor system errors efficiently.',
+        '2. Line of Business: Contributed to the development of a streamlined bank-to-bank transactions platform within JP Morgan Chase, enhancing operational efficiency.',
+        '3. Connected Archive: Worked as part of a team to build an error-tracking system, enabling admin users to resolve failed transactions and monitor and diagnose system errors efficiently.',
         'Collaborated with cross-functional teams across the Asia-Pacific region to deliver scalable solutions.',
       ],
       skillsInvolved: [
@@ -56,7 +56,7 @@ const initialState: ExperienceState = {
       jobTitle: 'Frontend Developer Consultant for Kernex Microsystems',
       organizationName: 'Bluepal Solutions Pvt. Ltd.',
       responsibilities: [
-        'Worked as a frontend developer consultant for Kernex Microsystems, building a locomotive tracking and route planning application that integrates real-time data from centralized Kavach railway safety systems.',
+        'Worked as a consultant frontend developer for Kernex Microsystems, building a locomotive tracking and route planning application that integrated real-time data from centralized Kavach railway safety systems for the Indian Railways.',
         'Designed and developed interactive, data-rich UI components for tracking, scheduling, and operational insights.',
       ],
       skillsInvolved: [
@@ -80,7 +80,7 @@ const initialState: ExperienceState = {
       organizationName: 'Bluepal Solutions Pvt. Ltd.',
       responsibilities: [
         'Contributing to the development and improvement of the database UI layer and platform utilities.',
-        'Developing end-to-end test suites using Playwright across multiple applications, covering UI component behavior, user flows, API/backend integration, and cross-browser compatibility.',
+        'Building end-to-end test suites using Playwright across multiple applications, covering UI behavior, user flows, API integration, cross-browser compatibility, and identifying and resolving application vulnerabilities.',
       ],
       skillsInvolved: [
         'HTML',
