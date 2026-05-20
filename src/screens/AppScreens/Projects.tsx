@@ -1,44 +1,70 @@
-import React from "react";
-import { Grid, Typography } from "@mui/material";
-import { useBreakpoints } from "../../utils/Breakpoints";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import ProjectCard from "../../components/AppComponents/ProjectCard";
+import { Grid, Typography } from '@mui/material';
+import { useBreakpoints } from '../../utils/Breakpoints';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../../redux/store';
+import ProjectCard from '../../components/AppComponents/ProjectCard';
 
 const Projects = () => {
+  const { isMd, isSm, isXs } = useBreakpoints();
+  const isCompact = isXs || isSm || isMd;
 
-    const { isXl, isLg, isMd, isSm, isXs } = useBreakpoints();
+  const { projects } = useSelector((state: RootState) => state.project);
 
-    const { projects } = useSelector((state: RootState) => state.project);
-    const dispatch = useDispatch();
+  const filteredProjects = projects
+    ? [...projects].filter(project => project.projectStatus === 'Active')
+    : [];
 
-    return (
-        <div id='section-projects' className={`flex flex-col justify-center items-center ${(isXs || isSm || isMd) ? 'my-3' : 'my-10'}`}>
-            <Grid container xs={12} justifyContent='flex-start' alignItems='center' rowSpacing={2}>
-                <Grid item xs={12}>
-                    <Typography variant="h4" fontWeight={500} fontFamily='inter'>Projects</Typography>
-                </Grid>
-                <Grid container item xs={12} justifyContent="flex-start" alignItems="flex-start" rowGap={1}>
-                    {projects && projects.map((project, index) => {
-                        const { projectPicture, title, description, skillsInvolved, websiteUrl, repositoryUrl } = project;
-                        return (
-                            <Grid item xs={12}>
-                                <ProjectCard
-                                    key={index}
-                                    projectPicture={projectPicture}
-                                    title={title}
-                                    description={description}
-                                    skillsInvolved={skillsInvolved}
-                                    websiteUrl={websiteUrl}
-                                    repositoryUrl={repositoryUrl}
-                                />
-                            </Grid>
-                        )
-                    })}
-                </Grid>
-            </Grid>
-        </div>
-    )
-}
+  return (
+    <div
+      id="section-projects"
+      className={`mx-auto flex w-full max-w-6xl flex-col ${isCompact ? 'my-3' : 'my-10'}`}
+    >
+      <Grid
+        container
+        size={{ xs: 12 }}
+        justifyContent="flex-start"
+        alignItems="flex-start"
+        rowSpacing={2}
+      >
+        <Grid size={{ xs: 12 }}>
+          <Typography
+            variant="h4"
+            fontWeight={500}
+            fontFamily="inter"
+            className="tracking-tight"
+          >
+            Projects
+          </Typography>
+        </Grid>
+        <Grid size={{ xs: 12 }}>
+          {filteredProjects.length === 0 ? (
+            <Typography
+              variant="body1"
+              fontFamily="inter"
+              className="text-gray-500"
+            >
+              No projects to show yet.
+            </Typography>
+          ) : (
+            <ul className="m-0 flex list-none flex-col gap-5 p-0 sm:gap-6">
+              {filteredProjects.map((project, index) => (
+                <li key={project._id || `${project.title}-${index}`}>
+                  <ProjectCard
+                    projectPicture={project.projectPicture}
+                    title={project.title}
+                    description={project.description}
+                    skillsInvolved={project.skillsInvolved}
+                    websiteUrl={project.websiteUrl}
+                    repositoryUrl={project.repositoryUrl}
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
+        </Grid>
+      </Grid>
+    </div>
+  );
+};
 
-export default Projects
+export default Projects;
