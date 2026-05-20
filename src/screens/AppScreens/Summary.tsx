@@ -23,7 +23,7 @@ const Summary = () => {
         >
           &quot;Loosely sketched on paper, meticulously coded in Visual Studio
           Code. Crafted with React, styled with Material UI and Tailwind CSS,
-          and finally deployed on Vercel with love&#128151;.&quot;
+          and finally deployed on GitHub Pages with love&#128151;.&quot;
         </Typography>
       </div>
       <div className={`text-center ${isXs || isSm ? 'mt-4' : ''}`}>

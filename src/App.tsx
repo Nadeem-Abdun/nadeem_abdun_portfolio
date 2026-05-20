@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AppLayout from './layout/AppLayout';
 import AdminLayout from './layout/AdminLayout';

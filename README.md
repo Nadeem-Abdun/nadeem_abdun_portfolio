@@ -4,7 +4,23 @@ A personal portfolio web application showcasing professional experience, project
 
 ## Live Demo
 
-Deployed on Vercel — backend hosted on Render.
+Frontend: [GitHub Pages](https://Nadeem-Abdun.github.io/nadeem_abdun_portfolio/) — backend hosted on Render.
+
+## Deployment to GitHub Pages
+
+1. Push to `main` — GitHub Actions runs `.github/workflows/deploy.yml`:
+   - `npm ci → npm run lint → npm run build`
+   - Uploads `dist/` as a Pages artifact
+   - Deploys via `actions/deploy-pages@v4`
+2. In your repo settings: **Pages → Build and deployment → Source = GitHub Actions**.
+3. SPA deep-link fallback: `public/404.html` uses the [spa-github-pages](https://github.com/rafgraph/spa-github-pages) trick to bounce deep URLs back through `index.html` (already wired in `index.html`).
+4. Ensure your Render backend CORS allows `https://nadeem-abdun.github.io` (with credentials) so API calls and admin cookies work from the Pages origin.
+
+If you fork or rename the repo, update:
+
+- `homepage` in `package.json`
+- `base` in `vite.config.ts` (`'/<repo-name>/'`)
+- `pathSegmentsToKeep` in `public/404.html` (likely stays at `1`)
 
 ## Tech Stack
 
