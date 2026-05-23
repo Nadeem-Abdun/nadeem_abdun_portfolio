@@ -7,7 +7,7 @@ import {
   TwitterXIcon,
   DiscordIcon,
   MailIcon,
-} from '../../assets/SvgIcons';
+} from '../../assets/svg/SvgIcons';
 import { useNavigate } from 'react-router-dom';
 import Typewriter from 'typewriter-effect';
 import { useSelector } from 'react-redux';
