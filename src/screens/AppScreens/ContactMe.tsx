@@ -31,7 +31,7 @@ import {
   LinkedInIcon,
   DiscordIcon,
   TwitterXIcon,
-} from '../../assets/SvgIcons';
+} from '../../assets/svg/SvgIcons';
 import '../../styles/screenStyles.css';
 
 const ContactMe = () => {

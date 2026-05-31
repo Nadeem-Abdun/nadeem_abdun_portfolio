@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { Close, Launch, OpenInNew } from '@mui/icons-material';
 import { Project } from '../../redux/project/projectSlice';
+import projectPlaceholder from '../../assets/svg/Project_Placeholder_Image.svg';
 import '../../styles/componentStyles.css';
 
 const ProjectCard: React.FC<Project> = props => {
@@ -24,6 +25,15 @@ const ProjectCard: React.FC<Project> = props => {
   } = props;
 
   const [iframeOpen, setIframeOpen] = useState(false);
+  const [imgFailed, setImgFailed] = useState(false);
+
+  const hasPicture = Boolean(projectPicture?.trim());
+  const thumbnailSrc =
+    hasPicture && !imgFailed ? projectPicture : projectPlaceholder;
+
+  useEffect(() => {
+    setImgFailed(false);
+  }, [projectPicture]);
 
   const openPreview = () => {
     if (websiteUrl) setIframeOpen(true);
@@ -34,16 +44,26 @@ const ProjectCard: React.FC<Project> = props => {
       className="card"
       sx={{ width: 1, px: { xs: 1.5, sm: 2 }, py: { xs: 2, sm: 2.5 } }}
     >
-      <Stack
-        direction={{ xs: 'column', sm: 'row' }}
-        spacing={{ xs: 2.5, sm: 3 }}
-        alignItems="flex-start"
+      <Box
+        sx={{
+          display: { xs: 'flex', sm: 'grid' },
+          flexDirection: { xs: 'column' },
+          gap: { xs: 2.5, sm: 3 },
+          gridTemplateColumns: {
+            sm: 'minmax(0, 220px) minmax(0, 1fr)',
+            md: 'minmax(0, 260px) minmax(0, 1fr)',
+          },
+          alignItems: { sm: 'stretch' },
+        }}
       >
         <Box
           sx={{
             width: 1,
+            minWidth: 0,
+            minHeight: 0,
+            position: 'relative',
             flexShrink: 0,
-            maxWidth: { xs: 1, sm: 220, md: 260 },
+            aspectRatio: { xs: '1 / 1', sm: 'auto' },
           }}
         >
           <Tooltip
@@ -60,8 +80,10 @@ const ProjectCard: React.FC<Project> = props => {
                 p: 0,
                 minWidth: 0,
                 width: 1,
+                height: { xs: 1, sm: 'auto' },
                 display: 'block',
-                position: 'relative',
+                position: { xs: 'relative', sm: 'absolute' },
+                inset: { sm: 0 },
                 overflow: 'hidden',
                 borderRadius: 2,
                 textTransform: 'none',
@@ -88,15 +110,23 @@ const ProjectCard: React.FC<Project> = props => {
             >
               <Box
                 component="img"
-                src={projectPicture}
-                alt={title ? `${title} thumbnail` : 'Project thumbnail'}
+                src={thumbnailSrc}
+                alt={
+                  hasPicture && !imgFailed
+                    ? title
+                      ? `${title} thumbnail`
+                      : 'Project thumbnail'
+                    : 'Project placeholder'
+                }
                 loading="lazy"
                 className="project-card-thumb"
+                onError={() => setImgFailed(true)}
                 sx={{
                   display: 'block',
                   width: 1,
-                  aspectRatio: '1 / 1',
-                  objectFit: 'cover',
+                  height: 1,
+                  objectFit: 'contain',
+                  objectPosition: 'center',
                   transition: 'transform 0.3s ease',
                 }}
               />
@@ -119,7 +149,7 @@ const ProjectCard: React.FC<Project> = props => {
           </Tooltip>
         </Box>
 
-        <Stack spacing={1.5} sx={{ minWidth: 0, flex: 1 }}>
+        <Stack spacing={1.5} sx={{ minWidth: 0 }}>
           <Stack
             direction="row"
             flexWrap="wrap"
@@ -206,7 +236,7 @@ const ProjectCard: React.FC<Project> = props => {
             </Stack>
           ) : null}
         </Stack>
-      </Stack>
+      </Box>
 
       <Dialog
         open={iframeOpen}

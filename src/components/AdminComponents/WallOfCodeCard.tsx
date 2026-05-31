@@ -12,6 +12,8 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Stack,
+  Box,
 } from '@mui/material';
 import { useBreakpoints } from '../../utils/Breakpoints';
 import { Add } from '@mui/icons-material';
@@ -313,29 +315,92 @@ const WallOfCodeCard: React.FC<Props> = props => {
             className="mt-2"
           >
             {dialogType === 'add' ? (
-              <Grid size={{ xs: 12 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="skill_select_label">Skill</InputLabel>
-                  <Select
-                    labelId="skill_select_label"
-                    id="skill_select_label"
-                    value={selectedSkill.skillName}
-                    label="Skill"
-                    onChange={event =>
-                      addSkillOnChange(event.target.value as string)
-                    }
-                  >
-                    {availableSkillsList &&
-                      availableSkillsList.map((item, index) => {
-                        return (
-                          <MenuItem key={index} value={item.skillName}>
-                            {item.skillName}
-                          </MenuItem>
-                        );
-                      })}
-                  </Select>
-                </FormControl>
-              </Grid>
+              <>
+                <Grid size={{ xs: 12 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="skill_select_label">Skill</InputLabel>
+                    <Select
+                      labelId="skill_select_label"
+                      id="skill_select"
+                      value={selectedSkill.skillName}
+                      label="Skill"
+                      onChange={event =>
+                        addSkillOnChange(event.target.value as string)
+                      }
+                      renderValue={value => (
+                        <Stack
+                          direction="row"
+                          spacing={1.5}
+                          alignItems="center"
+                        >
+                          {selectedSkill.skillIcon ? (
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                '& svg': { width: 28, height: 28 },
+                              }}
+                            >
+                              <SvgIconProvider
+                                iconReference={selectedSkill.skillIcon}
+                              />
+                            </Box>
+                          ) : null}
+                          <span>{value}</span>
+                        </Stack>
+                      )}
+                    >
+                      {availableSkillsList?.map(item => (
+                        <MenuItem key={item._id} value={item.skillName}>
+                          <Stack
+                            direction="row"
+                            spacing={1.5}
+                            alignItems="center"
+                          >
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                '& svg': { width: 28, height: 28 },
+                              }}
+                            >
+                              <SvgIconProvider iconReference={item.skillIcon} />
+                            </Box>
+                            <span>{item.skillName}</span>
+                          </Stack>
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
+                {selectedSkill.skillIcon ? (
+                  <Grid size={{ xs: 12 }}>
+                    <Stack
+                      direction="row"
+                      spacing={2}
+                      alignItems="center"
+                      justifyContent="center"
+                      className="experience-card py-3 px-3"
+                    >
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          '& svg': { width: 48, height: 48 },
+                        }}
+                      >
+                        <SvgIconProvider
+                          iconReference={selectedSkill.skillIcon}
+                        />
+                      </Box>
+                      <Typography
+                        variant="body1"
+                        fontWeight={500}
+                        fontFamily="inter"
+                      >
+                        {selectedSkill.skillName}
+                      </Typography>
+                    </Stack>
+                  </Grid>
+                ) : null}
+              </>
             ) : (
               <Grid size={{ xs: 12 }}>
                 <Typography variant="body1" fontWeight={500} fontFamily="inter">

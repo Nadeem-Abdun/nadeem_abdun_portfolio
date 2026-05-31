@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import FuelCalculatorImg from '../../assets/images/Fuel_Calculator.png';
+import FindMyChefImg from '../../assets/images/Find_My_Chef.png';
+import SilentPoolImg from '../../assets/images/SilentPool.png';
 
 export interface Project {
   _id?: string;
@@ -23,25 +25,62 @@ const initialState: ProjectState = {
   projects: [
     {
       _id: '',
-      projectPicture: FuelCalculatorImg,
-      title: 'Fuel Calculator',
+      projectPicture: SilentPoolImg,
+      title: 'SilentPool',
       description:
-        'Fuel Calculator is a web app that efficiently estimates fuel consumption and costs before your trip, helping you plan with confidence based on current fuel prices.',
-      skillsInvolved: ['React', 'TypeScript', 'Material-UI', 'CSS'],
-      websiteUrl: 'https://nadeem-abdun.github.io/fuel-calculator-app/',
-      repositoryUrl: 'https://github.com/Nadeem-Abdun/fuel-calculator-app',
+        'SilentPool is a privacy-first messaging app for anonymous, encrypted, and ephemeral group conversations. Users get a random alias on launch, create or join private chat pools with a unique ID, and communicate in real time with AES-encrypted messages, no sign-up and no personal data required.',
+      skillsInvolved: [
+        'React Native',
+        'Expo',
+        'TypeScript',
+        'React Native Paper',
+        'Node.js',
+        'Express',
+        'MongoDB',
+        'Socket.io',
+      ],
+      websiteUrl: '',
+      repositoryUrl: 'https://github.com/Nadeem-Abdun/SilentPool',
       projectStatus: 'Active',
     },
     {
       _id: '',
-      projectPicture:
-        'https://nadeem-abdun.github.io/find-my-chef/static/media/HeaderNavLogo.f796b4f86a0b2cb06f7e.png',
+      projectPicture: FindMyChefImg,
       title: 'Find My Chef!',
       description:
-        'Find My Chef! is the ultimate classified site connecting restaurant owners with top-tier chefs. Empowering chefs to discover dream jobs and assisting restaurant owners in finding the perfect culinary talent for their establishments.',
-      skillsInvolved: ['React', 'TypeScript', 'Material-UI', 'CSS'],
+        'Find My Chef is a niche culinary job portal where restaurants hire by specialism - not generic listings. Chefs and owners get separate dashboards for browsing, posting, applying, and shortlisting across India, with rich filters for cuisine, city, and experience. Frontend-only showcase powered by a mock API and persisted client state.',
+      skillsInvolved: [
+        'React',
+        'TypeScript',
+        'Vite',
+        'Tailwind CSS',
+        'shadcn/ui',
+        'Redux Toolkit',
+        'React Router',
+        'React Hook Form',
+        'Zod',
+        'Vitest',
+      ],
       websiteUrl: 'https://nadeem-abdun.github.io/find-my-chef/',
       repositoryUrl: 'https://github.com/Nadeem-Abdun/find-my-chef',
+      projectStatus: 'Active',
+    },
+    {
+      _id: '',
+      projectPicture: FuelCalculatorImg,
+      title: 'Fuel Calculator',
+      description:
+        'Fuel Calculator is a lightweight trip-planning web app that estimates how much fuel you need and what it will cost. Enter distance, fuel price, and vehicle mileage to get instant liters and rupee totals, then save trips with a title and start/destination labels for later review, all stored in the browser with no backend or account required.',
+      skillsInvolved: [
+        'React',
+        'TypeScript',
+        'Create React App',
+        'Material UI (MUI)',
+        'React Router',
+        'LocalStorage',
+      ],
+      websiteUrl: 'https://nadeem-abdun.github.io/fuel-calculator-app/',
+      repositoryUrl: 'https://github.com/Nadeem-Abdun/fuel-calculator-app',
       projectStatus: 'Active',
     },
   ],
